@@ -1,0 +1,9 @@
+<h1>検索結果</h1>
+<% @books.each do |book| %>
+    <p><%= book[:title] %></p>
+    <%= image_tag(book[:image_url]) %>
+<% end %>
+
+<div>
+  <a href="/">もどる</a>
+</div>

@@ -1,0 +1,35 @@
+.search-main {
+  padding-top: 76px;
+}
+.search-group {
+  margin: 0 auto;
+}
+
+.search-result {
+  margin: 0 auto;
+  max-width: 700px;
+
+   .card-header {
+    font-weight: bold;
+    color: gray;
+    background-color: white;
+    font-size: 18px;
+  }
+
+  .card-img-top {
+    padding: 10px;
+    width: 100px;
+  }
+
+  .search-item-body {
+    padding: 10px;
+  }
+  
+}
+
+
+@media (min-width: 992px) {
+  .search-main {
+    padding-top: 120px;
+  }
+}

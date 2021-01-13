@@ -2,7 +2,9 @@ class Book < ApplicationRecord
   has_one :review
   has_many :user_books
   has_many :users
-  
+
+  require 'addressable/uri'
+
   def self.search_books(keyword)
     encoded_uri = Addressable::URI.encode(
       "https://www.googleapis.com/books/v1/volumes?q=#{keyword}"
