@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg bg-secondary text-uppercase" id="mainNav">
+<%# .fixed-top %>
   <div class="container">
     <a class="navbar-brand js-scroll-trigger" href="/">Reader</a>
     <%= render 'shared/search' %>
@@ -13,7 +14,7 @@
             <%= link_to 'マイページ', edit_user_registration_path, class: 'nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger' %>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
-            <%= link_to 'ログアウト', destroy_user_session_path, class: 'nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger' %>
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger' %>
           </li>
         <% else %>
           <li class="nav-item mx-0 mx-lg-1">

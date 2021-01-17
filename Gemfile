@@ -53,9 +53,13 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'omniauth-rails_csrf_protection'
+gem 'omniauth-twitter'
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'pry-rails'
 gem 'omniauth-twitter'
 gem 'json'
 gem 'httparty'
+gem 'dotenv-rails'
