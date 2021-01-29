@@ -1,0 +1,290 @@
+.search-result {
+  margin: 0 auto;
+  max-width: 700px;
+
+  .card-header {
+    background-color: white;
+    color: gray;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .card-img-top {
+    padding: 10px 0;
+    width: 100px;
+  }
+
+  .search-item-body {
+    padding: 10px;
+  }
+}
+
+.modal {
+  h5 {
+    color: gray-6;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .modal-book-image {
+    width: 100px;
+  }
+
+  &-btn {
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: gray;
+    cursor: pointer;
+    font-size: 0.8rem;
+    line-height: 2.5;
+    margin: 5px;
+    text-align: center;
+    width: 80%;
+
+    &:hover {
+      background-color: gray;
+      border: 1px solid gray;
+      color: white;
+      transition: 0.2s;
+    }
+  }
+
+  .btn-selected {
+    background-color: gray;
+    border: 1px solid gray;
+    color: white;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.modal-text {
+  color: gray;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.post-review-title {
+  color: gray;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.post-review-img {
+  max-width: 100px;
+}
+
+.book-rating {
+  color: gray;
+  display: flex;
+
+  .fa-star {
+    cursor: pointer;
+  }
+
+  .star-hover,
+  .star-active {
+    color: yellow;
+  }
+}
+
+.rating-reset {
+  border: 1px solid gray;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+
+  &:hover {
+    background-color: gray;
+    transition: 0.2s;
+  }
+}
+
+.post-review-label {
+  color: gray;
+  font-size: 0.85rem;
+}
+
+.review-text {
+  font-size: 0.9rem;
+  overflow: scroll;
+  resize: none;
+}
+
+.review-text,
+.review-date {
+  background-color: white;
+  border: 1px solid gray;
+
+  &:focus {
+    background-color: white;
+    border: 1px solid gray;
+    box-shadow: none;
+  }
+}
+
+.word-count {
+  color: lightskyblue;
+  font-size: 1.2rem;
+
+  &-text {
+    color: gray;
+  }
+}
+
+.tweet-btn {
+  align-items: center;
+  background-color: gray;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+
+  &-active {
+    background-color: lightskyblue;
+  }
+
+  &:hover,
+  &:active {
+    background-color: lightskyblue;
+  }
+}
+
+.review-submit {
+  background-color: lightskyblue;
+  border: 1px solid lightskyblue;
+  border-radius: 5px;
+  color: white;
+  height: 40px;
+  width: 100px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.submit-disabled {
+  background-color: gray;
+  border: 1px solid gray;
+  cursor: not-allowed;
+}
+
+.bootstrap-datetimepicker-widget {
+  border-radius: 10px;
+  font-weight: 400;
+
+  .dow,
+  .picker-switch,
+  .prev,
+  .next {
+    color: gray;
+    font-weight: 400;
+  }
+
+  .day {
+    color: black;
+
+    .new {
+      color: gray;
+    }
+  }
+}
+
+.form-disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 575px) {
+  .search-main {
+    margin: 20px 0;
+  }
+
+  .post-review-img {
+    display: none;
+  }
+
+  .form-control textarea {
+    height: 400px;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .search-main {
+    margin: 50px 0 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search-item {
+    flex-direction: row;
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .add-book-cover {
+      margin-bottom: -100 0 0;
+      position: relative;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .search-result {
+    .card-img-top {
+      margin: 0 auto;
+    }
+
+    .card-title,
+    .card-text {
+      color: gray;
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+
+.add-book-cover {
+  align-items: center;
+  display: flex;
+  height: 150px;
+  justify-content: center;
+  margin: 0 auto -160px;
+  position: relative;
+  width: 100px;
+}
+
+.add-book {
+  display: none;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin: 0 auto;
+  padding: 5px;
+  text-align: center;
+}
+
+
+.add-book-cover:hover .add-book{
+  display: block;
+  text-decoration: none;
+}

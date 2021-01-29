@@ -7,20 +7,26 @@
           <div class="search-item col-md-3 border-0">
             <div class="text-center">
               <% if user_signed_in? %>
-              <% end %>
-                <%= image_tag(book[:image_url], class: "card-img-top") %>
-                <div class="search-item-body card-body">
-                  <h6 class="card-title">
-                    <%= book[:title] %>
-                  </h6>
-                  <div class="card-text">
-                    <%= book[:authors] %>
+                <div class="add-book-cover">
+                  <div class="add-book" data-toggle="modal" data-target="#post-review-modal" data-title=book[:title] data-authors=book[:authors] data-image=<%= book[:image_url] %>data-uid=book[:uid] data-dismiss="modal" data-href="#post-review-modal" id="read-book">
+                  本を登録する
                   </div>
+                </div>
+              <% end %>
+              <%= image_tag(book[:image_url], class: "card-img-top") %>
+              <div class="search-item-body card-body">
+                <h6 class="card-title">
+                  <%= book[:title] %>
+                </h6>
+                <div class="card-text">
+                  <%= book[:authors] %>
                 </div>
               </div>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
+  </div>
 </div>
+<%= render partial: "shared/post-review-modal" %>

@@ -1,0 +1,67 @@
+<div class="modal fade" id="post-review-modal" tabindex="-1" role="dialog"aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title post-review-title">読んだ本に登録する</div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fas fa-times text-muted"></i></span>
+        </button>
+      </div>
+      <div class="modal-body row" id="modal-book-data">
+        <div class="col-sm-3 border-right text-center">
+         <%= image_tag('',
+          class: 'modal-review-img',
+          id: 'modal-review-img') %>
+        </div>
+        <div class="modal-text col-sm-9">
+          <form class="post-review">
+            <div class="row mb-2">
+              <label for="date" class="col-lg-3 post-review-label my-auto">読み終わった日</label>
+              <div class="input-group date col-lg-5" id="datetimepicker" data-target-input="nearest">
+                <input class="result form-control datetimpicker-input review-date" type="text" name="date" data-target="#datetimpicker" id="date"data-toggle="datetimepicker">
+                <div class="input-group-append" data-target="#dateimepicker" data-toggle="datetimepicker">
+                  <div class="input-group-text border-0" id="calender">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 my-auto post-review-label">
+                <input type="checkbox" class="date-check" id="date-check">読了日を指定しない
+              </div>
+            </div>
+            <div class="row mb-1">
+              <label for="text" class="col-lg-3 post-review-label">感想</label>
+              <textarea class="review-text col form-control mx-2" type="text" name="text" id="review-text" rows="8"></textarea>
+            </div>
+            <div class="row mb-1">
+              <div class="word-count-text ml-auto mr-3">
+                <span class="word-count" id="word-counte">/255文字</span>
+              </div>
+            </div>
+            <div class="row mb-2 mx-2">
+              <div class="col-lg-3">
+                <input type="hidden" name="rating" value=0 id="book-rating">
+              </div>
+              <div class="book-rating pr-3 my-auto" id="review-post-rating">
+                <i class="fas fa-star fa-lg" id="rating-1" data-rating=1></i>
+                <i class="fas fa-star fa-lg" id="rating-2" data-rating=2></i>
+                <i class="fas fa-star fa-lg" id="rating-3" data-rating=3></i>
+                <i class="fas fa-star fa-lg" id="rating-4" data-rating=4></i>
+                <i class="fas fa-star fa-lg" id="rating-5" data-rating=5></i>
+              </div>
+              <span class="rating-reset" id="rating-reset">評価なし</span>
+            </div>
+            <div class="row">
+              <div class="col-3">
+                <div class="col-9 d-flex pl-0">
+                  <%# if %>
+                  <button id="review-submit" class="review-submit ml-auto my-0">登録する</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
