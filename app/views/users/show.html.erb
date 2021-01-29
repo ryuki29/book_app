@@ -1,2 +1,6 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="contents  text-center">
+  <p><%= @username %>さんのレビュー一覧</p>
+  <% if user_signed_in? && @user.id %>
+    <%= link_to 'プロフィールを編集',edit_user_registration_path %>
+  <% end %>
+</div>
