@@ -15,7 +15,7 @@ $(document).on("turbolinks:load", function() {
         },
         review: {
           date: $("#date-input").val(),
-          text: $`("#review-text").val(),
+          text: $("#review-text").val(),
           rating: $("#book-rating").val(),
           tweet: $("#tweet-review").val()
         }

@@ -33,11 +33,39 @@
               <label for="text" class="col-lg-3 post-review-label">感想</label>
               <textarea class="review-text col form-control mx-2" type="text" name="text" id="review-text" rows="8"></textarea>
             </div>
+
+            <%# impressive_phrase form %>
             <div class="row mb-1">
-              <div class="word-count-text ml-auto mr-3">
-                <span class="word-count" id="word-counte">/255文字</span>
+              <label for="phrase" class="col-lg-3 post-review-label">印象に残ったフレーズ</label>
+              <div id="form-area" class="form-group">
+                <div class="phrase input-group mb-2">
+                  <input name="phrase" type="text">
+                  <div class="impressive_phrase-form-minus input-group-append">
+                    <input type="button" value="－" class="del pluralBtn">
+                  </div>
+                </div>
+              </div>
+              <div id="impressive_phrase-form-plus" class="btn">
+                <input type="button" value="+" class="add pluralBtn">
               </div>
             </div>
+
+            <%# action_plan form  %>
+            <div class="row mb-1">
+              <label for="plan" class="col-lg-3 post-review-label">アクションプラン</label>
+              <div id="form-area" class="form-group">
+                <div class="plan input-group mb-2">
+                  <input name="plan" type="text">
+                  <div class="action_plan-form-minus input-group-append">
+                    <input type="button" value="－" class="del pluralBtn">
+                  </div>
+                </div>
+              </div>
+              <div id="action_plan-form-plus" class="btn">
+                <input type="button" value="+" class="add pluralBtn">
+              </div>
+            </div>
+
             <div class="row mb-2 mx-2">
               <div class="col-lg-3">
                 <input type="hidden" name="rating" value=0 id="book-rating">
