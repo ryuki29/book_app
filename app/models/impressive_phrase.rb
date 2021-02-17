@@ -1,3 +1,3 @@
 class ImpressivePhrase < ApplicationRecord
-  belongs_to :reviews
+  belongs_to :review
 end

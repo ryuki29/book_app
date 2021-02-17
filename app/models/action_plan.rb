@@ -1,3 +1,3 @@
 class ActionPlan < ApplicationRecord
-  belongs_to :reviews
+  belongs_to :review
 end
