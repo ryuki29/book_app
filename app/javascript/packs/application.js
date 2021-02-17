@@ -9,6 +9,8 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 
+window.$ = window.jQuery = require('jquery');
+require("packs/raty")
 require("../search_books")
 require("../create_books")
 

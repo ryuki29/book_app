@@ -206,6 +206,45 @@
   cursor: not-allowed;
 }
 
+// ここから本を登録するボタン群のCSSを記述していく
+.book-menu {
+  max-width: 600px;
+}
+
+// .book-menu #add-book-btn {
+//   display: none;
+// }
+
+.book-menu ul {
+  width: 100px;
+  margin: 0px 0;
+  padding: 0;
+  background :#eae0d7;
+  list-style: none;
+  text-align:center;
+}
+
+.book-menu li {
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.book-menu li:hover {
+background-color: gray;
+cursor :pointer;
+}
+
+#add-book-btn:checked ~ #book-btn li {
+  height: 54px;
+  opacity: 1;
+}
+// ここまで！
+
 @media screen and (max-width: 575px) {
   .search-main {
     margin: 20px 0;

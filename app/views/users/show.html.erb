@@ -1,6 +1,31 @@
 <div class="contents  text-center">
-  <p><%= @username %>さんのレビュー一覧</p>
-  <% if user_signed_in? && @user.id %>
+  <h1><%= @username %>さんの本棚</h1>
+  <% if user_signed_in? && @user.id == current_user.id %>
     <%= link_to 'プロフィールを編集',edit_user_registration_path %>
   <% end %>
+
+  <div class="search-main">
+    <div class="container">
+      <div class="search-result card">
+        <h1 class="card-header">読み終えた本</h1>
+        <div class="card-body row">
+          <% @user.books.each do |book| %>
+            <div class="search-item col-md-3 border-0">
+              <div class="text-center">
+                <%= image_tag(book[:image_url], class: "card-img-top") %>
+                <div class="search-item-body card-body">
+                  <h6 class="card-title">
+                    <%= book[:title] %>
+                  </h6>
+                  <div class="card-text">
+                    <%= book[:authors] %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
