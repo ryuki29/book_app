@@ -72,40 +72,8 @@
   font-weight: bold;
 }
 
-.post-review-title {
-  color: gray;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.post-review-img {
+.modal-review-img {
   max-width: 100px;
-}
-
-.book-rating {
-  color: gray;
-  display: flex;
-
-  .fa-star {
-    cursor: pointer;
-  }
-
-  .star-hover,
-  .star-active {
-    color: yellow;
-  }
-}
-
-.rating-reset {
-  border: 1px solid gray;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 5px 10px;
-
-  &:hover {
-    background-color: gray;
-    transition: 0.2s;
-  }
 }
 
 .post-review-label {
@@ -131,36 +99,6 @@
   }
 }
 
-.word-count {
-  color: lightskyblue;
-  font-size: 1.2rem;
-
-  &-text {
-    color: gray;
-  }
-}
-
-.tweet-btn {
-  align-items: center;
-  background-color: gray;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  height: 40px;
-  justify-content: center;
-  width: 40px;
-
-  &-active {
-    background-color: lightskyblue;
-  }
-
-  &:hover,
-  &:active {
-    background-color: lightskyblue;
-  }
-}
-
 .review-submit {
   background-color: lightskyblue;
   border: 1px solid lightskyblue;
@@ -180,40 +118,15 @@
   cursor: not-allowed;
 }
 
-.bootstrap-datetimepicker-widget {
-  border-radius: 10px;
-  font-weight: 400;
-
-  .dow,
-  .picker-switch,
-  .prev,
-  .next {
-    color: gray;
-    font-weight: 400;
-  }
-
-  .day {
-    color: black;
-
-    .new {
-      color: gray;
-    }
-  }
-}
 
 .form-disabled {
   color: gray;
   cursor: not-allowed;
 }
 
-// ここから本を登録するボタン群のCSSを記述していく
 .book-menu {
   max-width: 600px;
 }
-
-// .book-menu #add-book-btn {
-//   display: none;
-// }
 
 .book-menu ul {
   width: 100px;
@@ -243,14 +156,13 @@ cursor :pointer;
   height: 54px;
   opacity: 1;
 }
-// ここまで！
 
 @media screen and (max-width: 575px) {
   .search-main {
     margin: 20px 0;
   }
 
-  .post-review-img {
+  .modal-review-img {
     display: none;
   }
 

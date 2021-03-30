@@ -2,92 +2,103 @@
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="modal-title post-review-title">読んだ本に登録する</div>
+        レビューを投稿する
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"><i class="fas fa-times text-muted"></i></span>
         </button>
       </div>
       <div class="modal-body row" id="modal-book-data">
         <div class="col-sm-3 border-right text-center">
-         <%= image_tag('',
+          <%= image_tag('',
           class: 'modal-review-img',
           id: 'modal-review-img') %>
         </div>
         <div class="modal-text col-sm-9">
-          <form class="post-review">
+
+          <%# -----form_with----- %>
+          <%= form_with model: @review do |f| %>
+          <%= hidden_field_tag "user_book[status]", 0 %>
+          <%= hidden_field_tag "book[title]", "", class: "modal-book-title" %>
+          <%= hidden_field_tag "book[authors]", "", class: "modal-book-authors" %>
+          <%= hidden_field_tag "book[image_url]", "", class: "modal-book-img" %>
+          <%= hidden_field_tag "book[uid]", "", class: "modal-book-uid" %>
+
+            <%# -----読み終わった日----- %>
             <div class="row mb-2">
-              <label for="date" class="col-lg-3 post-review-label my-auto">読み終わった日</label>
+              <%= f.label :date, "読み終わった日", for:"date", class:"col-lg-3 post-review-label my-auto" %>
               <div class="input-group date col-lg-5" id="datetimepicker" data-target-input="nearest">
-                <input class="result form-control datetimpicker-input review-date" type="text" name="date" data-target="#datetimpicker" id="date"data-toggle="datetimepicker">
+                <%= f.text_field :date, class:"result form-control datetimpicker-input review-date", id:"date", data:{toggle: "datetimepicker", target: "#datetimpicker"} %>
                 <div class="input-group-append" data-target="#dateimepicker" data-toggle="datetimepicker">
                   <div class="input-group-text border-0" id="calender">
                     <i class="fa fa-calendar"></i>
                   </div>
                 </div>
               </div>
+
+              <%# -----読了日を指定しない----- %>
               <div class="col-lg-4 my-auto post-review-label">
-                <input type="checkbox" class="date-check" id="date-check">読了日を指定しない
+                <%= f.check_box class:"date-check", id:"date-check"%> 読了日を指定しない
               </div>
             </div>
+
+            <%# -----感想----- %>
             <div class="row mb-1">
-              <label for="text" class="col-lg-3 post-review-label">感想</label>
-              <textarea class="review-text col form-control mx-2" type="text" name="text" id="review-text" rows="8"></textarea>
+              <%= f.label :text, "感想", class:"col-lg-3 post-review-label"%>
+              <%= f.text_area :text, class:"review-text col form-control mx-2", id:"review-text", rows:"8"%>
             </div>
 
-            <%# impressive_phrase form %>
-            <div class="row mb-1">
-              <label for="phrase" class="col-lg-3 post-review-label">印象に残ったフレーズ</label>
-              <div id="form-area" class="form-group">
-                <div class="phrase input-group mb-2">
-                  <input name="phrase" type="text">
-                  <div class="impressive_phrase-form-minus input-group-append">
-                    <input type="button" value="－" class="del pluralBtn">
+            <%# -----印象に残ったフレーズ----- %>
+            <div class="row mb-1 phrase-form-area">
+              <%= f.fields_for :impressive_phrases, @review.impressive_phrases.build do |phrase|%>
+                <%= phrase.label :phrase, "印象に残ったフレーズ", for:"phrase", class:"col-lg-3 post-review-label" %>
+                <%# フォーム追加ここから %>
+                <div id="form-area" class="js-phrase-form-group" data-index="<%= phrase.index %>">
+                  <div class="phrase input-group mb-2">
+                    <%= phrase.text_field :phrase, id:"phrase-input" %>
+                    <div class="phrase-form-minus-btn input-group-append">
+                      <input type="button" value="－" class="del pluralBtn">
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div id="impressive_phrase-form-plus" class="btn">
-                <input type="button" value="+" class="add pluralBtn">
-              </div>
+                <div class="phrase-form-plus-btn">
+                  <input type="button" value="+" class="add pluralBtn">
+                </div>
+              <% end %>
             </div>
 
-            <%# action_plan form  %>
-            <div class="row mb-1">
-              <label for="plan" class="col-lg-3 post-review-label">アクションプラン</label>
-              <div id="form-area" class="form-group">
-                <div class="plan input-group mb-2">
-                  <input name="plan" type="text">
-                  <div class="action_plan-form-minus input-group-append">
-                    <input type="button" value="－" class="del pluralBtn">
+            <%# -----アクションプラン----- %>
+            <div class="row mb-1 plan-form-area">
+              <%= f.fields_for :action_plans, @review.action_plans.build do |plan| %>
+                <%= plan.label :plan, "アクションプラン", for:"plan", class:"col-lg-3 post-review-label" %>
+                <%# フォーム追加ここから %>
+                <div id="form-area" class="js-plan-form-group" data-index="#{plan.index}">
+                  <div class="plan input-group mb-2">
+                    <%= plan.text_field :plan, id:"plan-input" %>
+                    <div class="plan-form-minus-btn input-group-append">
+                      <input type="button" value="－" class="del pluralBtn">
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div id="action_plan-form-plus" class="btn">
-                <input type="button" value="+" class="add pluralBtn">
-              </div>
+                <div class="plan-form-plus-btn">
+                  <input type="button" value="+" class="add pluralBtn">
+                </div>
+              <% end %>
             </div>
 
+            <%# -----星評価機能----- %>
             <div class="row mb-2 mx-2">
-              <div class="col-lg-3">
-                <input type="hidden" name="rating" value=0 id="book-rating">
-              </div>
-              <div class="book-rating pr-3 my-auto" id="review-post-rating">
-                <i class="fas fa-star fa-lg" id="rating-1" data-rating=1></i>
-                <i class="fas fa-star fa-lg" id="rating-2" data-rating=2></i>
-                <i class="fas fa-star fa-lg" id="rating-3" data-rating=3></i>
-                <i class="fas fa-star fa-lg" id="rating-4" data-rating=4></i>
-                <i class="fas fa-star fa-lg" id="rating-5" data-rating=5></i>
-              </div>
-              <span class="rating-reset" id="rating-reset">評価なし</span>
             </div>
+
+            <%# -----登録するボタン----- %>
             <div class="row">
               <div class="col-3">
                 <div class="col-9 d-flex pl-0">
-                  <%# if %>
-                  <button id="review-submit" class="review-submit ml-auto my-0">登録する</button>
+                  <%= f.submit "登録する", id:"review-submit", class: "review-submit ml-auto my-0" %>
                 </div>
               </div>
             </div>
-          </form>
+          <% end %>
+
         </div>
       </div>
     </div>
