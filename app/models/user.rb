@@ -5,6 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers:[:twitter]
 
+  has_many :reviews, dependent: :destroy
+  has_many :user_books, dependent: :destroy
+  has_many :books, through: :user_books,
+            dependent: :destroy
+
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
       user.provider = auth["provider"]

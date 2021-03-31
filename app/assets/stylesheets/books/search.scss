@@ -1,0 +1,241 @@
+.search-result {
+  margin: 0 auto;
+  max-width: 700px;
+
+  .card-header {
+    background-color: white;
+    color: gray;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .card-img-top {
+    padding: 10px 0;
+    width: 100px;
+  }
+
+  .search-item-body {
+    padding: 10px;
+  }
+}
+
+.modal {
+  h5 {
+    color: gray-6;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .modal-book-image {
+    width: 100px;
+  }
+
+  &-btn {
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: gray;
+    cursor: pointer;
+    font-size: 0.8rem;
+    line-height: 2.5;
+    margin: 5px;
+    text-align: center;
+    width: 80%;
+
+    &:hover {
+      background-color: gray;
+      border: 1px solid gray;
+      color: white;
+      transition: 0.2s;
+    }
+  }
+
+  .btn-selected {
+    background-color: gray;
+    border: 1px solid gray;
+    color: white;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.modal-text {
+  color: gray;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.modal-review-img {
+  max-width: 100px;
+}
+
+.post-review-label {
+  color: gray;
+  font-size: 0.85rem;
+}
+
+.review-text {
+  font-size: 0.9rem;
+  overflow: scroll;
+  resize: none;
+}
+
+.review-text,
+.review-date {
+  background-color: white;
+  border: 1px solid gray;
+
+  &:focus {
+    background-color: white;
+    border: 1px solid gray;
+    box-shadow: none;
+  }
+}
+
+.review-submit {
+  background-color: lightskyblue;
+  border: 1px solid lightskyblue;
+  border-radius: 5px;
+  color: white;
+  height: 40px;
+  width: 100px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.submit-disabled {
+  background-color: gray;
+  border: 1px solid gray;
+  cursor: not-allowed;
+}
+
+
+.form-disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+
+.book-menu {
+  max-width: 600px;
+}
+
+.book-menu ul {
+  width: 100px;
+  margin: 0px 0;
+  padding: 0;
+  background :#eae0d7;
+  list-style: none;
+  text-align:center;
+}
+
+.book-menu li {
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.book-menu li:hover {
+background-color: gray;
+cursor :pointer;
+}
+
+#add-book-btn:checked ~ #book-btn li {
+  height: 54px;
+  opacity: 1;
+}
+
+@media screen and (max-width: 575px) {
+  .search-main {
+    margin: 20px 0;
+  }
+
+  .modal-review-img {
+    display: none;
+  }
+
+  .form-control textarea {
+    height: 400px;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .search-main {
+    margin: 50px 0 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search-item {
+    flex-direction: row;
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .add-book-cover {
+      margin-bottom: -100 0 0;
+      position: relative;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .search-result {
+    .card-img-top {
+      margin: 0 auto;
+    }
+
+    .card-title,
+    .card-text {
+      color: gray;
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+
+.add-book-cover {
+  align-items: center;
+  display: flex;
+  height: 150px;
+  justify-content: center;
+  margin: 0 auto -160px;
+  position: relative;
+  width: 100px;
+}
+
+.add-book {
+  display: none;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+  color: black;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin: 0 auto;
+  padding: 5px;
+  text-align: center;
+}
+
+
+.add-book-cover:hover .add-book{
+  display: block;
+  text-decoration: none;
+}

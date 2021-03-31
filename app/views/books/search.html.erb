@@ -1,4 +1,4 @@
-<div class="search-main">
+<div class="search-main">
   <div class="container">
     <div class="search-result card">
       <h1 class="card-header">検索結果</h1>
@@ -7,20 +7,39 @@
           <div class="search-item col-md-3 border-0">
             <div class="text-center">
               <% if user_signed_in? %>
-              <% end %>
-                <%= image_tag(book[:image_url], class: "card-img-top") %>
-                <div class="search-item-body card-body">
-                  <h6 class="card-title">
-                    <%= book[:title] %>
-                  </h6>
-                  <div class="card-text">
-                    <%= book[:authors] %>
+                <div class="add-book-cover">
+                  <div class="book-menu">
+                    <label class="add-book" id="add-book" for="add-book-btn">本を登録する</label>
+                    <input type="checkbox" id="add-book-btn" class="accordion" />
+                    <ul id="book-btn">
+                      <div class="read-book" data-toggle="modal" data-target="#post-review-modal" data-title="<%= book[:title] %>" data-authors="<%= book[:authors] %>" data-image="<%= book[:image_url] %>" data-uid="<%= book[:uid] %>" > 
+                        <li>読んだ</li>
+                      </div>
+                      <div class="reading-book-btn" id="reading-book" data-status=1>
+                        <li>読んでる</li>
+                      </div>
+                      <div class="will-read-book-btn" id="will-read-book" data-status=2>
+                        <li>読みたい</li>
+                      </div>
+                    </ul>
                   </div>
+                </div>
+              <% end %>
+              <%= image_tag(book[:image_url], class: "card-img-top") %>
+              <div class="search-item-body card-body">
+                <h6 class="card-title">
+                  <%= book[:title] %>
+                </h6>
+                <div class="card-text">
+                  <%= book[:authors] %>
                 </div>
               </div>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
+  </div>
 </div>
+
+<%= render partial: "shared/post-review-modal" %>

@@ -1,7 +1,7 @@
 class Book < ApplicationRecord
-  has_one :review
-  has_many :user_books
-  has_many :users
+  has_many :reviews
+  has_many :user_books, dependent: :destroy
+  has_many :users, through: :user_books
 
   require 'addressable/uri'
 
@@ -18,7 +18,7 @@ class Book < ApplicationRecord
       uid = item['id']
       title = item['volumeInfo']['title'] ||= ''
       authors = item['volumeInfo']['authors'] ||= []
-      image_url = item['volumeInfo']['imageLinks'] ? item['volumeInfo']['imageLinks']['thumbnail'].sub(/http/, 'https') : 'book-default.png'
+      image_url = item['volumeInfo']['imageLinks'] ? item['volumeInfo']['imageLinks']['thumbnail'].sub(/http/, 'https') : 'default-book.png'
 
       book = {
         uid: uid,

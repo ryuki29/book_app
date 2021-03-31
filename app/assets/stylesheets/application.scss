@@ -1,8 +1,4 @@
 @import "shared/header.scss";
-@import "shared/search.scss"
-
-// _search.html.erb
-// .input-group {
-//   display: flex;
-//   flex-wrap: wrap;
-// }
+@import "books/search.scss";
+@import "books/show-review-modal.scss";
+@import "users/show.scss"

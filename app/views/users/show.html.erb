@@ -1,2 +1,43 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= @username %>さんの本棚</h1>
+<% if user_signed_in? && @user.id == current_user.id %>
+  <%= link_to 'プロフィールを編集',edit_user_registration_path %>
+<% end %>
+
+<div class="tab-wrap">
+    <input id="tab01" type="radio" name="tab" class="tab-switch" checked="checked"><label class="tab-label" for="tab01">読み終えた本</label>
+    <div class="tab-content">
+        <div class="contents  text-center">
+          <div class="search-main">
+            <div class="container">
+              <div class="search-result card">
+                <div class="card-body row">
+                  <% @user.books.each do |book| %>
+                    <div class="search-item col-md-3 border-0">
+                      <div class="text-center">
+                        <%= image_tag(book[:image_url], class: "card-img-top") %>
+                        <div class="search-item-body card-body">
+                          <h6 class="card-title">
+                            <%= book[:title] %>
+                          </h6>
+                          <div class="card-text">
+                            <%= book[:authors] %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <input id="tab02" type="radio" name="tab" class="tab-switch"><label class="tab-label" for="tab02">読んでいる本</label>
+    <div class="tab-content">
+        読んでいる本一覧
+    </div>
+    <input id="tab03" type="radio" name="tab" class="tab-switch"><label class="tab-label" for="tab03">読みたい本</label>
+    <div class="tab-content">
+        読みたい本一覧
+    </div>
+</div>
