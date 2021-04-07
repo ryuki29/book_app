@@ -1,0 +1,22 @@
+<div class="review-list d-flex">
+
+  <div class="review-list-img col-md-3">
+    <div class='review-book-img'>
+      <%= image_tag("#{review.book.image_url}") %>
+    </div>
+  </div>
+
+  <div class="review-list-data col-md-9" id="notebook-paper">
+    <div class="review-list-date">
+      <% if review.date.nil? %>
+        <p><br><p>
+      <% else %>
+        <p><%= review.date %></p>
+      <% end %>
+    </div>
+    <div class="review-list-text">
+      <p><%= review.text %></p>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,101 @@
+$color-bg: #fde3a7;
+$book-color-bg: lighten($color-bg, 20%);
+$book-color-border: lighten(#000, 85%);
+$book-border: 1px solid $book-color-border;
+$background-color: #eeeeee;
+
+.reviews-index {
+  background-color: $background-color;
+}
+
+%book-rounded-corners {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.review-book-img {
+  @extend %book-rounded-corners;
+  cursor: pointer;
+  display: block;
+  width: 120px;
+  height: 166px;
+  position: relative;
+  background: $book-color-bg;
+  z-index: 1;
+  box-shadow: 0 2px 4px 0 rgba(#000, .1), 0 9px 20px 0 rgba(#000, .25);
+  overflow: hidden;
+  transition: box-shadow .3s linear;
+
+  & > img {
+    @extend %book-rounded-corners;
+
+    width: inherit;
+    height: inherit;
+    transform-origin: 0 50%;
+    transform: rotateY(0);
+    transition: all .45s ease;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 4px 0 rgba(#000, .25), 0 9px 20px 0 rgba(#000, .45);
+
+    img {
+      transform: rotateY(-25deg);
+      box-shadow: 1px 1px 5px 5px rgba(#000, .2);
+    }
+  }
+
+  &::after,
+  &::before{
+    @extend %book-rounded-corners;
+
+    content: '';
+    display: block;
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    background: $book-color-bg;
+    border: $book-border;
+  }
+
+  &::before { left: -3px}
+  &::after { left: -6px; }
+}
+
+.active {
+  transform: translateX(300px);
+}
+
+// reviewノートのデザイン
+#notebook-paper {
+  height:155px;
+  background: linear-gradient(to bottom,white 29px,#00adb5 1px);
+  background-size: 100% 30px;
+  position:relative;
+  border-radius:5px;
+  box-shadow:3px 3px 3px rgba(0,0,0,.2),0px 0px 6px rgba(0,0,0,.2);
+  margin: auto;
+
+  font-size:18px;
+  overflow: hidden;
+
+  .review-list-date p {
+    text-align: right;
+    margin-bottom: 0;
+  }
+
+  .review-list-text p {
+    text-align: justify;
+    line-height: 1.8;
+  }
+}
+
+.review-list {
+  margin-top: 3%;
+  margin-right: 20%;
+  &-img {
+    margin-right: 0;
+  }
+}
