@@ -2,7 +2,7 @@ $color-bg: #fde3a7;
 $book-color-bg: lighten($color-bg, 20%);
 $book-color-border: lighten(#000, 85%);
 $book-border: 1px solid $book-color-border;
-$background-color: #eeeeee;
+$background-color: $base-color;
 
 .reviews-index {
   background-color: $background-color;
@@ -71,7 +71,7 @@ $background-color: #eeeeee;
 // reviewノートのデザイン
 #notebook-paper {
   height:155px;
-  background: linear-gradient(to bottom,white 29px,#00adb5 1px);
+  background: linear-gradient(to bottom,white 29px,$accent-color 1px);
   background-size: 100% 30px;
   position:relative;
   border-radius:5px;

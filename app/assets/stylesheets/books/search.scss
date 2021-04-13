@@ -132,7 +132,7 @@
   width: 100px;
   margin: 0px 0;
   padding: 0;
-  background :#eae0d7;
+  background :$base-color;
   list-style: none;
   text-align:center;
 }
@@ -159,7 +159,7 @@ cursor :pointer;
 
 @media screen and (max-width: 575px) {
   .search-main {
-    margin: 20px 0;
+    background-color: $base-color;
   }
 
   .modal-review-img {
@@ -173,7 +173,7 @@ cursor :pointer;
 
 @media screen and (min-width: 576px) {
   .search-main {
-    margin: 50px 0 30px;
+    background-color: $base-color;
   }
 }
 
@@ -209,7 +209,6 @@ cursor :pointer;
   }
 }
 
-
 .add-book-cover {
   align-items: center;
   display: flex;
@@ -218,24 +217,44 @@ cursor :pointer;
   margin: 0 auto -160px;
   position: relative;
   width: 100px;
+
+  .add-book {
+    display: none;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin: 0 auto;
+    padding: 5px;
+    text-align: center;
+  }
+
+  &:hover .add-book {
+    display: block;
+    text-decoration: none;
+  }
 }
 
-.add-book {
-  display: none;
-  background-color: white;
-  border: 1px solid gray;
-  border-radius: 5px;
-  color: black;
-  cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: bold;
-  margin: 0 auto;
-  padding: 5px;
-  text-align: center;
+#phrase-input {
+  border: none;
+}
+#plan-input {
+  border: none;
 }
 
-
-.add-book-cover:hover .add-book{
+.phrase {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
   display: block;
-  text-decoration: none;
+}
+.plan {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.post-review-genre-select {
+  border: 1px solid #ced4da;
 }
