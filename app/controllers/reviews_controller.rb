@@ -35,6 +35,7 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(
       :date,
       :text,
+      :category,
       impressive_phrases_attributes: [:phrase, :_destroy, :id],
       action_plans_attributes: [:plan, :_destroy, :id]
     ).merge(
@@ -60,7 +61,8 @@ class ReviewsController < ApplicationController
       user_id: current_user.id,
       book_id: @book.id,
       date: review_params[:date],
-      text: review_params[:text]
+      text: review_params[:text],
+      category: review_params[:category]
     )
   end
 

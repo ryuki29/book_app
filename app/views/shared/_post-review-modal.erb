@@ -37,29 +37,40 @@
 
               <%# -----読了日を指定しない----- %>
               <div class="col-lg-4 my-auto post-review-label">
-                <%= f.check_box class:"date-check", id:"date-check"%> 読了日を指定しない
+                <%# f.check_box class:"２date-check", id:"date-check"%> 読了日を指定しない
+              </div>
+            </div>
+
+            <%# -----ジャンル----- %>
+            <div class="row my-3">
+              <div class="col-lg-3 my-auto">
+                ジャンル
+              </div>
+              <div class="col-lg-5 post-review-genre">
+                <%= f.select :category, options_for_select(Review.categories.keys.map {|k| [I18n.t("enums.review.category.#{k}"), k]}, selected: @review.category), {include_blank: "選択してください"}, {class: "post-review-genre-select", required: true} %>
               </div>
             </div>
 
             <%# -----感想----- %>
-            <div class="row mb-1">
+            <div class="row my-3">
               <%= f.label :text, "感想", class:"col-lg-3 post-review-label"%>
               <%= f.text_area :text, class:"review-text col form-control mx-2", id:"review-text", rows:"8"%>
             </div>
 
             <%# -----印象に残ったフレーズ----- %>
-            <div class="row mb-1 phrase-form-area">
+            <div class="row my-2 phrase-form-area">
               <%= f.fields_for :impressive_phrases, @review.impressive_phrases.build do |phrase|%>
                 <%= phrase.label :phrase, "印象に残ったフレーズ", for:"phrase", class:"col-lg-3 post-review-label" %>
                 <%# フォーム追加ここから %>
                 <div id="form-area" class="js-phrase-form-group" data-index="<%= phrase.index %>">
-                  <div class="phrase input-group mb-2">
-                    <%= phrase.text_field :phrase, id:"phrase-input" %>
+                  <div class="phrase input-group">
+                    <%= phrase.text_field :phrase, id:"phrase-input"%>
                     <div class="phrase-form-minus-btn input-group-append">
                       <input type="button" value="－" class="del pluralBtn">
                     </div>
                   </div>
                 </div>
+                <%# フォーム追加ボタン %>
                 <div class="phrase-form-plus-btn">
                   <input type="button" value="+" class="add pluralBtn">
                 </div>
@@ -67,18 +78,19 @@
             </div>
 
             <%# -----アクションプラン----- %>
-            <div class="row mb-1 plan-form-area">
+            <div class="row my-2 plan-form-area">
               <%= f.fields_for :action_plans, @review.action_plans.build do |plan| %>
                 <%= plan.label :plan, "アクションプラン", for:"plan", class:"col-lg-3 post-review-label" %>
                 <%# フォーム追加ここから %>
                 <div id="form-area" class="js-plan-form-group" data-index="#{plan.index}">
-                  <div class="plan input-group mb-2">
+                  <div class="plan input-group">
                     <%= plan.text_field :plan, id:"plan-input" %>
                     <div class="plan-form-minus-btn input-group-append">
                       <input type="button" value="－" class="del pluralBtn">
                     </div>
                   </div>
                 </div>
+                <%# フォーム追加ボタン %>
                 <div class="plan-form-plus-btn">
                   <input type="button" value="+" class="add pluralBtn">
                 </div>
@@ -86,7 +98,8 @@
             </div>
 
             <%# -----星評価機能----- %>
-            <div class="row mb-2 mx-2">
+            <div class="row mb-2 mx-2" id="star">
+              <%= f.label :rating, "評価", class:"col-lg-3 post-review-rating" %>
             </div>
 
             <%# -----登録するボタン----- %>
