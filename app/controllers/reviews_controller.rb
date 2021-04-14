@@ -36,6 +36,7 @@ class ReviewsController < ApplicationController
       :date,
       :text,
       :category,
+      :rating,
       impressive_phrases_attributes: [:phrase, :_destroy, :id],
       action_plans_attributes: [:plan, :_destroy, :id]
     ).merge(
@@ -62,6 +63,7 @@ class ReviewsController < ApplicationController
       book_id: @book.id,
       date: review_params[:date],
       text: review_params[:text],
+      rating: review_params[:rating],
       category: review_params[:category]
     )
   end
