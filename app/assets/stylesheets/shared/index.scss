@@ -1,101 +1,157 @@
-$color-bg: #fde3a7;
-$book-color-bg: lighten($color-bg, 20%);
-$book-color-border: lighten(#000, 85%);
-$book-border: 1px solid $book-color-border;
-$background-color: $base-color;
+// font
+$base-font: helvetica, arial, tahoma, verdana;
+$base-font-title: "Dosis", arial, tahoma, verdana;
+$base-font-color: #726f77;
 
-.reviews-index {
-  background-color: $background-color;
+// timeline-color
+$bg-body: $sub-color;
+$timeline-color: $accent-color;
+
+.review-blank {
+  padding-top: 3%;
+  background-color: $bg-body;
 }
 
-%book-rounded-corners {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.review-book-img {
-  @extend %book-rounded-corners;
-  cursor: pointer;
-  display: block;
-  width: 120px;
-  height: 166px;
-  position: relative;
-  background: $book-color-bg;
-  z-index: 1;
-  box-shadow: 0 2px 4px 0 rgba(#000, .1), 0 9px 20px 0 rgba(#000, .25);
-  overflow: hidden;
-  transition: box-shadow .3s linear;
-
-  & > img {
-    @extend %book-rounded-corners;
-
-    width: inherit;
-    height: inherit;
-    transform-origin: 0 50%;
-    transform: rotateY(0);
-    transition: all .45s ease;
-  }
-
-  &:hover {
-    box-shadow: 0 2px 4px 0 rgba(#000, .25), 0 9px 20px 0 rgba(#000, .45);
-
-    img {
-      transform: rotateY(-25deg);
-      box-shadow: 1px 1px 5px 5px rgba(#000, .2);
-    }
-  }
-
-  &::after,
-  &::before{
-    @extend %book-rounded-corners;
-
+// 回り込み防止
+%clearfix {
+  &:after, &:before {
     content: '';
     display: block;
-    width: inherit;
-    height: inherit;
-    position: absolute;
-    z-index: -1;
+    width: 100%;
+    clear: both;
+  }
+}
+
+.reviews-index {
+  background: $bg-body;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  font-family: $base-font;
+  line-height: 20px;
+  font-size: 14px;
+  color: $base-font-color;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+#timeline {
+  width: 100%;
+
+  position: relative;
+  padding: 0 10px;
+
+  &:before {
+    content:"";
+    width: 3px;
+    height: 100%;
+    background: $timeline-color;
+    left: 21.3%;
     top: 0;
-    background: $book-color-bg;
-    border: $book-border;
+    position: absolute;
   }
 
-  &::before { left: -3px}
-  &::after { left: -6px; }
-}
-
-.active {
-  transform: translateX(300px);
-}
-
-// reviewノートのデザイン
-#notebook-paper {
-  height:155px;
-  background: linear-gradient(to bottom,white 29px,$accent-color 1px);
-  background-size: 100% 30px;
-  position:relative;
-  border-radius:5px;
-  box-shadow:3px 3px 3px rgba(0,0,0,.2),0px 0px 6px rgba(0,0,0,.2);
-  margin: auto;
-
-  font-size:18px;
-  overflow: hidden;
-
-  .review-list-date p {
-    text-align: right;
-    margin-bottom: 0;
+  &:after {
+    content: "";
+    clear: both;
+    display: table;
+    width: 100%;
   }
 
-  .review-list-text p {
-    text-align: justify;
-    line-height: 1.8;
+  .review-index_item {
+    margin-bottom: 50px;
+    position: relative;
+    @extend %clearfix;
+
+
+    .review-index_user_icon {
+      background: $timeline-color;
+      width: 70px;
+      height: 70px;
+      position: absolute;
+      top: 0;
+      left: 20%;
+      overflow: hidden;
+      margin-left: -28px;
+      border-radius: 50%;
+    }
+
+    .review-index_content {
+      width: 45%;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.1);
+      border-radius: 5px;
+      margin-left: 30%;
+
+      & > h1 {
+        padding: 15px;
+        background: $timeline-color;
+        color: #fff;
+        margin: -20px -20px 0 -20px;
+        font-weight: 300;
+        font-size: 20px;
+        border-radius: 3px 3px 0 0;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 29.2%;
+        top: 20px;
+        width: 0;
+        height: 0;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-right: 7px solid $timeline-color;
+      }
+
+      .review-index_img img {
+        margin: 1rem;
+        width: 100px;
+        box-shadow: 2px 2px rgba(0,0,0,0.1);
+      }
+
+      .review-index_fav {
+        text-align: right;
+      }
+
+      .review-index_text {
+        margin-top: 5%;
+        margin-bottom: 1rem;
+        font-size: 18px;
+      }
+    }
   }
 }
 
-.review-list {
-  margin-top: 3%;
-  margin-right: 20%;
-  &-img {
-    margin-right: 0;
+@media screen and (max-width: 768px) {
+  #timeline {
+    margin: 30px;
+    padding: 0px;
+    width: 90%;
+    &:before {
+      left: 0;
+    }
+
+    .review-index_item {
+      &:before {
+        left: 10%;
+        margin-left: -6px;
+        border-left: 0;
+        border-right: 7px solid $timeline-color;
+      }
+
+      .review-index_img img {
+        display: none;
+      }
+
+      .review-index_user_icon {
+        left: -1%;
+      }
+    }
   }
 }

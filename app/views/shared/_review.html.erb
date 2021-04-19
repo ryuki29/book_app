@@ -1,22 +1,30 @@
-<div class="review-list d-flex">
+<div class="container">
+    <div id="timeline">
+      <div class="review-index_item">
+        <div class="review-index_user_icon">
+          <%# トプ画 %>
+        </div>
+        <%# link_to レビュー詳細画面 do %> 
+        <div class="review-index_content">
+          <%# 本のキャッチコピー %>
+          <h1>キミは今すぐ変われない。
+          言葉は今すぐ変えられる。</h1>
+          <div class="review-index_img_text d-flex">
+            <div class="review-index_img">
+              <%= image_tag("#{review.book.image_url}") %>
+            </div>
+            <div class="review-index_text">
+              <p>
+                <%= review.text%>
+              </p>
+            </div>
+          </div>
+          <div class="review-index_fav">
+            <i class="far fa-heart like-btn fa-2x"></i>
+          </div>
+        </div>
+        <%# end %>
+      </div>
 
-  <div class="review-list-img col-md-3">
-    <div class='review-book-img'>
-      <%= image_tag("#{review.book.image_url}") %>
     </div>
   </div>
-
-  <div class="review-list-data col-md-9" id="notebook-paper">
-    <div class="review-list-date">
-      <% if review.date.nil? %>
-        <p><br><p>
-      <% else %>
-        <p><%= review.date %></p>
-      <% end %>
-    </div>
-    <div class="review-list-text">
-      <p><%= review.text %></p>
-    </div>
-  </div>
-
-</div>
