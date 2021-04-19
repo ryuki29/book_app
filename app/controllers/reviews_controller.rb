@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
 
   def index
+    @reviews = Review.all.order(id: "DESC")
   end
 
   def create
@@ -34,6 +35,8 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(
       :date,
       :text,
+      :category,
+      :rating,
       impressive_phrases_attributes: [:phrase, :_destroy, :id],
       action_plans_attributes: [:plan, :_destroy, :id]
     ).merge(
@@ -59,7 +62,9 @@ class ReviewsController < ApplicationController
       user_id: current_user.id,
       book_id: @book.id,
       date: review_params[:date],
-      text: review_params[:text]
+      text: review_params[:text],
+      rating: review_params[:rating],
+      category: review_params[:category]
     )
   end
 
