@@ -115,6 +115,14 @@ $timeline-color: $accent-color;
         box-shadow: 2px 2px rgba(0,0,0,0.1);
       }
 
+      .review-index_del {
+        position: absolute;
+        bottom: 1rem;
+        &_btn {
+          border-radius: 3px;
+        }
+      }
+
       .review-index_fav {
         text-align: right;
       }

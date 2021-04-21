@@ -2,11 +2,11 @@
     <div id="timeline">
       <div class="review-index_item">
         <div class="review-index_user_icon">
-          <%# トプ画 %>
+          <%# -----トプ画----- %>
         </div>
         <%# link_to レビュー詳細画面 do %> 
         <div class="review-index_content">
-          <%# 本のキャッチコピー %>
+          <%# -----本のキャッチコピー----- %>
           <h1>キミは今すぐ変われない。
           言葉は今すぐ変えられる。</h1>
           <div class="review-index_img_text d-flex">
@@ -19,11 +19,24 @@
               </p>
             </div>
           </div>
+
+          <%# -----削除ボタン----- %>
+          <% if user_signed_in? && current_user.id == review.user_id %>
+            <div class="review-index_del">
+              <%= link_to review_path(review.id), method: :delete, class: "review-index_del_btn", data: { confirm: '本当に削除しますか' } do %>
+                <button type="button" class="review-index_del_btn btn-danger">
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              <% end %>
+            </div>
+          <% end %>
+
+          <%# -----いいねボタン----- %>
           <div class="review-index_fav">
             <i class="far fa-heart like-btn fa-2x"></i>
           </div>
+
         </div>
-        <%# end %>
       </div>
 
     </div>
