@@ -29,6 +29,12 @@ class ReviewsController < ApplicationController
     redirect_to user_path(current_user.id) if @review.save
   end
 
+  def destroy
+    review = Review.find(params[:id])
+    review.destroy
+    redirect_to root_path
+  end
+
   private
 
   def review_params
