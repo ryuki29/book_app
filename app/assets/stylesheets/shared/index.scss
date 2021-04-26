@@ -127,6 +127,11 @@ $timeline-color: $accent-color;
         text-align: right;
       }
 
+      .review-index_show {
+        text-decoration: none;
+        color: $base-font-color;
+      }
+
       .review-index_text {
         margin-top: 5%;
         margin-bottom: 1rem;

@@ -35,6 +35,11 @@ class ReviewsController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @review = Review.find(params[:id])
+    @user = @review.user
+  end
+
   private
 
   def review_params

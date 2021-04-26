@@ -1,13 +1,13 @@
 <div class="review-blank"></div>
-<div class="reviews-index container-fluid">
-  <div class="row">
+  <div class="reviews-index container-fluid">
+    <div class="row">
       <div class="blank col-md-2"></div>
       <div class="review-index col-md-8">
         <% @reviews.each do |review| %>
           <%= render partial: "shared/review", locals: { review: review } %>
         <% end %>
       </div>
-      <%# ランキング機能実装予定 %>
-      <div class="rankking col-md-2"></div>
+    <%# ランキング機能実装予定 %>
+    <div class="rankking col-md-2"></div>
   </div>
 </div>
