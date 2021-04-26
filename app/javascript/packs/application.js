@@ -10,7 +10,7 @@ require("channels")
 require("jquery")
 
 window.$ = window.jQuery = require('jquery');
-require("packs/raty")
+require('packs/raty')
 require("../search_books")
 
 import 'bootstrap';
@@ -24,7 +24,6 @@ $(function () {
     scoreName: "review[rating]"
   });
 });
-
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
