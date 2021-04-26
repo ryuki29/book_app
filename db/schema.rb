@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_09_123943) do
+ActiveRecord::Schema.define(version: 2021_04_26_140547) do
 
   create_table "action_plans", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "plan"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2021_04_09_123943) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
+
   create_table "user_books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "book_id"
@@ -66,9 +75,8 @@ ActiveRecord::Schema.define(version: 2021_04_09_123943) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "provider"
-    t.string "uid"
     t.string "username"
+    t.string "profile"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -77,6 +85,7 @@ ActiveRecord::Schema.define(version: 2021_04_09_123943) do
   add_foreign_key "impressive_phrases", "reviews"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
+  add_foreign_key "sns_credentials", "users"
   add_foreign_key "user_books", "books"
   add_foreign_key "user_books", "users"
 end

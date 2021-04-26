@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers:[:twitter]
 
+  has_many :sns_credentials, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :user_books, dependent: :destroy
   has_many :books, through: :user_books,
