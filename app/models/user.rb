@@ -11,21 +11,37 @@ class User < ApplicationRecord
   has_many :books, through: :user_books,
             dependent: :destroy
 
-  def self.from_omniauth(auth)
-    find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
-      user.provider = auth["provider"]
-      user.uid = auth["uid"]
-      user.username = auth["info"]["nickname"]
+  def self.find_for_oauth(auth)
+    sns_credentials = SnsCredential.where(uid: auth.uid, provider: auth.provider).first
+
+    if sns_credentials.present?
+      user = sns_credentials.user
+    elsif auth.provider == 'twitter'
+      user = User.create_user_with_twitter(auth)
+    else
+      user = User.where(email: auth.info.email).first
     end
+
+    user
   end
 
-  def self.new_with_session(params, session)
-    if session["devise.user_attributes"]
-      new(session["devise.user_attributes"]) do |user|
-        user.attributes = params
-      end
-    else
-      super
-    end
+  def self.create_user_with_twitter(auth)
+    user = User.new(
+      email: User.dummy_email(auth),
+      username: auth.info.nickname,
+      password: Devise.friendly_token[0, 20]
+    )
+    sns_credentials = SnsCredential.new(
+      uid: auth.uid,
+      provider: auth.provider,
+      user: user
+    )
+
+    return user if user.save && sns_credentials.save
   end
+
+  def self.dummy_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
+  end
+
 end
