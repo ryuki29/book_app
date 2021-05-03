@@ -4,13 +4,15 @@
       <img src="https://weraveyou.com/wp-content/uploads/2021/03/elon-musk.jpeg" alt="profile card">
     </div>
 
-    <div class="profile-card_content">
-      <%# -----ユーザー名----- %>
-      <div class="profile-card_name"><%= @user.username %></div>
-      <%# -----プロフィール文----- %>
-      <div class="profile-card_txt">
-        I was born on June 28, 1971, in Pretoria, South Africa. As a child, Musk was so lost in his daydreams about inventions that his parents and doctors ordered a test to check his hearing.
-      </div>
+    <%= link_to user_path(@user.id) do %>
+      <div class="profile-card_content">
+        <%# -----ユーザー名----- %>
+        <div class="profile-card_name"><%= @user.username %></div>
+        <%# -----プロフィール文----- %>
+        <div class="profile-card_txt">
+          I was born on June 28, 1971, in Pretoria, South Africa. As a child, Musk was so lost in his daydreams about inventions that his parents and doctors ordered a test to check his hearing.
+        </div>
+      <% end %>
 
       <div class="profile-card-info">
         <%# -----フォロワー数----- %>

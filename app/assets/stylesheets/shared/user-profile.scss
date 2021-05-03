@@ -2,10 +2,14 @@
   width: 100%;
   width: 100%;
   height: auto;
-  min-height: 100vh;
+  // min-height: 100vh;
   padding: 50px 20px;
   padding-top: 100px;
   display: flex;
+
+  a:hover {
+    text-decoration:none; 
+  }
 
   @media screen and (max-width: 768px) {
     height: auto;

@@ -1,43 +1,70 @@
-<h1><%= @username %>さんの本棚</h1>
-<% if user_signed_in? && @user.id == current_user.id %>
-  <%= link_to 'プロフィールを編集',edit_user_registration_path %>
-<% end %>
+<div class="container-fluid review-show">
+  <div class="row">
 
-<div class="tab-wrap">
-    <input id="tab01" type="radio" name="tab" class="tab-switch" checked="checked"><label class="tab-label" for="tab01">読み終えた本</label>
-    <div class="tab-content">
-        <div class="contents  text-center">
-          <div class="search-main">
-            <div class="container">
-              <div class="search-result card">
-                <div class="card-body row">
-                  <% @user.books.each do |book| %>
-                    <div class="search-item col-md-3 border-0">
-                      <div class="text-center">
-                        <%= image_tag(book[:image_url], class: "card-img-top") %>
-                        <div class="search-item-body card-body">
-                          <h6 class="card-title">
-                            <%= book[:title] %>
-                          </h6>
-                          <div class="card-text">
-                            <%= book[:authors] %>
-                          </div>
+    <div class="col-md-3">
+      <%= render "shared/user-profile" %>
+    </div>
+
+    <div class="col-md-7">
+
+      <div class="user-show_tabs">
+        <input id="tab1" type="radio" name="a" checked>
+        <label class="user-show_tabs_label" for="tab1">読んだ本</label>
+        <input id="tab2" type="radio" name="a">
+        <label class="user-show_tabs_label" for="tab2">読んでる本</label>
+        <input id="tab3" type="radio" name="a">
+        <label class="user-show_tabs_label" for="tab3">読みたい本</label>
+        <input id="tab4" type="radio" name="a">
+        <label class="user-show_tabs_label" for="tab4">おすすめ本</label>
+
+        <div class="user-show_tab_content" id="tab1_content">
+          <div class="tab_content_description">
+            <div class="card-deck user-show_books">
+              <div class="card-body d-flex flex-wrap">
+                <% @user.books.each do |book| %>
+                  <div class="col-md-3 border-0">
+                    <div class="text-center">
+                      <%= link_to review_path(book.reviews.ids) do %>
+                        <%= image_tag(book[:image_url], class: "user-show_book_img") %>
+                      <% end %>
+                      <div class="card-body">
+                        <div class="card-title">
+                          <%= book[:title] %>
+                        </div>
+                        <div class="card-text">
+                          <%= book[:authors] %>
                         </div>
                       </div>
                     </div>
-                  <% end %>
-                </div>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="user-show_tab_content" id="tab2_content">
+          <div class="tab_content_description">
+            読んでる本
+          </div>
+        </div>
+        <div class="user-show_tab_content" id="tab3_content">
+          <div class="tab_content_description">
+            読みたい本
+          </div>
+        </div>
+        <div class="user-show_tab_content" id="tab4_content">
+          <div class="tab_content_description">
+            おすすめ本
+          </div>
+        </div>
       </div>
+
     </div>
-    <input id="tab02" type="radio" name="tab" class="tab-switch"><label class="tab-label" for="tab02">読んでいる本</label>
-    <div class="tab-content">
-        読んでいる本一覧
+
+    <div class="col-md-2">
+      <div class="bg-primary"></div>
     </div>
-    <input id="tab03" type="radio" name="tab" class="tab-switch"><label class="tab-label" for="tab03">読みたい本</label>
-    <div class="tab-content">
-        読みたい本一覧
-    </div>
+
+  </div>
 </div>
