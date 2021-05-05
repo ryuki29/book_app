@@ -3,6 +3,7 @@
 
     <div class="col-md-3">
       <%= render "shared/user-profile" %>
+      <%= render "users/edit-profile-modal", locals: {user: @user} %>
     </div>
 
     <div class="col-md-7">
@@ -63,7 +64,8 @@
     </div>
 
     <div class="col-md-2">
-      <div class="bg-primary"></div>
+      <div class="bg-primary">
+      </div>
     </div>
 
   </div>

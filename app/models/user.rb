@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :books, through: :user_books,
             dependent: :destroy
 
+  has_one_attached :image
+
   def self.find_for_oauth(auth)
     sns_credentials = SnsCredential.where(uid: auth.uid, provider: auth.provider).first
 

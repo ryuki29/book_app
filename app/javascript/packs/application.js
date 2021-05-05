@@ -12,6 +12,7 @@ require("jquery")
 window.$ = window.jQuery = require('jquery');
 require('packs/raty')
 require("../search_books")
+require("../edit_users")
 
 import 'bootstrap';
 import '../stylesheets/application';

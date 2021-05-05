@@ -1,0 +1,49 @@
+.edit-user_img {
+  display: block;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 35%;
+}
+
+.edit-user_label {
+  color: gray;
+}
+
+.edit-user_upload_img {
+  background-color: #333;
+  border-radius: 50%;
+  bottom: 100px;
+  height: 100px;
+  opacity: 0.5;
+  padding-bottom: -100px;
+  position: relative;
+  width: 100px;
+
+  position: relative;
+  display: inline-block;
+  // width: 100%;
+  // height: calc(1.5em + 0.75rem + 2px);
+  margin-bottom: 0;
+  margin-left: 35%;
+}
+
+.fa-camera {
+  color: #fff;
+  cursor: pointer;
+  margin-top: 35px;
+  z-index: 10;
+  margin-left: 100%;
+}
+
+.edit-user_img_input {
+  height: 0;
+  opacity: 0;
+}
+
+.edit-user_count {
+  color: rgb(92, 92, 92);
+  font-size: 0.9rem;
+  float: right;
+}

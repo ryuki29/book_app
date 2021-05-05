@@ -1,18 +1,31 @@
 <div class="wrapper_profile">
   <div class="profile-card">
     <div class="profile-card_img">
-      <img src="https://weraveyou.com/wp-content/uploads/2021/03/elon-musk.jpeg" alt="profile card">
+      <% if @user.image.attached? %>
+        <%= image_tag(@user.image) %>
+      <% else %>
+        <%= image_tag("default-user.png")%>
+      <% end %>
     </div>
 
-    <%= link_to user_path(@user.id) do %>
-      <div class="profile-card_content">
+    <div class="profile-card_content">
+      <%= link_to user_path(@user.id) do %>
         <%# -----ユーザー名----- %>
         <div class="profile-card_name"><%= @user.username %></div>
-        <%# -----プロフィール文----- %>
-        <div class="profile-card_txt">
-          I was born on June 28, 1971, in Pretoria, South Africa. As a child, Musk was so lost in his daydreams about inventions that his parents and doctors ordered a test to check his hearing.
+      <% end %>
+
+      <%# -----プロフィール編集----- %>
+      <% if user_signed_in? && @user.id == current_user.id %>
+        <div class="profile-card_edit_btn" id="edit-profile" data-toggle="modal" data-target="#edit-profile-modal">
+            プロフィールを編集
         </div>
       <% end %>
+        <%# -----プロフィール文----- %>
+      <div class="profile-card_txt">
+        <% unless @user.profile.nil? %>
+          <%= safe_join(@user.profile.split("\n"), tag(:br)) %>
+        <% end %>
+      </div>
 
       <div class="profile-card-info">
         <%# -----フォロワー数----- %>
@@ -35,6 +48,7 @@
 
       </div>
 
+      <%# -----facebook----- %>
       <div class="profile-card-social">
         <a href="#" class="profile-card-social_item facebook" target="_blank">
           <span class="icon-font">
@@ -42,6 +56,7 @@
           </span>
         </a>
 
+        <%# -----twitter----- %>
         <a href="#" class="profile-card-social_item twitter" target="_blank">
           <span class="icon-font">
             <i class="fab fa-twitter"></i>
@@ -49,9 +64,12 @@
         </a>
       </div>
 
-      <div class="profile-card-ctr">
-        <button class="profile-card_button button-blue">フォローする</button>
-      </div>
+      <%# -----フォローボタン----- %>
+      <% unless user_signed_in? && @user.id == current_user.id %>
+        <div class="profile-card-ctr">
+          <button class="profile-card_button button-blue">フォローする</button>
+        </div>
+      <% end %>
     </div>
 
   </div>

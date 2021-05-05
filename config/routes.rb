@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root 'reviews#index'
 
-  resources :users, only: :show
+  resources :users, only: [:show, :update]
 
   resources :books do
     collection do

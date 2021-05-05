@@ -3,6 +3,13 @@
       <div class="review-index_item">
         <div class="review-index_user_icon">
           <%# -----トプ画----- %>
+          <%= link_to user_path(review.user.id) do %>
+            <% if review.user.image.attached? %>
+              <%= image_tag(review.user.image) %>
+            <% else %>
+              <%= image_tag("default-user.png")%>
+            <% end %>
+          <% end %>
         </div>
         <div class="review-index_content">
           <%# -----本のキャッチコピー----- %>
@@ -15,7 +22,7 @@
             <%= link_to review_path(review.id), class:"review-index_show" do %>
               <div class="review-index_text">
                 <p>
-                  <%= review.text%>
+                  <%= review.text %>
                 </p>
               </div>
             <% end %>

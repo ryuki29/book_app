@@ -68,7 +68,7 @@ $timeline-color: $accent-color;
 
 
     .review-index_user_icon {
-      background: $timeline-color;
+      background: #fff;
       width: 70px;
       height: 70px;
       position: absolute;
@@ -77,6 +77,17 @@ $timeline-color: $accent-color;
       overflow: hidden;
       margin-left: -28px;
       border-radius: 50%;
+
+      img {
+        width: 70px;
+        height: 70px;
+        position: absolute;
+        top: 0;
+        left: 40%;
+        overflow: hidden;
+        margin-left: -28px;
+        border-radius: 50%;
+      }
     }
 
     .review-index_content {
@@ -136,6 +147,9 @@ $timeline-color: $accent-color;
         margin-top: 5%;
         margin-bottom: 1rem;
         font-size: 18px;
+        & > p {
+          word-break: break-all;
+        }
       }
     }
   }
