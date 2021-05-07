@@ -2,8 +2,7 @@
   <div class="row">
 
     <div class="col-md-3">
-      <%= render "shared/user-profile" %>
-      <%= render "users/edit-profile-modal", locals: {user: @user} %>
+      <%= render partial: "shared/user-profile", locals: { user: @user } %>
     </div>
 
     <div class="col-md-7">
@@ -16,7 +15,7 @@
         <input id="tab3" type="radio" name="a">
         <label class="user-show_tabs_label" for="tab3">読みたい本</label>
         <input id="tab4" type="radio" name="a">
-        <label class="user-show_tabs_label" for="tab4">おすすめ本</label>
+        <label class="user-show_tabs_label" for="tab4">ブックマーク</label>
 
         <div class="user-show_tab_content" id="tab1_content">
           <div class="tab_content_description">
@@ -54,11 +53,35 @@
             読みたい本
           </div>
         </div>
+        <%# -----ブックマーク----- %>
         <div class="user-show_tab_content" id="tab4_content">
           <div class="tab_content_description">
-            おすすめ本
+            <div class="card-deck user-show_books">
+              <div class="card-body d-flex flex-wrap">
+                <% if @like_list.present? %>
+                  <% @like_list.each do |like| %>
+                    <div class="col-md-3 border-0">
+                      <div class="text-center">
+                        <%= link_to review_path(like.review.id) do %>
+                          <%= image_tag(like.review.book[:image_url], class: "user-show_book_img") %>
+                        <% end %>
+                        <div class="card-body">
+                          <div class="card-title">
+                            <%= like.review.book[:title] %>
+                          </div>
+                          <div class="card-text">
+                            <%= like.review.book[:authors] %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
 
     </div>

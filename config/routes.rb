@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   root 'reviews#index'
 
-  resources :users, only: [:show, :update]
+  resources :users, only: [:show, :update] do
+    get :likes, on: :collection
+  end
 
   resources :books do
     collection do
@@ -14,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reviews, only: [:create, :destroy, :show]
+  resources :reviews, only: [:create, :destroy, :show] do
+    resource :likes, only: [:create, :destroy]
+  end
 
 end

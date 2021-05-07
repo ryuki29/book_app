@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 
   def show
     @status = params[:status] ? params[:status].to_i : 0
+
+    likes = Like.where(user_id: @user.id).ids
+    @like_list = Like.find(likes)
   end
 
   def update

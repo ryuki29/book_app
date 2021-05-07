@@ -1,7 +1,7 @@
 <div class="container-fluid review-show">
   <div class="row">
     <div class="col-md-3">
-      <%= render "shared/user-profile" %>
+      <%= render partial: "shared/user-profile", locals: { user: @user } %>
     </div>
 
     <div class="col-md-7">

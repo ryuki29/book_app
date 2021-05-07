@@ -8,7 +8,7 @@
         </button>
       </div>
 
-      <%= form_with(model: @user,
+      <%= form_with(model: user,
                       url: user_path,
                       method: :put,
                       local: true) do |f| %>
@@ -16,8 +16,8 @@
 
           <%# -----トプ画表示----- %>
           <div class="edit-user_img_container">
-            <% if @user.image.attached? %>
-              <%= image_tag(@user.image, class: "edit-user_img") %>
+            <% if user.image.attached? %>
+              <%= image_tag(user.image, class: "edit-user_img") %>
             <% else %>
               <%= image_tag("default-user.png", class: "edit-user_img") %>
             <% end %>
@@ -36,7 +36,7 @@
             <%= f.label :name, "名前", class: "edit-user_label" %>
             <%= f.text_field(:username,
                               placeholder: "名前を変更",
-                              value: @user.username,
+                              value: user.username,
                               maxlength: 20,
                               id: "edit-user_name",
                               class: "form-control") %>
@@ -53,7 +53,7 @@
                         class: "edit-user_label" %>
             <%= f.text_area(:profile,
                             placeholder: "自己紹介を追加",
-                            value: @user.profile,
+                            value: user.profile,
                             maxlength: 160,
                             rows: 6,
                             id: "edit-user_text",

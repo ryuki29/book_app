@@ -10,8 +10,24 @@ class User < ApplicationRecord
   has_many :user_books, dependent: :destroy
   has_many :books, through: :user_books,
             dependent: :destroy
-
+  has_many :likes, dependent: :destroy
   has_one_attached :image
+
+  validates :username, presence: true,
+                      length: { maximum: 20 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true,
+                    uniqueness: true,
+                    format: {
+                      with: VALID_EMAIL_REGEX,
+                      message: 'のフォーマットが不適切です'
+                    }
+  validates :password, presence: true,
+                       length: {
+                         minimum: 6,
+                         maximum: 128,
+                       }
+  validates :profile, length: { maximum: 160 }
 
   def self.find_for_oauth(auth)
     sns_credentials = SnsCredential.where(uid: auth.uid, provider: auth.provider).first
@@ -44,6 +60,10 @@ class User < ApplicationRecord
 
   def self.dummy_email(auth)
     "#{auth.uid}-#{auth.provider}@example.com"
+  end
+
+  def liked_by?(review_id)
+    likes.where(review_id: review_id).exists?
   end
 
 end
