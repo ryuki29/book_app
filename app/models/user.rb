@@ -22,11 +22,11 @@ class User < ApplicationRecord
                       with: VALID_EMAIL_REGEX,
                       message: 'のフォーマットが不適切です'
                     }
-  validates :password, presence: true,
-                       length: {
-                         minimum: 6,
-                         maximum: 128,
-                       }
+  # validates :password, presence: true,
+  #                      length: {
+  #                       minimum: 6,
+  #                       maximum: 128,
+  #                      }
   validates :profile, length: { maximum: 160 }
 
   def self.find_for_oauth(auth)

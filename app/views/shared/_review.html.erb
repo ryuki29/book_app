@@ -1,4 +1,88 @@
 <div class="container-fulid">
+  <div class="timeline">
+    <div class="card review-index_item">
+      <div class="review-index_content">
+        <div class="banner-holder review-index_head">
+
+          <div class="col review-index_head_user">
+            <%# -----トプ画----- %>
+            <div class="review-index_user_icon">
+              <%= link_to user_path(review.user.id) do %>
+                <% if review.user.image.attached? %>
+                  <%= image_tag(review.user.image) %>
+                <% else %>
+                  <%= image_tag("default-user.png")%>
+                <% end %>
+              <% end %>
+            </div>
+            <%# -----ユーザー名----- %>
+            <div class="review-index_user_name">
+              <%= review.user.username %>
+            </div>
+          </div>
+
+          <div class="col review-index_head_img">
+            <%= image_tag("#{review.book.image_url}") %>
+          </div>
+
+        </div>
+
+        <%# -----レビュー内容----- %>
+        <%= link_to review_path(review.id), class:"review-index_show" do %>
+          <div class="review-index_inner_content">
+            <%# -----キャッチコピー----- %>
+            <h2 class="review-index_title">
+            キミは今すぐ変われない。言葉は今すぐ変えられる。
+            </h2>
+            <%# -----感想----- %>
+            <div class="review-index_txt">
+              <p><%= review.text %></p>
+            </div>
+          <% end %>
+
+          <div class="a d-flex">
+            <%# -----削除ボタン----- %>
+            <% if user_signed_in? && current_user.id == review.user_id %>
+              <div class="review-index_del">
+                <%= link_to review_path(review.id), method: :delete, class: "review-index_del_btn", data: { confirm: '本当に削除しますか' } do %>
+                  <i class="far fa-trash-alt fa-2x"></i>
+                <% end %>
+              </div>
+            <% else %>
+              <span></span>
+            <% end %>
+
+            <%# -----ブックマーク----- %>
+            <div class="review-index_fav" id="like_<%= review.id %>">
+              <%= render partial: "likes/like-review", locals: { review: review} %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<div class="container-fulid">
     <div id="timeline">
       <div class="review-index_item">
         <div class="review-index_user_icon">
@@ -48,3 +132,4 @@
 
     </div>
   </div>
+-->

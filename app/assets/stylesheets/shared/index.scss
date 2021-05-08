@@ -4,9 +4,159 @@ $base-font-title: "Dosis", arial, tahoma, verdana;
 $base-font-color: #726f77;
 
 // timeline-color
-$bg-body: $sub-color;
 $timeline-color: $accent-color;
 
+.timeline {
+  position: relative;
+  padding: 15px 15px 20px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom)); /* For iPhone X */
+  max-width: 400px;
+  margin: auto;
+}
+
+.review-index {
+
+  a, a:hover {
+    text-decoration: none;
+  }
+
+  &_item {
+    position: relative;
+    height: 50vh;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.2s ease, box-shadow 0.2s ease;
+    opacity: 1;
+    margin-bottom: 40px;
+    &:hover {
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &_content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0);
+    overflow: hidden;
+    transition: border-radius 0.15s ease;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  &_user_icon {
+    background: #fff;
+    height: 70px;
+
+    overflow: hidden;
+    margin-left: -28px;
+    border-radius: 50%;
+
+    img {
+      width: 70px;
+      height: 70px;
+      position: absolute;
+      top: 0;
+      left: 30%;
+      overflow: hidden;
+      margin-left: -28px;
+      border-radius: 50%;
+    }
+  }
+
+  &_user_name {
+    padding-top: 5%;
+    padding-left: 8%;
+    color: gray;
+  }
+
+  &_head {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &_img {
+      position: relative;
+      height: 20vh;
+      width: 100%;
+      padding: 15px;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      overflow: hidden;
+      z-index: 1;
+      text-align: right;
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  &_inner_content {
+    top: 20vh;
+    padding: 0 20px;
+    position: relative;
+    background-color: #fff;
+  }
+
+  &_title {
+    position: relative;
+    margin: 10px 0 20px 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+  }
+
+  &_txt {
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0.6;
+    color: $base-font-color;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 4.2em;
+  }
+.a{
+  justify-content:space-between;
+}
+  &_fav {
+    right: 0;
+    margin-top: 10%;
+    a, a:hover {
+      color: orange;
+    }
+  }
+
+  &_del {
+    text-align: left;
+    margin-top: 10%;
+    a, a:hover {
+      color: #ff6647;
+    }
+  }
+
+  &_show {
+    // color: $base-font-color;
+  }
+
+}
+
+
+
+
+
+
+
+
+/*
 .review-blank {
   padding-top: 3%;
   background-color: $bg-body;
@@ -182,3 +332,5 @@ $timeline-color: $accent-color;
     }
   }
 }
+*/
+
