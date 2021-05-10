@@ -38,6 +38,8 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @user = @review.user
+    @comment = Comment.new
+    @comments = @review.comments.order(created_at: :asc).includes(:user)
   end
 
   private

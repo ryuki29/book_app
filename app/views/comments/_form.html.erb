@@ -1,0 +1,4 @@
+<%= form_with(model: [review, comment], class: "comment_form") do |f| %>
+  <%= f.text_field :text, placeholder: "コメント", rows: "2" %>
+  <%= f.submit "コメントする" %>
+<% end %>

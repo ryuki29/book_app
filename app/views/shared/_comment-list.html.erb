@@ -1,0 +1,44 @@
+<section class="comment-index_section">
+
+  <div class="comment-index_head">
+    <div class="comment-index_head_user">
+
+      <%= link_to user_path(comment.user.id), class: "comment-index_head_user_img" do %>
+        <% if comment.user.image.attached? %>
+          <%= image_tag(comment.user.image, size: '40x40') %>
+        <% else %>
+          <%= image_tag("default-user.png", size: '40x40') %>
+        <% end %>
+
+      <span class="comment-index_head_user_name">
+        <%= comment.user.username %>
+      </span>
+
+      <% end %>
+    </div>
+
+    <div class="comment-index_head_date">
+      <time><%= comment.created_at.strftime('%Y-%m-%d %H:%M:%S') %></time>
+
+      <% if user_signed_in? && current_user.id == comment.user_id %>
+        <%= link_to review_comment_path(comment.review_id, comment.id), method: :delete, remote: true, class: "comment_destroy", data: { confirm: '本当に削除しますか' } do %>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
+      <% else %>
+        <span></span>
+      <% end %>
+
+      <div class="comment-index_head_dots">
+        <div class="comment-index_head_dots_content">
+          <p class="comment-index_head_del is-hidden">削除する</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="comment-index_content">
+    <p><%= comment.text %></p>
+  </div>
+
+</section>

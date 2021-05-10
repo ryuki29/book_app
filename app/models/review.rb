@@ -3,6 +3,7 @@ class Review < ApplicationRecord
   accepts_nested_attributes_for :action_plans, allow_destroy: true
   has_many :impressive_phrases, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   accepts_nested_attributes_for :impressive_phrases, allow_destroy: true
   belongs_to :book, dependent: :destroy
   belongs_to :user

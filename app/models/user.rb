@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :books, through: :user_books,
             dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_one_attached :image
 
   validates :username, presence: true,

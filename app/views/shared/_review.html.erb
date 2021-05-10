@@ -2,7 +2,7 @@
   <div class="timeline">
     <div class="card review-index_item">
       <div class="review-index_content">
-        <div class="banner-holder review-index_head">
+        <div class="review-index_head">
 
           <div class="col review-index_head_user">
             <%# -----トプ画----- %>
@@ -63,73 +63,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<div class="container-fulid">
-    <div id="timeline">
-      <div class="review-index_item">
-        <div class="review-index_user_icon">
-          <%# -----トプ画----- %>
-          <%= link_to user_path(review.user.id) do %>
-            <% if review.user.image.attached? %>
-              <%= image_tag(review.user.image) %>
-            <% else %>
-              <%= image_tag("default-user.png")%>
-            <% end %>
-          <% end %>
-        </div>
-        <div class="review-index_content">
-          <%# -----本のキャッチコピー----- %>
-          <h1>キミは今すぐ変われない。
-          言葉は今すぐ変えられる。</h1>
-          <div class="review-index_img_text d-flex">
-            <div class="review-index_img">
-              <%= image_tag("#{review.book.image_url}") %>
-            </div>
-            <%= link_to review_path(review.id), class:"review-index_show" do %>
-              <div class="review-index_text">
-                <p>
-                  <%= review.text %>
-                </p>
-              </div>
-            <% end %>
-          </div>
-
-          <%# -----削除ボタン----- %>
-          <% if user_signed_in? && current_user.id == review.user_id %>
-            <div class="review-index_del">
-              <%= link_to review_path(review.id), method: :delete, class: "review-index_del_btn", data: { confirm: '本当に削除しますか' } do %>
-                <i class="far fa-trash-alt fa-2x"></i>
-              <% end %>
-            </div>
-          <% end %>
-
-          <%# -----いいねボタン----- %>
-          <div class="review-index_fav" id="like_<%= review.id %>">
-            <%= render partial: "likes/like-review", locals: { review: review} %>
-          </div>
-
-            <%# <i class="far fa-heart like-btn fa-2x"></i> %>
-        </div>
-      </div>
-
-    </div>
-  </div>
--->
