@@ -27,11 +27,11 @@
                         <li>読んだ</li>
                       </div>
 
-                      <div class="reading-book-btn" id="reading-book" data-status=1>
+                      <div class="reading-book-btn" id="reading-book_<%= i %>" data-status=1 data-title="<%= book[:title] %>" data-authors="<%= book[:authors] %>" data-image="<%= book[:image_url] %>" data-uid="<%= book[:uid] %>">
                         <li>読んでる</li>
                       </div>
 
-                      <div class="will-read-book-btn" id="will-read-book" data-status=2>
+                      <div class="will-read-book-btn" id="will-read-book_<%= i %>" data-status=2 data-title="<%= book[:title] %>" data-authors="<%= book[:authors] %>" data-image="<%= book[:image_url] %>" data-uid="<%= book[:uid] %>">
                         <li>読みたい</li>
                       </div>
 
