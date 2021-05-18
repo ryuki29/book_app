@@ -1,0 +1,80 @@
+<div class="wrapper_profile">
+  <div class="profile-card">
+    <div class="profile-card_img">
+      <% if user.image.attached? %>
+        <%= image_tag(user.image) %>
+      <% else %>
+        <%= image_tag("default-user.png")%>
+      <% end %>
+    </div>
+
+    <div class="profile-card_content">
+      <%= link_to user_path(user.id) do %>
+        <%# -----ユーザー名----- %>
+        <div class="profile-card_name"><%= user.username %></div>
+      <% end %>
+
+      <%# -----プロフィール編集----- %>
+      <% if user_signed_in? && user.id == current_user.id %>
+        <div class="profile-card_edit_btn" id="edit-profile" data-toggle="modal" data-target="#edit-profile-modal">
+            プロフィールを編集
+        </div>
+      <% end %>
+        <%# -----プロフィール文----- %>
+      <div class="profile-card_txt">
+        <% unless user.profile.nil? %>
+          <%= safe_join(user.profile.split("\n"), tag(:br)) %>
+        <% end %>
+      </div>
+
+      <div class="profile-card-info">
+        <%# -----フォロワー数----- %>
+        <div class="profile-card-info_item">
+          <div class="profile-card-info_title">990</div>
+          <div class="profile-card-info_txt">フォロワー</div>
+        </div>
+
+        <%# -----フォロー数----- %>
+        <div class="profile-card-info_item">
+          <div class="profile-card-info_title">29</div>
+          <div class="profile-card-info_txt">フォロー</div>
+        </div>
+
+        <%# -----投稿数----- %>
+        <div class="profile-card-info_item">
+          <div class="profile-card-info_title"><%= user.reviews.count %></div>
+          <div class="profile-card-info_txt">投稿数</div>
+        </div>
+
+      </div>
+
+      <%# -----facebook----- %>
+      <div class="profile-card-social">
+        <a href="#" class="profile-card-social_item facebook" target="_blank">
+          <span class="icon-font">
+            <i class="fab fa-facebook-f"></i>
+          </span>
+        </a>
+
+        <%# -----twitter----- %>
+        <a href="#" class="profile-card-social_item twitter" target="_blank">
+          <span class="icon-font">
+            <i class="fab fa-twitter"></i>
+          </span>
+        </a>
+      </div>
+
+      <%# -----フォローボタン----- %>
+      <%# unless user_signed_in? && user.id == current_user.id %>
+      <% if user_signed_in? && user.id != current_user.id %>
+        <div class="profile-card-ctr">
+          <button class="profile-card_button button-blue">フォローする</button>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>
+<%= render partial: "users/edit-profile-modal", locals: { user: user } %>
+

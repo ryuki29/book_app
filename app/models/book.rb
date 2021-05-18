@@ -1,7 +1,10 @@
 class Book < ApplicationRecord
-  has_many :reviews
+  has_many :reviews,    dependent: :destroy
   has_many :user_books, dependent: :destroy
-  has_many :users, through: :user_books
+  has_many :users,      through: :user_books
+
+  validates :image_url, presence: true
+  validates :uid,       presence: true
 
   require 'addressable/uri'
 

@@ -1,0 +1,15 @@
+<div class="comment-index">
+  <p class="comment-index_count"><%= comments.count %>件のコメント</p>
+  <% if comments.length > 2 %>
+    <h6 class="comment-index_more" data-toggle="collapse" data-target="#collapseComment" aria-expanded="false" aria-controls="collapseComment">もっと見る....</h6>
+  <% end %>
+
+  <%= render partial: 'shared/comment-list', collection: comments.first(2), as: "comment" %>
+
+</div>
+
+<div class="collapse" id="collapseComment">
+  <div class="comment-index">
+    <%= render partial: 'shared/comment-list', collection: comments.offset(2), as: "comment" %>
+  </div>
+</div>

@@ -1,0 +1,146 @@
+.form-modal {
+  box-sizing: border-box; //これは必要化わからない
+  position:relative;
+  width:450px;
+  height:auto;
+  margin-top:4em;
+  left:50%;
+  transform:translateX(-50%);
+  background:#fff;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow:0 3px 20px 0px rgba(0, 0, 0, 0.1);
+
+  .form-toggle {
+    cursor: pointer;
+    position: relative;
+    text-transform: capitalize;
+    font-size:1em;
+    z-index: 2;
+    outline: none;
+    background:#fff;
+    transition:0.2s;
+    position: relative;
+    width:100%;
+    height:auto;
+
+    button {
+      width:50%;
+      float:left;
+      padding:1.5em;
+      margin-bottom:1.5em;
+      border:none;
+      transition: 0.2s;
+      font-size:1.1em;
+      font-weight: bold;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+
+      &:nth-child(1) {
+        border-bottom-right-radius: 20px;
+      }
+
+      &:nth-child(2) {
+        border-bottom-left-radius: 20px;
+      }
+    }
+  }
+
+  #login-toggle {
+    background:$accent-color;
+    color:#ffff;
+  }
+
+
+  .btn {
+    border-radius: 20px;
+    border:none;
+    font-weight: bold;
+    font-size:1.2em;
+    padding:0.8em 1em 0.8em 1em!important;
+    transition:0.5s;
+    border:1px solid #ebebeb;
+    margin-bottom:0.5em;
+    margin-top:0.5em;
+    background:$accent-color;
+    color:#fff;
+
+    &:hover {
+      color: #fff;
+      background:#222;
+    }
+  }
+
+  form {
+    position: relative;
+    width:90%;
+    height:auto;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  input {
+    position: relative;
+    width:100%;
+    font-size:1em;
+    padding:1.2em 1.7em 1.2em 1.7em;
+    margin-top:0.6em;
+    margin-bottom:0.6em;
+    border-radius: 20px;
+    border:none;
+    background:#ebebeb;
+    outline:none;
+    font-weight: bold;
+    transition:0.4s;
+
+    &:focus, &:active {
+      transform:scaleX(1.02);
+    }
+  }
+
+  p {
+    font-size:16px;
+    font-weight: bold;
+
+    a {
+      color:$accent-color;
+      text-decoration: none;
+      transition:0.2s;
+    }
+
+    a:hover {
+      color:#222;
+    }
+  }
+
+}
+
+#login-form, #signup-form {
+  position:relative;
+  width:100%;
+  height:auto;
+  padding-bottom:1em;
+
+  button {
+    width:100%;
+    margin-top:0.5em;
+    padding:0.6em;
+  }
+}
+
+#signup-form {
+    display: none;
+}
+
+@media only screen and (max-width:500px) {
+  .form-modal {
+    width:100%;
+  }
+}
+
+@media only screen and (max-width:400px) {
+  i {
+    display: none!important;
+  }
+}

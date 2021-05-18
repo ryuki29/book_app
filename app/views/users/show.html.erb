@@ -1,43 +1,196 @@
-<h1><%= @username %>さんの本棚</h1>
-<% if user_signed_in? && @user.id == current_user.id %>
-  <%= link_to 'プロフィールを編集',edit_user_registration_path %>
-<% end %>
+<div class="container-fluid review-show">
+  <div class="row">
 
-<div class="tab-wrap">
-    <input id="tab01" type="radio" name="tab" class="tab-switch" checked="checked"><label class="tab-label" for="tab01">読み終えた本</label>
-    <div class="tab-content">
-        <div class="contents  text-center">
-          <div class="search-main">
-            <div class="container">
-              <div class="search-result card">
-                <div class="card-body row">
-                  <% @user.books.each do |book| %>
-                    <div class="search-item col-md-3 border-0">
+    <div class="col-md-3">
+      <%= render partial: "shared/user-profile", locals: { user: @user } %>
+    </div>
+
+    <div class="col-md-7">
+
+      <div class="user-show_tabs">
+        <input id="tab1" type="radio" name="a" checked>
+        <label class="user-show_tabs_label" for="tab1">読んだ本</label>
+        <input id="tab2" type="radio" name="a">
+        <label class="user-show_tabs_label" for="tab2">読んでる本</label>
+        <input id="tab3" type="radio" name="a">
+        <label class="user-show_tabs_label" for="tab3">読みたい本</label>
+        <input id="tab4" type="radio" name="a">
+        <label class="user-show_tabs_label" for="tab4">ブックマーク</label>
+
+        <%# ----------読んだ本---------- %>
+        <div class="user-show_tab_content" id="tab1_content">
+          <div class="tab_content_description">
+            <div class="card-deck user-show_books">
+              <div class="card-body d-flex flex-wrap">
+                <% @books.each do |book| %>
+                  <div class="col-md-3 border-0">
+                    <div class="text-center">
+                      <%= link_to review_path(book.reviews.ids) do %>
+                        <%= image_tag(book[:image_url], class: "user-show_book_img") %>
+                      <% end %>
+                      <div class="card-body">
+                        <div class="card-title">
+                          <%= book[:title] %>
+                        </div>
+                        <div class="card-text">
+                          <%= book[:authors] %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%# ----------読んでる本---------- %>
+        <div class="user-show_tab_content" id="tab2_content">
+          <div class="tab_content_description">
+            <div class="card-deck user-show_books">
+              <div class="card-body d-flex flex-wrap">
+                <% @reading.each_with_index do |reading, i| %>
+                  <%# <div class="col-md-3 border-0"> %>
+                  <div class="col-md-3 border-0 book-content" id="book-item_<%= reading.id %>">
+                    <div class="text-center">
+                      <%# -----ここからボタン----- %>
+                      <% if user_signed_in? && @user.id == current_user.id %>
+                        <div class="add-book-cover">
+                          <div class="book-menu">
+                            <label class="add-book" id="add-book" for="add-book-btn<%= reading.id %>">本を登録する</label>
+                            <input type="checkbox" id="add-book-btn<%= reading.id %>" class="accordion">
+                            <style>
+                              #add-book-btn<%=reading.id%> {
+                                display: none;
+                              }
+                              #add-book-btn<%=reading.id%>:checked ~ #book-btn li {
+                                height: 54px;
+                                opacity: 1;
+                              }
+                            </style>
+                            <ul id="book-btn">
+
+                              <div class="read-book" data-toggle="modal" data-target="#post-review-modal" data-title="<%= reading[:title] %>" data-authors="<%= reading[:authors] %>" data-image="<%= reading[:image_url] %>" data-uid="<%= reading[:uid] %>" >
+                                <li>読んだ</li>
+                              </div>
+
+                              <div class="destroy-book" id="destroy-book_<%= reading.id %>" data-id="<%= reading.id %>">
+                                <li>削除</li>
+                              </div>
+
+                            </ul>
+                          </div>
+                        </div>
+                      <% end %>
+                      <%# -----ここまでボタン----- %>
+                      <%= image_tag(reading[:image_url], class: "user-show_book_img") %>
+                      <div class="card-body">
+                        <div class="card-title">
+                          <%= reading[:title] %>
+                        </div>
+                        <div class="card-text">
+                          <%= reading[:authors] %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%# ----------読みたい本---------- %>
+        <div class="user-show_tab_content" id="tab3_content">
+          <div class="tab_content_description">
+            <div class="card-deck user-show_books">
+              <div class="card-body d-flex flex-wrap">
+                <% @will_read.each_with_index do |will_read, i| %>
+                  <div class="col-md-3 border-0">
+                    <div class="text-center">
+                      <% if user_signed_in? && @user.id == current_user.id %>
+                        <div class="add-book-cover">
+                          <div class="book-menu">
+                            <label class="add-book" id="add-book" for="add-book-btn<%= will_read.id %>">本を登録する</label>
+                            <input type="checkbox" id="add-book-btn<%= will_read.id %>" class="accordion">
+                            <style>
+                              #add-book-btn<%=will_read.id%> {
+                                display: none;
+                              }
+                              #add-book-btn<%=will_read.id%>:checked ~ #book-btn li {
+                                height: 54px;
+                                opacity: 1;
+                              }
+                            </style>
+                            <ul id="book-btn">
+
+                              <div class="read-book" data-toggle="modal" data-target="#post-review-modal" data-title="<%= will_read[:title] %>" data-authors="<%= will_read[:authors] %>" data-image="<%= will_read[:image_url] %>" data-uid="<%= will_read[:uid] %>" >
+                                <li>読んだ</li>
+                              </div>
+
+                              <div class="destroy-book" id="destroy-book_<%= will_read.id %>" data-id="<%= will_read.id%>">
+                                <li>削除</li>
+                              </div>
+
+                            </ul>
+                          </div>
+                        </div>
+                      <% end %>
+                      <%= image_tag(will_read[:image_url], class: "user-show_book_img") %>
+                      <div class="card-body">
+                        <div class="card-title">
+                          <%= will_read[:title] %>
+                        </div>
+                        <div class="card-text">
+                          <%= will_read[:authors] %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%# ----------ブックマーク---------- %>
+        <div class="user-show_tab_content" id="tab4_content">
+          <div class="tab_content_description">
+            <div class="card-deck user-show_books">
+              <div class="card-body d-flex flex-wrap">
+                <% if @like_list.present? %>
+                  <% @like_list.each do |like| %>
+                    <div class="col-md-3 border-0">
                       <div class="text-center">
-                        <%= image_tag(book[:image_url], class: "card-img-top") %>
-                        <div class="search-item-body card-body">
-                          <h6 class="card-title">
-                            <%= book[:title] %>
-                          </h6>
+                        <%= link_to review_path(like.review.id) do %>
+                          <%= image_tag(like.review.book[:image_url], class: "user-show_book_img") %>
+                        <% end %>
+                        <div class="card-body">
+                          <div class="card-title">
+                            <%= like.review.book[:title] %>
+                          </div>
                           <div class="card-text">
-                            <%= book[:authors] %>
+                            <%= like.review.book[:authors] %>
                           </div>
                         </div>
                       </div>
                     </div>
                   <% end %>
-                </div>
+                <% end %>
               </div>
             </div>
           </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-2">
+      <div class="bg-primary">
       </div>
     </div>
-    <input id="tab02" type="radio" name="tab" class="tab-switch"><label class="tab-label" for="tab02">読んでいる本</label>
-    <div class="tab-content">
-        読んでいる本一覧
-    </div>
-    <input id="tab03" type="radio" name="tab" class="tab-switch"><label class="tab-label" for="tab03">読みたい本</label>
-    <div class="tab-content">
-        読みたい本一覧
-    </div>
+
+  </div>
 </div>
+<%= render "shared/post-review-modal" %>

@@ -1,16 +1,12 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index search]
 
   def index
     @reviews = Review.all.order(id: "DESC")
   end
 
   def create
-    @review = Review.new(review_params)
-    @impressive_phrases = @review.impressive_phrases
-    @action_plans = @review.action_plans
-
     @book = Book.new(book_params)
-
     status = user_book_params[:status].to_i
 
     user_book = UserBook.new(
@@ -19,14 +15,31 @@ class ReviewsController < ApplicationController
       status: status
     )
 
-    return unless @book.save && user_book.save
+    @review = Review.new(review_params)
+    impressive_phrases = @review.impressive_phrases
+    action_plans = @review.action_plans
 
-    create_review if params[:review].present? # params[:review]が存在しているのか？
+    create_review
 
-    @review.impressive_phrases = @impressive_phrases
-    @review.action_plans = @action_plans
+    if @review.save
+      @book.save && user_book.save
+      @review.impressive_phrases = impressive_phrases
+      @review.action_plans = action_plans
+      redirect_to user_path(current_user.id)
+    end
+  end
 
-    redirect_to user_path(current_user.id) if @review.save
+  def destroy
+    review = Review.find(params[:id])
+    review.destroy
+    redirect_to root_path
+  end
+
+  def show
+    @review = Review.find(params[:id])
+    @user = @review.user
+    @comment = Comment.new
+    @comments = @review.comments.order(created_at: :asc).includes(:user)
   end
 
   private
@@ -34,13 +47,14 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(
       :date,
+      :tegline,
       :text,
       :category,
       :rating,
-      impressive_phrases_attributes: [:phrase, :_destroy, :id],
-      action_plans_attributes: [:plan, :_destroy, :id]
+      impressive_phrases_attributes: %i[phrase _destroy id],
+      action_plans_attributes: %i[plan _destroy id]
     ).merge(
-      user_id: current_user.id
+      user: current_user
     )
   end
 
@@ -59,9 +73,10 @@ class ReviewsController < ApplicationController
 
   def create_review
     @review = Review.create(
-      user_id: current_user.id,
-      book_id: @book.id,
+      user: current_user,
+      book: @book,
       date: review_params[:date],
+      tegline: review_params[:tegline],
       text: review_params[:text],
       rating: review_params[:rating],
       category: review_params[:category]
