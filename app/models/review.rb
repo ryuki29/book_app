@@ -21,5 +21,11 @@ class Review < ApplicationRecord
   }
 
   validates :category, presence: true
-
+  validates :tegline, presence: true, length: { maximum: 25 }
+  validates :text, length: { maximum: 400 }
+  validates :rating, numericality: {
+    less_than: 6,
+    greater_than_or_equal_to: 0,
+    allow_blank: true
+  }
 end

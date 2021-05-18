@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only:[:show, :update]
+  before_action :find_user, %i[show update]
 
   def show
     @books = user_book_status(0)

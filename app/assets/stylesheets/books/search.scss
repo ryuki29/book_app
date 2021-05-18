@@ -258,3 +258,25 @@ cursor :pointer;
 .post-review-genre-select {
   border: 1px solid #ced4da;
 }
+
+
+.phrase-form-area {
+  display: flex;
+}
+.phrase-form-group {
+  flex-direction: column;
+}
+.pluralBtn {
+  border: none;
+}
+.add {
+  height: 100%;
+  color: rgb(99, 111, 245);
+  font-weight: bold;
+}
+.del {
+  color: white;
+  background-color: #F44336;
+  opacity: 0.9;
+}
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_08_120554) do
+ActiveRecord::Schema.define(version: 2021_05_13_095610) do
 
   create_table "action_plans", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "plan"
@@ -79,13 +79,14 @@ ActiveRecord::Schema.define(version: 2021_05_08_120554) do
 
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.date "date"
-    t.string "text"
+    t.text "text"
     t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.bigint "book_id"
     t.integer "category", null: false
+    t.string "tegline", limit: 25, null: false
     t.index ["book_id"], name: "index_reviews_on_book_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

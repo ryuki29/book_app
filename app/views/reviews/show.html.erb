@@ -25,6 +25,11 @@
         </div>
 
         <div class="review-show_review">
+          <label class="review-show_label">ヒトコト</label>
+          <div class="review-show_txt">
+            <b><%= @review.tegline %></b>
+          </div>
+
           <%# -----レビュー内容----- %>
           <label class="review-show_label">感想</label></label>
           <div class="review-show_txt">
@@ -32,6 +37,7 @@
           </div>
 
           <%# -----印象に残ったフレーズ----- %>
+          <%# if @review.impressive_phrases.first.phrase.present? %>
           <% if @review.impressive_phrases.first.phrase.present? %>
             <label class="review-show_label">印象に残ったフレーズ</label>
             <% @review.impressive_phrases.each do |ip| %>
@@ -42,6 +48,7 @@
           <% end %>
 
           <%# -----アクションプラン----- %>
+          <%# if @review.action_plans.first.plan.present? %>
           <% if @review.action_plans.first.plan.present? %>
             <label class="review-show_label">アクションプラン</label>
             <% @review.action_plans.each do |ap| %>

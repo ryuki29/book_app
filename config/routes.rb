@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root 'reviews#index'
 
-  resources :users, only: [:show, :update] do
+  resources :users, only: %i[show update] do
     get :likes, on: :collection
   end
 
@@ -16,9 +16,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reviews, only: [:create, :destroy, :show] do
-    resources :comments, only: [:create, :destroy]
-    resource :likes, only: [:create, :destroy]
+  resources :reviews, only: %i[create destroy show] do
+    resources :comments, only: %i[create destroy]
+    resource :likes, only: %i[create destroy]
   end
 
 end
