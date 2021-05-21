@@ -8,7 +8,7 @@
   display: flex;
 
   a:hover {
-    text-decoration:none; 
+    text-decoration:none;
   }
 
   @media screen and (max-width: 768px) {
@@ -103,10 +103,15 @@
     &_item {
       padding: 10px 35px;
       min-width: 150px;
+      cursor: pointer;
 
       @media screen and (max-width: 768px) {
         padding: 10px 20px;
         min-width: 120px;
+      }
+
+      a, a:hover {
+        color: black;
       }
 
     }
@@ -188,6 +193,13 @@
     align-items: center;
     margin-top: 40px;
 
+    button {
+      background: none;
+      border: none;
+      outline: none;
+      appearance: none;
+    }
+
     @media screen and (max-width: 576px) {
       flex-wrap: wrap;
     }
@@ -245,6 +257,18 @@
       margin-right: 0;
     }
 
+    &.button-white {
+      box-shadow: 0px 4px 30px rgba(70, 157, 224, 0.4);
+      border: 1px solid #0e71c8;
+      background: white;
+      color: black;
+
+      &:hover {
+        box-shadow: 0px 7px 30px rgba(19, 127, 212, 0.75);
+      }
+
+    }
+
     &.button-blue {
       background: linear-gradient(45deg, #1da1f2, #0e71c8);
       box-shadow: 0px 4px 30px rgba(19, 127, 212, 0.4);
@@ -256,4 +280,64 @@
     }
   }
 
+}
+
+// ----- show_relationship -----
+.relationship_list {
+
+  a {
+    color: #718096;
+    &:hover {
+      text-decoration: none;
+      color: #718096;
+    }
+  }
+
+  &-username {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #718096;
+    color: rgba(113,128,150,var(--text-opacity));
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  &-count {
+    text-align: center;
+  }
+
+  &-wrapper {
+    list-style: none;
+    max-width: 80%;
+    margin: 50px auto;
+  }
+
+  &-item {
+    background: #fff;
+    border-radius: 2px;
+    list-style: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  &-avatar-img {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+  }
+
+  &-status {
+    margin-left: 20px;
+    h4, p {
+      margin: 0;
+    }
+    h4 {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+    p {
+      margin-top: 5px;
+      color: #aaa;
+    }
+  }
 }

@@ -1,0 +1,6 @@
+<%= form_with(model: current_user.active_relationships.build) do |f| %>
+  <div><%= hidden_field_tag :followed_id, @user.id %></div>
+  <div class="profile-card-ctr">
+    <button><%= f.submit "フォローする", class: "profile-card_button button-white" %></button>
+  </div>
+<% end %>

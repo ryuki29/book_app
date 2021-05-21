@@ -1,0 +1,13 @@
+<div class="container relationship_list">
+  <div class="title relationship_list-username">
+    <%= link_to @user do %>
+      <%= @user.username %>
+    <% end %>
+  </div>
+
+  <%= render "shared/status" %>
+
+  <% if @users.any? %>
+    <%= render @users %>
+  <% end %>
+</div>

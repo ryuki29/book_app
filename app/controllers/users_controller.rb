@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, %i[show update]
+  before_action :find_user, only: %i[show update following followers]
 
   def show
     @books = user_book_status(0)
@@ -15,6 +15,18 @@ class UsersController < ApplicationController
   def update
     @user.update(user_params)
     redirect_to user_path(current_user)
+  end
+
+  def following
+    @title = 'Following'
+    @users = @user.following
+    render 'show_relationship'
+  end
+
+  def followers
+    @title = 'Followers'
+    @users = @user.followers
+    render 'show_relationship'
   end
 
   private
