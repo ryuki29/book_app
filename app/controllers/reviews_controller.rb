@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!, except: %i[index search]
 
   def index
-    @reviews = Review.all.order(id: "DESC")
+    @reviews = Review.all.includes(:user, :book,  :likes).order(created_at: :desc)
   end
 
   def create
@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @user = @review.user
     @comment = Comment.new
-    @comments = @review.comments.order(created_at: :asc).includes(:user)
+    @comments = @review.comments.all.includes(:user).order(created_at: :asc)
   end
 
   private

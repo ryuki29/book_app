@@ -1,0 +1,16 @@
+<% @user ||= current_user %>
+<div class="relationship_list-count">
+  <%= link_to following_user_path(@user) do %>
+    <strong id="following">
+      <%= @user.following.count %>
+    </strong>
+    フォロー
+  <% end %>
+  <span> | </span>
+  <%= link_to followers_user_path(@user) do %>
+    <strong id="followers">
+      <%= @user.followers.count %>
+    </strong>
+    フォロワー
+  <% end %>
+</div>

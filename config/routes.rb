@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root 'reviews#index'
 
   resources :users, only: %i[show update] do
+    member do
+      get :following, :followers
+    end
     get :likes, on: :collection
   end
 
@@ -20,5 +23,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create destroy]
     resource :likes, only: %i[create destroy]
   end
+
+  resources :relationships, only: %i[create destroy]
 
 end

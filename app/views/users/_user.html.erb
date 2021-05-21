@@ -1,0 +1,17 @@
+<div class="relationship_list-wrapper">
+  <ul class="relationship_list-content">
+    <li class="d-flex relationship_list-item">
+      <%= link_to user do %>
+        <% if user.image.present? %>
+          <%= image_tag user.image, class: "relationship_list-avatar-img" %>
+        <% else %>
+          <%= image_tag asset_path("default-user.png"), class: "relationship_list-avatar-img" %>
+        <% end %>
+      <% end %>
+      <div class="my-auto list-item-content relationship_list-status">
+        <p><%= link_to user.username, user %><p>
+        <p><%= user.profile %></p>
+      </div>
+    </li>
+  </ul>
+</div>

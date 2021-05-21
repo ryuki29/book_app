@@ -30,14 +30,18 @@
       <div class="profile-card-info">
         <%# -----フォロワー数----- %>
         <div class="profile-card-info_item">
-          <div class="profile-card-info_title">990</div>
-          <div class="profile-card-info_txt">フォロワー</div>
+          <%= link_to followers_user_path(@user) do %>
+            <div id="followers" class="profile-card-info_title"><%= user.followers.count %></div>
+            <div class="profile-card-info_txt">フォロワー</div>
+          <% end %>
         </div>
 
         <%# -----フォロー数----- %>
         <div class="profile-card-info_item">
-          <div class="profile-card-info_title">29</div>
-          <div class="profile-card-info_txt">フォロー</div>
+          <%= link_to following_user_path(@user) do %>
+            <div id="following" class="profile-card-info_title"><%= user.following.count %></div>
+            <div class="profile-card-info_txt">フォロー</div>
+          <% end %>
         </div>
 
         <%# -----投稿数----- %>
@@ -68,7 +72,7 @@
       <%# unless user_signed_in? && user.id == current_user.id %>
       <% if user_signed_in? && user.id != current_user.id %>
         <div class="profile-card-ctr">
-          <button class="profile-card_button button-blue">フォローする</button>
+          <%= render 'relationships/follow_form' %>
         </div>
       <% end %>
     </div>
@@ -76,5 +80,7 @@
   </div>
 
 </div>
-<%= render partial: "users/edit-profile-modal", locals: { user: user } %>
-
+<% if current_user.present? && @user.id == current_user.id %>
+  <%= render partial: "users/edit-profile-modal", locals: { user: user } %>
+<% end %>
+<%# render partial: "users/show-relationship-modal", locals: { user: user } %>

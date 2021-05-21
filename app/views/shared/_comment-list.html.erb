@@ -5,9 +5,9 @@
 
       <%= link_to user_path(comment.user.id), class: "comment-index_head_user_img" do %>
         <% if comment.user.image.attached? %>
-          <%= image_tag(comment.user.image, size: '40x40') %>
+          <%= image_tag comment.user.image %>
         <% else %>
-          <%= image_tag("default-user.png", size: '40x40') %>
+          <%= image_tag "default-user.png" %>
         <% end %>
 
       <span class="comment-index_head_user_name">
