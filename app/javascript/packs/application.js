@@ -18,6 +18,7 @@ require("../show_books")
 
 import 'bootstrap';
 import '../stylesheets/application';
+import 'chartkick/chart.js'
 
 $(function () {
   $('#star').raty({

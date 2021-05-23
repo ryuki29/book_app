@@ -211,12 +211,11 @@ ja:
   enums:
     review:
       category:
-        literature: "文学・評論"
-        nonfiction: "ノンフィクション"
-        business_economy: "ビジネス・経済"
-        history_geography: "歴史・地理"
-        political_society: "政治・社会"
-        humanities_thoughts_religions: "人文・思想・宗教"
-        science_technology: "サイエンス・テクノロジー"
-        self_enlightenment: "自己啓発"
+        it: "IT"
+        management: "経営戦略"
+        economy: "政治・経済・社会"
+        finance: "ファイナンス"
+        thinking: "思考法"
+        motivation: "自己啓発"
+        novel: "小説"
         etc: "その他"

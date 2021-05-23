@@ -9,15 +9,14 @@ class Review < ApplicationRecord
   belongs_to :user
 
   enum category: {
-    literature: 0,
-    nonfiction: 1,
-    business_economy: 2,
-    history_geography: 3,
-    political_society: 4,
-    humanities_thoughts_religions: 5,
-    science_technology: 6,
-    self_enlightenment: 7,
-    etc: 8
+    it:         0, # IT
+    management: 1, # 経営戦略
+    economy:    2, # 政治・経済・社会
+    finance:    3, # ファイナンス
+    thinking:   4, # 思考法
+    motivation: 5, # 自己啓発
+    novel:      6, # 小説
+    etc:        7, # その他
   }
 
   validates :category, presence: true
