@@ -1,0 +1,22 @@
+.dm-list-users {
+  width: 50%;
+  background-color: whitesmoke;
+  margin:5vh auto;
+  a, a:hover {
+    color: gray;
+    text-decoration: none;
+}
+  p {
+    margin-top: 1vh;
+  }
+}
+
+.dm-list-title {
+  padding-top: 1vh;
+  text-align: center;
+  border-bottom: 1px solid gray;
+}
+
+.dm-list-user-info {
+  list-style: none;
+}

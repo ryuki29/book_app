@@ -25,5 +25,6 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: %i[create destroy]
-
+  resources :messages, only: %i[create destroy]
+  resources :rooms, only: %i[index create show]
 end

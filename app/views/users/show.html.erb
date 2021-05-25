@@ -190,6 +190,28 @@
       <div class="user-show_category_graph">
         <%= pie_chart @user.reviews.group(:category).count %>
       </div>
+
+      <% if @user.id == current_user.id %>
+        <%= link_to rooms_path, class:"btn btn-primary btn-lg user-show-chat" do %>
+          メッセージ
+        <% end %>
+      <% else %>
+        <% if @isRoom == true %>
+          <p class="user-show-room">
+            <%= link_to room_path(@roomId), class:"btn btn-primary btn-lg" do %>
+              チャットへ
+            <% end %>
+          </p>
+        <% else %>
+          <%= form_for @room do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+            <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
+          <% end %>
+        <% end %>
+      <% end %>
+
     </div>
 
   </div>
