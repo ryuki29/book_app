@@ -1,0 +1,7 @@
+<%= form_with model: @message do |f| %>
+  <div class="chat_form">
+    <%= f.text_field :message, placeholder: "新しいメッセージを作成", class: "chat_input" %>
+    <%= f.hidden_field :room_id, :value => @room.id %>
+    <%= f.submit "送信", class: "chat_submit" %>
+  </div>
+<% end %>
