@@ -145,3 +145,29 @@ $timeline-color: $accent-color;
   }
 
 }
+
+// -----ranking-----
+.ranking-book{
+
+  &_top {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    font-weight: bolder;
+  }
+
+  &_title {
+    font-weight: bold;
+    margin-bottom: 5vh;
+  }
+
+  .rank1 {
+    color: #FFD700;
+  }
+  .rank2 {
+    color: #C0C0C0;
+  }
+  .rank3 {
+    color: #C47222;
+  }
+
+}
