@@ -27,4 +27,9 @@ class Review < ApplicationRecord
     greater_than_or_equal_to: 0,
     allow_blank: true
   }
+
+  def self.search(search)
+    return Review.all unless search
+    Review.where('text LIKE(?)', "%#{search}%").or(where('tegline LIKE(?)', "%#{search}%"))
+  end
 end
