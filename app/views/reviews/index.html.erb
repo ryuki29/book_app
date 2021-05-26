@@ -7,7 +7,21 @@
           <%= render partial: "shared/review", locals: { review: review } %>
         <% end %>
       </div>
-    <%# ランキング機能実装予定 %>
-    <div class="rankking col-md-2"></div>
+    <%# ランキング機能 %>
+    <div class="ranking-book col-md-2">
+      <h4 class="ranking-book_top">人気の本</h4>
+      <%# -----1位----- %>
+      <p><i class="fas fa-crown rank1 fa-2x">1位</i></p>
+      <%= image_tag @ranking.first[0].image_url %>
+      <p class="ranking-book_title"><%= @ranking.first[0].title %></p>
+      <%# -----2位----- %>
+      <p><i class="fas fa-crown rank2 fa-2x">2位</i></p>
+      <%= image_tag @ranking.second[0].image_url %>
+      <p class="ranking-book_title"><%= @ranking.second[0].title %></p>
+      <%# -----3位----- %>
+      <p><i class="fas fa-crown rank3 fa-2x">3位</i></p>
+      <%= image_tag @ranking.third[0].image_url %>
+      <p class="ranking-book_title"><%= @ranking.third[0].title %></p>
+    </div>
   </div>
 </div>

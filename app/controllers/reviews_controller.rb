@@ -3,6 +3,9 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = Review.all.includes(:user, :book,  :likes).order(created_at: :desc)
+
+    uids = UserBook.joins(:book).where(status: 0).group(:uid).order('count_uid DESC').limit(3).count(:uid).keys
+    @ranking = uids.map { |uid| Book.where(uid: uid) }
   end
 
   def create
