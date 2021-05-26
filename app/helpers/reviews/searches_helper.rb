@@ -1,0 +1,2 @@
+module Reviews::SearchesHelper
+end

@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :reviews do
+    resources :searches, only: :index
+  end
+
   resources :reviews, only: %i[create destroy show] do
     resources :comments, only: %i[create destroy]
     resource :likes, only: %i[create destroy]
