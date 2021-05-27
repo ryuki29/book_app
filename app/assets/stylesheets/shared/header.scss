@@ -1,64 +1,140 @@
-#mainNav {
+li {
+  list-style: none;
+}
+
+.brand {
+  font-weight: bold;
+  font-size: 20px; }
+
+.header {
+  position: relative;
+  background-color: $main-color;
+
+  &__left {
+    display: flex;
+    align-items: center;
+    h3 {
+      margin-right: 1rem;
+      font-weight: bold;
+      color: white;
+    }
+  }
+}
+
+.fa-size {
+  font-size: 1.7em;
+  color: white;
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-weight: 700;
-  background-color: $main-color;
 }
-#mainNav .navbar-brand {
-  color: #fff;
-  margin-right: 20%;
-  &:hover{
-    color: $accent-color;
-  }
-}
-#mainNav .navbar-nav {
-  margin-top: 1rem;
-}
-#mainNav .navbar-nav li.nav-item a.nav-link {
-  color: #fff;
-}
-#mainNav .navbar-nav li.nav-item a.nav-link:hover {
-  color: $accent-color;
-}
-#mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
-  color: #fff;
-}
-#mainNav .navbar-nav li.nav-item a.nav-link.active {
-  color: $accent-color;
-}
-#mainNav .navbar-toggler {
-  font-size: 80%;
-  padding: 0.8rem;
-}
-
-@media (min-width: 992px) {
-  #mainNav {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    transition: padding-top 0.3s, padding-bottom 0.3s;
-  }
-  #mainNav .navbar-brand {
-    font-size: 1.75em;
-    transition: font-size 0.3s;
-  }
-  #mainNav .navbar-nav {
-    margin-top: 0;
-  }
-  #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
-    color: #fff;
-    background: $accent-color;
-  }
-  #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
-    color: #fff;
-    background: $accent-color;
+  @media (min-width: 800px) {
+    .header__wrapper {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
 
-  #mainNav.navbar-shrink {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+.header__right {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 800px) {
+  .nav__wrapper {
+    display: flex;
   }
-  #mainNav.navbar-shrink .navbar-brand {
-    font-size: 1.5em;
+}
+
+@media (max-width: 799px) {
+  .nav__wrapper {
+    position: absolute;
+    top: calc(100% + 35px);
+    right: 0;
+    left: 0;
+    z-index: -1;
+    background-color: #d9f0f7;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
   }
+    .nav__wrapper.active {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+.nav__item {
+
+  &:not(:last-child){
+    margin-right: 0.3rem;
+  }
+
+  a {
+    display: block;
+    padding: 1rem 1rem 0 0;
+    border-left: 4px solid transparent;
+    color: white;
+    &:hover {
+      color: white;
+    }
+  }
+
+}
+
+  @media (min-width: 800px) {
+    .nav__item a {
+      text-align: center;
+      border-left: 0;
+    }
+  }
+.nav__item i {
+  width: 28px;
+  height: 28px;
+  margin-right: 1rem;
+}
+  @media (min-width: 800px) {
+    .nav__item i {
+      display: block;
+      margin: 0 auto 0.5rem;
+    }
+  }
+  @media (min-width: 800px) {
+    .nav__item.active a {
+      border-bottom-color: #222;
+    }
+  }
+.nav__toggle {
+  display: none;
+}
+  @media (max-width: 799px) {
+    .nav__toggle {
+      display: block;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+    }
+  }
+
+.search {
+  display: flex;
+  margin-left: 1rem;
+  &__form {
+    display: block;
+  }
+}
+
+.wrapper {
+  max-width: 1140px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 }
