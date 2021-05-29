@@ -42,10 +42,11 @@
             </li>
             <%# -----通知----- %>
             <li class="nav__item">
-              <a href="#">
+              <%= link_to notifications_path do %>
+                <%= render "notifications/alert" %>
                 <i class="fas fa-bell fa-size"></i>
                 <small>通知</small>
-              </a>
+              <% end %>
             </li>
             <%# -----マイページ----- %>
             <li class="nav__item">

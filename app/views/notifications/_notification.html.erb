@@ -1,0 +1,18 @@
+<div class="notification_list-wrapper">
+  <ul>
+    <li class="notification_list-item">
+      <% if notification.visitor.image.attached? %>
+        <%= link_to user_path(notification.visitor) do %>
+          <%= image_tag notification.visitor.image, class: "relationship_list-avatar-img" %>
+          <%= notification_form(notification) %>
+        <% end %>
+      <% else %>
+        <%= link_to user_path(notification.visitor) do %>
+          <%= image_tag "default-user.png", class: "relationship_list-avatar-img" %>
+          <%= notification_form(notification) %>
+        <% end %>
+      <% end %>
+      <span class="text-muted"><%= "(#{time_ago_in_words(notification.created_at)}前)" %>
+      </li>
+    </ul>
+</div>

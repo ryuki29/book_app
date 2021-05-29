@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_23_221607) do
+ActiveRecord::Schema.define(version: 2021_05_27_095147) do
 
   create_table "action_plans", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "plan"
@@ -96,6 +96,21 @@ ActiveRecord::Schema.define(version: 2021_05_23_221607) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "visitor_id", null: false
+    t.bigint "visited_id", null: false
+    t.bigint "review_id"
+    t.bigint "comment_id"
+    t.string "action", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["review_id"], name: "index_notifications_on_review_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
+  end
+
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -167,6 +182,10 @@ ActiveRecord::Schema.define(version: 2021_05_23_221607) do
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "comments"
+  add_foreign_key "notifications", "reviews"
+  add_foreign_key "notifications", "users", column: "visited_id"
+  add_foreign_key "notifications", "users", column: "visitor_id"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
   add_foreign_key "sns_credentials", "users"
