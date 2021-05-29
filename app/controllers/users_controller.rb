@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :find_user, only: %i[show update following followers]
 
+  def index
+    @users = User.all.search(params[:keyword])
+  end
+
   def show
     @books = user_book_status(0)
     @reading = user_book_status(1)
