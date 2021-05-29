@@ -3,6 +3,10 @@ class CommentsController < ApplicationController
   def create
     @review = Review.find(params[:review_id])
     @comment = Comment.create(comment_params)
+    if @comment.save
+      @review = @comment.review
+      @review.create_notification_comment(current_user, @comment.id)
+    end
     render :index
   end
 
