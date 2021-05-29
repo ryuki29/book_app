@@ -100,4 +100,9 @@ class User < ApplicationRecord
     end
   end
 
+  def self.search(search)
+    return User.all unless search
+    User.where('username LIKE(?)', "%#{search}%")
+  end
+
 end

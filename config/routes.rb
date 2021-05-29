@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root 'reviews#index'
 
-  resources :users, only: %i[show update] do
+  resources :users, only: %i[index show update] do
     member do
       get :following, :followers
     end

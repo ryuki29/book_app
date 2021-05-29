@@ -27,10 +27,10 @@
           </li>
           <%# -----ユーザー一覧----- %>
           <li class="nav__item">
-            <a href="#">
+            <%= link_to users_path do %>
               <i class="fas fa-users fa-size"></i>
               <small>ユーザー一覧</small>
-            </a>
+            <% end %>
           </li>
           <% if user_signed_in? %>
             <%# -----タイムライン----- %>
