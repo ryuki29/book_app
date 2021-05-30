@@ -9,7 +9,9 @@
         <div class="review-show_book d-flex">
           <%# -----本の表紙----- %>
           <div class="review-show_book_img">
-            <%= image_tag(@review.book.image_url) %>
+            <%= link_to book_path(@review.book) do %>
+              <%= image_tag(@review.book.image_url) %>
+            <% end %>
           </div>
 
           <div class="review-show_book">

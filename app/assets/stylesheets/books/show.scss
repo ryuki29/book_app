@@ -1,0 +1,42 @@
+.book-show {
+  margin: 3rem auto;
+  padding: 0;
+  text-align: left;
+  border: none;
+  position: relative;
+  max-width: 900px;
+
+  &-area {
+    margin: 0 auto;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+  }
+
+  &-img {
+    margin-right: 3rem;
+  }
+
+  &-users-count, &-reviews-count {
+    display: inline-block;
+    margin-bottom: 2rem;
+  }
+
+  &-will-read-btn {
+    padding: 1rem;
+    border: 2px solid #000;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      color: #fff;
+      background: #000;
+    }
+  }
+
+}
+
+.a {
+  justify-content: space-between;
+}

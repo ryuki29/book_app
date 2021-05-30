@@ -22,7 +22,9 @@
           </div>
 
           <div class="col review-index_head_img">
-            <%= image_tag("#{review.book.image_url}") %>
+            <%= link_to book_path(review.book) do %>
+              <%= image_tag("#{review.book.image_url}") %>
+            <% end %>
           </div>
 
         </div>

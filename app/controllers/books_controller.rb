@@ -15,6 +15,15 @@ class BooksController < ApplicationController
     render json: { "user_id": current_user.id, "book_status": status }
   end
 
+  def show
+    @book = Book.find(params[:id])
+    @bookCount = Book.where(uid: @book.uid).count
+
+    @review_list = Review.all.select { |r|
+      r.book.uid == @book.uid
+    }
+  end
+
   def search
     @books = []
     @total_items = 0
