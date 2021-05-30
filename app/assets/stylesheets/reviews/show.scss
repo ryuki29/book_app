@@ -2,22 +2,30 @@
   &_content {
     margin-top: 50px;
     padding: 30px;
-    border-top: 5px solid $timeline-color;
     box-shadow: 0px 4px 30px -5px rgba(13,28,39,0.6);
     border-radius: 3px;
   }
 
   &_book {
     margin-left: 30px;
-    font-size: 20px;
     text-align: center;
+    margin-bottom: 3%;
     &_title {
+      margin-top: 15%;
       margin-bottom: 30px;
+      h3 {
+        width: 100%;
+        margin-left: 30%;
+      }
+    }
+    &_authors {
+      font-size: 18px;
+      width: 100%;
+      margin-left: 30%;
     }
   }
 
   &_txt {
-    border: 1px solid gray;
     border-radius: 3px;
     padding: 3px;
   }
@@ -27,7 +35,6 @@
   }
 
   &_phrase, &_plan {
-    border: 1px solid gray;
     border-radius: 3px;
     padding: 3px;
     margin-bottom: 3px;
@@ -53,10 +60,16 @@
     word-break: break-all;
   }
 
+  &_rating {
+    margin-top: 3%;
+  }
+
   .review-show_comment_icon, .review-show_fav_icon, .review-show_edit, .review-show_del {
     margin-top: 30px;
-    & > a {
-      color: gray;
-    }
   }
+}
+.comment-submit {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 3%;
 }

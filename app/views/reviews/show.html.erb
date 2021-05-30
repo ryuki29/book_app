@@ -17,7 +17,7 @@
           <div class="review-show_book">
             <%# -----本のタイトル----- %>
             <div class="review-show_book_title">
-              『<%= @review.book.title%>』
+              <h3><%= @review.book.title %></h3>
             </div>
             <%# -----本の作者----- %>
             <div class="review-show_book_authors">
@@ -27,35 +27,32 @@
         </div>
 
         <div class="review-show_review">
-          <label class="review-show_label">ヒトコト</label>
-          <div class="review-show_txt">
-            <b><%= @review.tegline %></b>
+          <div class="review-show_txt text-center">
+            <h4><b><%= @review.tegline %></b></h4>
           </div>
 
           <%# -----レビュー内容----- %>
-          <label class="review-show_label">感想</label></label>
           <div class="review-show_txt">
             <%= @review.text %>
+            <%= safe_join(@review.text.split("\n"), tag(:br)) %>
           </div>
 
           <%# -----印象に残ったフレーズ----- %>
-          <%# if @review.impressive_phrases.first.phrase.present? %>
           <% if @review.impressive_phrases.first.phrase.present? %>
-            <label class="review-show_label">印象に残ったフレーズ</label>
+            <label class="review-show_label">■ 印象に残ったフレーズ</label>
             <% @review.impressive_phrases.each do |ip| %>
               <div class="review-show_phrase">
-                <%= ip.phrase %>
+                ・<%= ip.phrase %>
               </div>
             <% end %>
           <% end %>
 
           <%# -----アクションプラン----- %>
-          <%# if @review.action_plans.first.plan.present? %>
           <% if @review.action_plans.first.plan.present? %>
-            <label class="review-show_label">アクションプラン</label>
+            <label class="review-show_label">■ アクションプラン</label>
             <% @review.action_plans.each do |ap| %>
               <div class="review-show_plan">
-                <%= ap.plan %>
+                ・<%= ap.plan %>
               </div>
             <% end %>
           <% end %>
@@ -105,8 +102,8 @@
       </div>
 
       <%# -----いいねアイコン----- %>
-      <div class="review-show_fav_icon">
-        <a href="#"><i class="far fa-heart fa-2x"></i></a>
+      <div class="review-show_fav review-index_fav" id="like_<%= @review.id %>">
+        <%= render partial: "likes/like-review", locals: { review: @review} %>
       </div>
 
       <%# -----編集アイコン----- %>
@@ -118,7 +115,7 @@
 
       <%# -----削除アイコン----- %>
       <% if user_signed_in? && current_user.id == @review.user_id %>
-        <div class="review-show_del">
+        <div class="review-show_del review-index_del">
           <%= link_to review_path(@review.id), method: :delete, class: "review-show_del_btn", data: { confirm: '本当に削除しますか' } do %>
             <i class="far fa-trash-alt fa-2x"></i>
           <% end %>

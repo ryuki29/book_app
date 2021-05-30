@@ -19,7 +19,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @bookCount = Book.where(uid: @book.uid).count
 
-    @review_list = Review.all.select { |r|
+    @review_list = Review.all.order(created_at: :desc).select { |r|
       r.book.uid == @book.uid
     }
   end
