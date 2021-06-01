@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_27_095147) do
+ActiveRecord::Schema.define(version: 2021_05_31_032000) do
 
   create_table "action_plans", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "plan"
     t.bigint "review_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "progress", default: 0
     t.index ["review_id"], name: "index_action_plans_on_review_id"
   end
 
