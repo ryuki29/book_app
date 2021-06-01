@@ -83,4 +83,3 @@
 <% if current_user.present? && @user.id == current_user.id %>
   <%= render partial: "users/edit-profile-modal", locals: { user: user } %>
 <% end %>
-<%# render partial: "users/show-relationship-modal", locals: { user: user } %>

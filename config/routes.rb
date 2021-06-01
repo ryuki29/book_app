@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   namespace :reviews do
     resources :searches, only: :index
+    resources :action_plans, only: %i[show update]
   end
 
   resources :reviews, only: %i[create destroy show] do

@@ -15,6 +15,7 @@ require("../search_books")
 require("../edit_users")
 require("../create_books")
 require("../show_books")
+require("../action_plans")
 
 import 'bootstrap';
 import '../stylesheets/application';
