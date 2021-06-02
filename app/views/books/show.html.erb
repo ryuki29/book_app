@@ -22,4 +22,5 @@
   <% @review_list.each do |review| %>
     <%= render partial: "shared/review", locals: {review: review} %>
   <% end %>
+  <%= paginate @review_list %>
 </div>

@@ -3,9 +3,10 @@
   margin: 0 auto;
 
   &-label {
+    color: white;
+    cursor: pointer;
     width: 30rem;
     padding: 3%;
-    color: white;
   }
 
   &-not_started {

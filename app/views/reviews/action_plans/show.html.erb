@@ -1,28 +1,32 @@
 <h4 class="text-center mt-4 mb-4">アクションプラン一覧</h4>
 <div class="container">
-  <% @plans.each_with_index do |p, i| %>
-    <div class="d-flex text-center plans-show">
+  <% if @plans.empty? %>
+    <p class="text-center">アクションプランはまだありません</p>
+  <% else %>
+    <% @plans.each_with_index do |p, i| %>
+      <div class="d-flex text-center plans-show">
 
-      <% if p.progress == 0 %>
-        <%# ----------未達成アクションプラン---------- %>
-        <%= link_to review_path(p.review) do %>
-          <label class="plans-show-label plans-show-not_started text-white" for="plan_<%= i %>"><%= p.plan %></label>
+        <% if p.progress == 0 %>
+          <%# ----------未達成アクションプラン---------- %>
+          <%= link_to review_path(p.review) do %>
+            <label class="plans-show-label plans-show-not_started text-white" for="plan_<%= i %>"><%= p.plan %></label>
+          <% end %>
+          <%# ----------未達成チェックボックス---------- %>
+          <% if user_signed_in? && current_user.id == p.review.user_id %>
+            <input type="checkbox" id="plan_<%= i %>" class="plans-show-input" name="plan" data-index="<%= i %>" data-id="<%= p.id %>">
+          <% end %>
+        <% else %>
+          <%# ----------達成アクションプラン---------- %>
+          <%= link_to review_path(p.review) do %>
+            <label class="plans-show-label plans-show-completed text-white" for="plan_<%= i %>"><%= p.plan %></label>
+          <% end %>
+          <%# ----------達成チェックボックス---------- %>
+          <% if user_signed_in? && current_user.id == p.review.user_id %>
+            <input type="checkbox" id="plan_<%= i %>" class="plans-show-input" name="plan" data-index="<%= i %>" data-id="<%= p.id %>" checked>
+          <% end %>
         <% end %>
-        <%# ----------未達成チェックボックス---------- %>
-        <% if user_signed_in? && current_user.id == p.review.user_id %>
-          <input type="checkbox" id="plan_<%= i %>" class="plans-show-input" name="plan" data-index="<%= i %>" data-id="<%= p.id %>">
-        <% end %>
-      <% else %>
-        <%# ----------達成アクションプラン---------- %>
-        <%= link_to review_path(p.review) do %>
-          <label class="plans-show-label plans-show-completed text-white" for="plan_<%= i %>"><%= p.plan %></label>
-        <% end %>
-        <%# ----------達成チェックボックス---------- %>
-        <% if user_signed_in? && current_user.id == p.review.user_id %>
-          <input type="checkbox" id="plan_<%= i %>" class="plans-show-input" name="plan" data-index="<%= i %>" data-id="<%= p.id %>" checked>
-        <% end %>
-      <% end %>
 
-    </div>
+      </div>
+    <% end %>
   <% end %>
 </div>

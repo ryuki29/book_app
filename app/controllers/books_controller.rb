@@ -22,6 +22,7 @@ class BooksController < ApplicationController
     @review_list = Review.all.order(created_at: :desc).select { |r|
       r.book.uid == @book.uid
     }
+    @review_list = Kaminari.paginate_array(@review_list).page(params[:page]).per(10)
   end
 
   def search
