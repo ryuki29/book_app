@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: %i[show update following followers]
 
   def index
-    @users = User.all.search(params[:keyword])
+    @users = User.all.search(params[:keyword]).page(params[:page]).per(10)
   end
 
   def show
@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
     likes = Like.where(user_id: @user.id).ids
     @like_list = Like.find(likes)
+    @like_list = Kaminari.paginate_array(@like_list).page(params[:page]).per(20)
 
     @review = Review.new
 
@@ -64,6 +65,6 @@ class UsersController < ApplicationController
     Book.joins(:user_books).where(user_books: {
                                   user_id: params[:id],
                                   status: status
-                                  }).order(created_at: 'DESC')
+                                  }).order(created_at: 'DESC').page(params[:page]).per(20)
   end
 end

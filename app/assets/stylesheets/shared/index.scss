@@ -181,3 +181,19 @@ $timeline-color: $accent-color;
   }
 
 }
+
+// -----paginate-----
+.pagination{
+  margin-left: 30%;
+  li > a {
+    border: none;
+    color: #696969;
+  }
+  .active > a {
+    background: #93c9ff;
+    border-radius: 5%;
+    &:hover {
+      border-radius: 5%;
+    }
+  }
+}

@@ -12,6 +12,7 @@
         <% @reviews.each do |review| %>
           <%= render partial: "shared/review", locals: { review: review } %>
         <% end %>
+        <%= paginate @reviews %>
       </div>
     <%# ランキング機能 %>
     <div class="ranking-book col-md-2">
