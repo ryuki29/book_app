@@ -10,7 +10,7 @@ class Book < ApplicationRecord
 
   def self.search_books(keyword)
     encoded_uri = Addressable::URI.encode(
-      "https://www.googleapis.com/books/v1/volumes?q=#{keyword}"
+      "https://www.googleapis.com/books/v1/volumes?maxResults=20&q=#{keyword}"
     )
     parsed_uri = URI.parse(encoded_uri)
     JSON.parse(Net::HTTP.get(parsed_uri))
