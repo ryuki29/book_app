@@ -52,7 +52,7 @@
             <label class="review-show_label">■ アクションプラン</label>
             <% @review.action_plans.each do |ap| %>
               <div class="review-show_plan">
-                ・<%= ap.plan %>
+                ・<%= ap.plan %>【<%= ap.deadline %>】
               </div>
             <% end %>
           <% end %>

@@ -26,7 +26,7 @@ $(document).on("turbolinks:load", function() {
 
   function completedProgress(target, progress) {
     if(progress == 1) {
-      $(target).css("background-color", "#387eba");
+      $(target).css("background-color", "#0080FF");
     } else {
       $(target).css("background-color", "orangered");
     }

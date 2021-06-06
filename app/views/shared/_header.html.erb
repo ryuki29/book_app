@@ -33,12 +33,12 @@
             <% end %>
           </li>
           <% if user_signed_in? %>
-            <%# -----タイムライン----- %>
+            <%# -----アクションプラン----- %>
             <li class="nav__item">
-              <a href="#">
-                <i class="fas fa-clock fa-size"></i>
-                <small>タイムライン</small>
-              </a>
+              <%= link_to reviews_action_plan_path(current_user) do %>
+                <i class="fas fa-running fa-size"></i>
+                <small>アクションプラン</small>
+              <% end %>
             </li>
             <%# -----通知----- %>
             <li class="nav__item">

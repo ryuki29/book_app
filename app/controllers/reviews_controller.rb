@@ -55,7 +55,7 @@ class ReviewsController < ApplicationController
       :category,
       :rating,
       impressive_phrases_attributes: %i[phrase _destroy id],
-      action_plans_attributes: %i[plan _destroy id]
+      action_plans_attributes: %i[plan deadline _destroy id]
     ).merge(
       user: current_user
     )
