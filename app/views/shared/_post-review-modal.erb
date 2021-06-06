@@ -26,16 +26,8 @@
             <%# -----読み終わった日----- %>
             <div class="row">
               <%= f.label :date, "読み終わった日", for:"date", class:"col-lg-3 post-review-label my-auto" %>
-              <div class="input-group date col-lg-3" id="datetimepicker" data-target-input="nearest">
-                <%= f.text_field :date, class:"result form-control datetimpicker-input review-date", id:"date-input", data:{toggle: "datetimepicker", target: "#datetimpicker"} %>
-                <div class="input-group-append" data-target="#dateimepicker" data-toggle="datetimepicker">
-                  <div class="input-group-text border-0" id="calender">
-                    <i class="fa fa-calendar"></i>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-4 my-auto">
+              <div class="input-group date col-lg-3">
+                <%= f.text_field :date, class:"date result form-control review-date", id:"date-input"%>
               </div>
             </div>
 
@@ -72,12 +64,9 @@
               <%= f.fields_for :impressive_phrases, @review.impressive_phrases.build do |phrase|%>
                 <%= phrase.label :phrase, "印象に残ったフレーズ", for:"phrase", class:"col-lg-3 post-review-label" %>
                 <%# フォーム追加ここから %>
-                <div class="js-phrase-form-group col-lg-7 mb-1" data-index="<%= phrase.index %>">
+                <div class="js-phrase-form-group col-lg-7 mb-2" data-index="<%= phrase.index %>">
                   <div class="phrase input-group">
-                    <%= phrase.text_field :phrase, class:"form-control", id:"phrase-input"%>
-                    <div class="phrase-form-minus-btn input-group-append">
-                      <input type="button" value="－" class="del pluralBtn">
-                    </div>
+                    <%= phrase.text_field :phrase, class:"form-control", id:"phrase-input", placeholder: "印象に残ったフレーズを記入"%>
                   </div>
                 </div>
                 <%# フォーム追加ボタン %>
@@ -92,14 +81,21 @@
               <%= f.fields_for :action_plans, @review.action_plans.build do |plan| %>
                 <%= plan.label :plan, "アクションプラン", for:"plan", class:"col-lg-3 post-review-label" %>
                 <%# フォーム追加ここから %>
-                <div class="js-plan-form-group col-lg-7 mb-1" data-index="<%= plan.index %>">
+                <div class="js-plan-form-group col-lg-7" data-index="<%= plan.index %>">
                   <div class="plan input-group">
-                    <%= plan.text_field :plan, class:"form-control", id:"plan-input" %>
-                    <div class="plan-form-minus-btn input-group-append">
-                      <input type="button" value="－" class="del pluralBtn">
-                    </div>
+                    <%= plan.text_field :plan, class:"form-control", id:"plan-input", placeholder:"アクションプランを記入", required: true %>
+                    <%= plan.text_field :deadline, class:"date result form-control review-date", placeholder:"期限", required: true %>
                   </div>
                 </div>
+                <script>
+                  $(function () {
+                    $('.date').bootstrapMaterialDatePicker({
+                        time: false,
+                        lang:"ja",
+                    });
+                  });
+                </script>
+
                 <%# フォーム追加ボタン %>
                 <div class="plan-form-plus-btn">
                   <input type="button" value="+" class="add pluralBtn">

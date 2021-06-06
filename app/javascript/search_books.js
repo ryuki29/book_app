@@ -52,8 +52,9 @@ $(document).on("turbolinks:load", function(){
 
   $(".read-book").on("click", function() {
     $("#date-input").val(moment().format("YYYY/MM/DD"));
-    $("#date-input, #calender").attr("disabled", false).removeClass("form-disabled");
+    $("#date-input").attr("disabled", false).removeClass("form-disabled");
   });
+
 });
 
 // ----- impressive_phraseフォーム ------
@@ -116,12 +117,21 @@ $(function(){
                   `<div class="col-lg-3"></div>
                   <div class="js-plan-form-group col-lg-7 mb-1" data-index="${index}">
                     <div class="plan input-group">
-                      <input class="action-plan-field form-control" type="text" name="review[action_plans_attributes][${index}][plan]" id="plan-input">
+                      <input type="text" id="plan-input" class="action-plan-field form-control" name="review[action_plans_attributes][${index}][plan]" placeholder="アクションプランを記入">
+                      <input type="text" class="date result form-control review-date" name="review[action_plans_attributes][${index}][deadline]" placeholder="期限">
                       <div class="plan-form-minus-btn input-group-append">
-                      <input type="button" value="－" class="del pluralBtn">
+                        <input type="button" value="－" class="del pluralBtn">
                       </div>
                     </div>
-                  </div>`
+                  </div>
+                  <script>
+                    $(function () {
+                      $('.date').bootstrapMaterialDatePicker({
+                          time: false,
+                          lang:"ja",
+                      });
+                    });
+                  </script>`
     return html
   }
 
