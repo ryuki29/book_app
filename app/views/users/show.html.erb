@@ -191,13 +191,41 @@
     </div>
 
     <div class="col-md-2">
-      <div class="user-show_category_graph">
-        <%= pie_chart @user.reviews.group(:category).count %>
+      <%# -----グラフ----- %>
+      <div class="user-show_category_graph mb-4">
+        <canvas id="categoryChart" width="350" height="350"></canvas>
+        <script>
+        var ctx = document.getElementById("categoryChart").getContext('2d');
+        ctx.canvas.height = 350;
+        var categoryChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ["IT", "経営戦略", "政治・経済・社会", "ファイナンス", "思考法", "自己啓発", "小説", "その他"],
+                datasets: [{
+                    label: 'ジャンル',
+                    data: ["<%= @review_it %>", "<%= @review_management %>", "<%= @review_economy %>", "<%= @review_finance %>", "<%= @review_thinking %>", "<%= @review_motivation %>", "<%= @review_novel %>", "<%= @review_etc %>"],
+                    backgroundColor: [
+                      '#3333ff', // IT
+                      '#0ff15d', // 経営戦略
+                      '#f94552', // 政治・経済・社会
+                      '#fadd40', // ファイナンス
+                      '#f945ac', // 思考法
+                      '#0ff1ce', // 自己啓発
+                      '#afb5fc', // 小説
+                      '#e9e8ea' // その他
+                    ],
+                }]
+            },
+            options: {
+              maintainAspectRatio: false,
+            }
+        });
+        </script>
       </div>
 
       <% if @user.id == current_user.id %>
         <%= link_to rooms_path, class:"btn btn-primary btn-lg user-show-chat mb-4" do %>
-          メッセージ
+          メッセージ <i class="fas fa-envelope"></i>
         <% end %>
       <% else %>
         <% if @isRoom == true %>
@@ -217,7 +245,7 @@
       <% end %>
 
       <%= link_to reviews_action_plan_path(@user), class: "btn btn-danger" do %>
-        アクションプラン一覧
+        アクションプラン<i class="fas fa-running fa-size btn-lg"></i>
       <% end %>
 
     </div>
