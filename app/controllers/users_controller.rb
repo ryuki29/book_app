@@ -32,6 +32,16 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
+
+    review_categories  = @user.reviews.group(:category)
+    @review_it         = review_categories.where(category: "it").length
+    @review_management = review_categories.where(category: "management").length
+    @review_economy    = review_categories.where(category: "economy").length
+    @review_finance    = review_categories.where(category: "finance").length
+    @review_thinking   = review_categories.where(category: "thinking").length
+    @review_motivation = review_categories.where(category: "motivation").length
+    @review_novel      = review_categories.where(category: "novel").length
+    @review_etc        = review_categories.where(category: "etc").length
   end
 
   def update
