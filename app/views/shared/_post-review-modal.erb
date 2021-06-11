@@ -25,7 +25,7 @@
 
             <%# -----読み終わった日----- %>
             <div class="row">
-              <%= f.label :date, "読み終わった日", for:"date", class:"col-lg-3 post-review-label my-auto" %>
+              <%= f.label :date, "読み終わった日", class:"col-lg-3 post-review-label my-auto" %>
               <div class="input-group date col-lg-3">
                 <%= f.text_field :date, class:"date result form-control review-date", id:"date-input"%>
               </div>
@@ -62,7 +62,7 @@
             <%# -----印象に残ったフレーズ----- %>
             <div class="row my-2 phrase-form-area">
               <%= f.fields_for :impressive_phrases, @review.impressive_phrases.build do |phrase|%>
-                <%= phrase.label :phrase, "印象に残ったフレーズ", for:"phrase", class:"col-lg-3 post-review-label" %>
+                <%= phrase.label :phrase, "印象に残ったフレーズ", class:"col-lg-3 post-review-label" %>
                 <%# フォーム追加ここから %>
                 <div class="js-phrase-form-group col-lg-7 mb-2" data-index="<%= phrase.index %>">
                   <div class="phrase input-group">
@@ -79,7 +79,7 @@
             <%# -----アクションプラン----- %>
             <div class="row my-2 plan-form-area">
               <%= f.fields_for :action_plans, @review.action_plans.build do |plan| %>
-                <%= plan.label :plan, "アクションプラン", for:"plan", class:"col-lg-3 post-review-label" %>
+                <%= plan.label :plan, "アクションプラン", class:"col-lg-3 post-review-label" %>
                 <%# フォーム追加ここから %>
                 <div class="js-plan-form-group col-lg-7" data-index="<%= plan.index %>">
                   <div class="plan input-group">

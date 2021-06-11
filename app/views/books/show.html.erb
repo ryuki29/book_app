@@ -10,9 +10,11 @@
       <div class="book-show-reviews-count"><i class="fas fa-pen-square"></i> レビュー：<%= @review_list.count %></div>
 
       <%# -----読みたい本に登録----- %>
-      <div class="will-read-book-btn" id="will-read-book" data-status=2 data-title="<%= @book[:title] %>" data-authors="<%= @book[:authors] %>" data-image="<%= @book[:image_url] %>" data-uid="<%= @book[:uid] %>">
-        <span class="book-show-will-read-btn">読みたい本に登録する<span>
-      </div>
+      <% if user_signed_in? %>
+        <div class="will-read-book-btn" id="will-read-book" data-status=2 data-title="<%= @book[:title] %>" data-authors="<%= @book[:authors] %>" data-image="<%= @book[:image_url] %>" data-uid="<%= @book[:uid] %>">
+          <span class="book-show-will-read-btn">読みたい本に登録する<span>
+        </div>
+      <% end %>
 
     </div>
   </div>

@@ -1,0 +1,42 @@
+<div class="review-blank"></div>
+  <div class="reviews-index container-fluid">
+    <div class="row">
+
+      <div class="blank col-md-2">
+      </div>
+
+      <div class="review-index col-md-8">
+
+      <div class="boards-form">
+        <div class="boards-new d-flex mb-3">
+          <i class="fas fa-pen"></i> <h4>作成</h4>
+          <% if user_signed_in? %>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_boardModal">
+              新しく作る
+            </button>
+          <% else %>
+            <%= link_to new_user_registration_path, class:"btn btn-primary" do %>
+              新しく作る
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="board-search d-flex">
+          <i class="fas fa-search"></i> <h4>検索</h4>
+          <input type="text" name="" id="">
+        </div>
+      </div>
+
+      <% @boards.each do |board| %>
+        <%= render partial: "board", locals: { board: board } %>
+      <% end %>
+
+      </div>
+
+    <div class="ranking-book col-md-2">
+    </div>
+
+  </div>
+</div>
+
+<%= render "shared/new-board-modal" %>

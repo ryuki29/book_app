@@ -1,0 +1,59 @@
+<div class="container-fluid review-show">
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+
+    <div class="col-md-7">
+      <div class="review-show_content">
+
+        <div class="board-show_head">
+          <div class="board-show_user_icon mb-3">
+            <%= link_to user_path(@board.user.id) do %>
+              <% if @board.user.image.attached? %>
+                <%= image_tag(@board.user.image) %>
+              <% else %>
+                <%= image_tag("default-user.png")%>
+              <% end %>
+            <% end %>
+          </div>
+          <h4 id="js-board-title" class="board-show-title"><b><%= @board.title %></b></h4>
+          <div id="js-board_type" class="board_type" data-type="<%= @board.board_type %>"><%= t("boards.#{@board.board_type}") %></div>
+        </div>
+
+          <%# -----レビュー内容----- %>
+          <div id="js-board-text" class="review-show_txt text-center">
+            <p><%= safe_join(@board.description.split("\n"), tag(:br)) %></p>
+            <%= image_tag @board.image.variant(resize: '500x500'), id:"js-board-img", class:"board-show-img", data: {image: "#{url_for(@board.image)}"} if @board.image.attached? %>
+          </div>
+
+      </div>
+      <button type="button" class="btn btn-primary mb-5" data-toggle="modal" data-target="#board_commentModal">
+        返信する <i class="fas fa-reply"></i>
+      </button>
+
+    </div>
+
+    <div class="col-md-2 review-show_icons">
+
+      <%# -----編集アイコン----- %>
+      <% if user_signed_in? && current_user.id == @board.user_id %>
+        <div id="edit-board" class="review-show_edit" data-toggle="modal" data-target="#new_boardModal">
+          <i class="far fa-edit fa-2x"></i>
+        </div>
+      <% end %>
+
+      <%# -----削除アイコン----- %>
+      <% if user_signed_in? && current_user.id == @board.user_id %>
+        <div class="review-show_del review-index_del">
+          <%= link_to board_path(@board.id), method: :delete, class: "review-show_del_btn", data: { confirm: '本当に削除しますか' } do %>
+            <i class="far fa-trash-alt fa-2x"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render partial: "shared/new-board-modal" %>
+<%= render partial: "board_comments/new-board_comment-modal" %>
+<%= render partial: "board_comments/board_comment-list", collection: @comments, as: "comment" %>

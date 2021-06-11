@@ -1,0 +1,43 @@
+<div class="container-fluid review-show">
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+
+    <div class="col-md-7">
+      <div class="review-show_content mb-5">
+
+        <div class="review-show_review">
+          <div class="board-show_comment_user_icon mb-3">
+            <%= link_to user_path(comment.user.id) do %>
+              <% if comment.user.image.attached? %>
+                <%= image_tag(comment.user.image) %>
+              <% else %>
+                <%= image_tag("default-user.png")%>
+              <% end %>
+            <% end %>
+            <p class="board-show-user_name text-center"><%= comment.user.username %></p>
+          </div>
+
+          <%# -----コメント内容----- %>
+          <div id="js-board_comment" class="review-show_txt text-center">
+            <p id="js-board_comment-<%= comment.id %>" class="board_comment" data-id="<%= comment.id %>"><%= safe_join(comment.text.split("\n"), tag(:br)) %></p>
+            <%= image_tag comment.image.variant(resize: '500x500'), id:"js-board_comment-img_#{comment.id}", class:"js-board_comment-img", data:{id:"#{comment.id}", image:"#{url_for(comment.image)}"} if comment.image.attached? %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-2 review-show_icons">
+
+      <%# -----コメント削除アイコン----- %>
+      <% if user_signed_in? && current_user.id == comment.user_id %>
+        <div class="review-show_del review-index_del">
+          <%= link_to board_board_comment_path(comment.id), method: :delete, class: "review-show_del_btn", data: { confirm: '本当に削除しますか' } do %>
+            <i class="far fa-trash-alt fa-2x"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

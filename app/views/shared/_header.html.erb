@@ -20,10 +20,10 @@
           </li>
           <%# -----スレッド----- %>
           <li class="nav__item">
-            <a href="#">
+            <%= link_to boards_path do %>
               <i class="fas fa-comments fa-size"></i>
               <small>スレッド</small>
-            </a>
+            <% end %>
           </li>
           <%# -----ユーザー一覧----- %>
           <li class="nav__item">
@@ -63,12 +63,6 @@
               <% end %>
             </li>
           <% else %>
-            <li class="nav__item">
-              <a href="#">
-                <i class="fas fa-clock fa-size"></i>
-                <small>タイムライン</small>
-              </a>
-            </li>
             <li class="nav__item">
               <%= link_to new_user_registration_path do %>
                 <i class="fas fa-user-plus fa-size"></i>
