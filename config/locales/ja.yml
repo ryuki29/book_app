@@ -219,6 +219,11 @@ ja:
         motivation: "自己啓発"
         novel: "小説"
         etc: "その他"
+    board:
+      board_type:
+        question: "質問"
+        recommend: "おすすめ"
+        chat: "雑談"
   views:
     pagination:
       first: <i class="fas fa-angle-double-left"></i>
@@ -226,3 +231,7 @@ ja:
       previous: <i class="fas fa-angle-left"></i>
       next: <i class="fas fa-angle-right"></i>
       truncate: "..."
+  boards:
+    question: "質問"
+    recommend: "おすすめ"
+    chat: "雑談"

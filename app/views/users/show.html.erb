@@ -223,23 +223,25 @@
         </script>
       </div>
 
-      <% if @user.id == current_user.id %>
-        <%= link_to rooms_path, class:"btn btn-primary btn-lg user-show-chat mb-4" do %>
-          メッセージ <i class="fas fa-envelope"></i>
-        <% end %>
-      <% else %>
-        <% if @isRoom == true %>
-          <p class="user-show-room">
-            <%= link_to room_path(@roomId), class:"btn btn-primary btn-lg mb-4" do %>
-              チャットへ
-            <% end %>
-          </p>
+      <% if user_signed_in? %>
+        <% if @user.id == current_user.id %>
+          <%= link_to rooms_path, class:"btn btn-primary btn-lg user-show-chat mb-4" do %>
+            メッセージ
+          <% end %>
         <% else %>
-          <%= form_for @room do |f| %>
-            <%= fields_for @entry do |e| %>
-              <%= e.hidden_field :user_id, value: @user.id %>
+          <% if @isRoom == true %>
+            <p class="user-show-room">
+              <%= link_to room_path(@roomId), class:"btn btn-primary btn-lg mb-4" do %>
+                チャットへ
+              <% end %>
+            </p>
+          <% else %>
+            <%= form_for @room do |f| %>
+              <%= fields_for @entry do |e| %>
+                <%= e.hidden_field :user_id, value: @user.id %>
+              <% end %>
+              <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat mb-4"%>
             <% end %>
-            <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat mb-4"%>
           <% end %>
         <% end %>
       <% end %>

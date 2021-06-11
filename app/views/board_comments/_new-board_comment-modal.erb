@@ -1,0 +1,38 @@
+<div class="modal fade" id="board_commentModal" tabindex="-1" role="dialog" aria-labelledby="board_commentModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-header-title">コメントを作成する</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with url: board_board_comments_path(@board.id) do |f| %>
+
+          <div class="row my-3">
+            <%= f.label :text, "内容", class:"col-lg-3" %>
+            <%= f.text_area :text, class:"col form-control mx-2", rows:"8", placeholder:"コメントを記入しましょう", required: true %>
+          </div>
+
+          <div class="row my-3">
+            <%= f.label :image, "画像", class:"col-lg-3" %>
+          </div>
+          <div class="boards_new-img">
+            <%= image_tag "", size:"300x300", class:"col mx-2 board_comment-img" %>
+            <%= f.file_field :image, class:"board_comment-img_input" %>
+          </div>
+
+          <div class="row">
+            <div class="col-9"></div>
+            <div class="col-3">
+              <div class="col-9 d-flex">
+                <%= f.submit "返信する", class:"board-submit btn-primary" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
