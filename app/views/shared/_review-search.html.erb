@@ -1,0 +1,6 @@
+<%= form_with(url: reviews_searches_path, local: true, method: :get, class: "review-search_form") do |f| %>
+  <%= f.text_field :keyword, placeholder: "投稿を検索する", class: "review-search_input" %>
+  <%= f.button type: "submit", class: "review-search_btn" do %>
+    <i class="fas fa-search"></i>
+  <% end %>
+<% end %>
