@@ -12,4 +12,9 @@ class Board < ApplicationRecord
   validates :title,       presence: true, length: { maximum: 25 }
   validates :board_type,  presence: true
   validates :description, presence: true, length: { maximum: 200 }
+
+  def self.search(search)
+    return Board.all unless search
+    Board.where('title LIKE(?)', "%#{search}%").or(where('description LIKE(?)', "%#{search}%"))
+  end
 end

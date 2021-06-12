@@ -14,7 +14,7 @@ class BoardsController < ApplicationController
 
   def create
     board = Board.new(board_params)
-    redirect_to request.referrer if board.save
+    redirect_to boards_path if board.save
   end
 
   def update
