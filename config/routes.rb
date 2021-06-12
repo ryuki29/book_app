@@ -29,7 +29,11 @@ Rails.application.routes.draw do
     resource :likes, only: %i[create destroy]
   end
 
-  resources :boards do
+  namespace :boards do
+    resources :searches, only: :index
+  end
+
+  resources :boards, only: %i[index show create update destroy] do
     resources :board_comments, only: %i[create destroy]
   end
 

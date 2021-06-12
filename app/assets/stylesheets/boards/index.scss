@@ -9,6 +9,7 @@
   }
   h4 {
     margin-right: 1rem;
+    width: 5rem;
   }
 }
 
@@ -63,6 +64,28 @@
   padding: 0.6rem;
   border: 1px solid #828282;
 }
+
+.board-search_container {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  height: 2.5rem;
+  overflow: hidden;
+  background-color: white;
+  input[type="text"] {
+    border: none;
+    height: 2.3rem;
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+.board-search_btn {
+  display: none;
+}
+
 
 .board-index_type {
   margin: auto 0;
