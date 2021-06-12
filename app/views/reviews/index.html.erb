@@ -1,46 +1,71 @@
 <div class="review-blank"></div>
   <div class="reviews-index container-fluid">
     <div class="row">
-      <div class="blank col-md-2">
-      </div>
-      <div class="review-index col-md-8">
-        <%# -----投稿検索機能----- %>
-        <%= form_with(url: reviews_searches_path, local: true, method: :get, class: "review-search_form") do |f| %>
-          <%= f.text_field :keyword, placeholder: "投稿を検索する", class: "review-search_input" %>
-          <%= f.submit "検索", class: "review-search_btn" %>
+      <%# -----スレッドランキング----- %>
+      <div class="ranking-board col-md-3">
+        <h4 class="ranking-board_top">注目のスレッド</h4>
+        <% @board_comment_ranks.each do |comment| %>
+          <div class="ranking-board_content">
+            <div class="ranking-board_user_info">
+              <div class="ranking-board_user_icon mb-3">
+                <%= link_to user_path(comment.user.id) do %>
+                  <% if comment.user.image.attached? %>
+                    <%= image_tag(comment.user.image) %>
+                  <% else %>
+                    <%= image_tag("default-user.png")%>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="ranking-board_user_name"><%= comment.user.username %></div>
+            </div>
+            <%= link_to board_path(comment.id) do %>
+              <div class="ranking-board_title"><%= comment.title %></div>
+            <% end %>
+          </div>
         <% end %>
+      </div>
+      <%# -----投稿一覧----- %>
+      <div class="review-index col-md-7">
+        <%# -----投稿検索機能----- %>
+        <%= render "shared/review-search" %>
         <% @reviews.each do |review| %>
           <%= render partial: "shared/review", locals: { review: review } %>
         <% end %>
         <%= paginate @reviews %>
       </div>
-    <%# ランキング機能 %>
+    <%# -----本ランキング----- %>
     <div class="ranking-book col-md-2">
-      <% if @ranking.present? %>
+      <% if @book_ranks.present? %>
         <h4 class="ranking-book_top">人気の本</h4>
         <%# -----1位----- %>
-        <% if @ranking.first.present? %>
-          <p><i class="fas fa-crown rank1 fa-2x">1位</i></p>
-          <%= link_to book_path(@ranking.first[0].id) do %>
-            <%= image_tag @ranking.first[0].image_url %>
-          <% end %>
-          <p class="ranking-book_title"><%= @ranking.first[0].title %></p>
+        <% if @book_ranks.first.present? %>
+          <div class="ranking-book_info">
+            <p><i class="fas fa-crown rank1 fa-2x">1位</i></p>
+            <%= link_to book_path(@book_ranks.first[0].id) do %>
+              <%= image_tag @book_ranks.first[0].image_url, class:"ranking-book_cover" %>
+            <% end %>
+            <p class="ranking-book_title"><%= @book_ranks.first[0].title %></p>
+          </div>
         <% end %>
         <%# -----2位----- %>
-        <% if @ranking.second.present? %>
-          <p><i class="fas fa-crown rank2 fa-2x">2位</i></p>
-          <%= link_to book_path(@ranking.second[0].id) do %>
-            <%= image_tag @ranking.second[0].image_url %>
-          <% end %>
-          <p class="ranking-book_title"><%= @ranking.second[0].title %></p>
+        <% if @book_ranks.second.present? %>
+          <div class="ranking-book_info">
+            <p><i class="fas fa-crown rank2 fa-2x">2位</i></p>
+            <%= link_to book_path(@book_ranks.second[0].id) do %>
+              <%= image_tag @book_ranks.second[0].image_url, class:"ranking-book_cover" %>
+            <% end %>
+            <p class="ranking-book_title"><%= @book_ranks.second[0].title %></p>
+          </div>
         <% end %>
         <%# -----3位----- %>
-        <% if @ranking.third.present? %>
-          <p><i class="fas fa-crown rank3 fa-2x">3位</i></p>
-          <%= link_to book_path(@ranking.third[0].id) do %>
-            <%= image_tag @ranking.third[0].image_url %>
-          <% end %>
-          <p class="ranking-book_title"><%= @ranking.third[0].title %></p>
+        <% if @book_ranks.third.present? %>
+          <div class="ranking-book_info">
+            <p><i class="fas fa-crown rank3 fa-2x">3位</i></p>
+            <%= link_to book_path(@book_ranks.third[0].id) do %>
+              <%= image_tag @book_ranks.third[0].image_url, class:"ranking-book_cover" %>
+            <% end %>
+            <p class="ranking-book_title"><%= @book_ranks.third[0].title %></p>
+          </div>
         <% end %>
       <% end %>
     </div>

@@ -5,7 +5,9 @@ class ReviewsController < ApplicationController
     @reviews = Review.all.includes(:user, :book, :likes).order(created_at: :desc).page(params[:page]).per(10)
 
     uids = UserBook.joins(:book).where(status: 0).group(:uid).order('count_uid DESC').limit(3).count(:uid).keys
-    @ranking = uids.map { |uid| Book.where(uid: uid) }
+    @book_ranks = uids.map { |uid| Book.where(uid: uid) }
+
+    @board_comment_ranks = Board.find(BoardComment.group(:board_id).order('count(board_id) desc').limit(5).pluck(:board_id))
   end
 
   def create
