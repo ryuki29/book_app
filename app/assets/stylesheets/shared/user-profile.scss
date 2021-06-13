@@ -39,6 +39,7 @@
     position: relative;
     z-index: 4;
     box-shadow: 0px 5px 50px 0px rgb(108, 68, 252), 0px 0px 0px 7px rgba(107, 74, 255, 0.5);
+    box-shadow: 0px 5px 50px 0px $accent-color, 0px 0px 0px 7px $accent-color;
     // box-shadowをカスタマイズできたら面白そう。ユーザーによって選択可能
 
     @media screen and (max-width: 576px) {
@@ -67,7 +68,8 @@
   &_name {
     font-weight: 700;
     font-size: 24px;
-    color: #6944ff;
+    // color: #6944ff;
+    color: $accent-color;
     margin-bottom: 10px;
   }
 

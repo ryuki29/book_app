@@ -26,9 +26,9 @@ $(document).on("turbolinks:load", function() {
 
   function completedProgress(target, progress) {
     if(progress == 1) {
-      $(target).css("background-color", "#0080FF");
+      $(target).css("background-color", "#007ac4");
     } else {
-      $(target).css("background-color", "orangered");
+      $(target).css("background-color", "#85b4d0");
     }
   }
 })

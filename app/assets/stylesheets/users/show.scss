@@ -1,13 +1,14 @@
 .user-show_tabs {
   padding-bottom: 1em;
-  background-color: rgb(241, 238, 238);
+  // background-color: rgb(241, 238, 238);
+  background-color: $base-color;
   margin-top: 30px;
 
   &_label {
     width: calc(100%/4);
     padding:15px 0;
     border-bottom: 3px solid $accent-color ;
-    background-color: #ececec;
+    background-color: $base-color;
     text-align: center;
     color: $accent-color;
     display: block;
@@ -47,4 +48,14 @@
 .user-show_tabs input:checked + .user-show_tabs_label {
   background-color: $accent-color;
   color: #fff;
+}
+
+
+
+.user-show_chat {
+  @include user-show_btn($accent-color)
+}
+
+.user-show_plans {
+  @include user-show_btn(orangered)
 }

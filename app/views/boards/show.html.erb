@@ -3,7 +3,7 @@
     <div class="col-md-3">
     </div>
 
-    <div class="col-md-7">
+    <div class="col-md-7 mb-5">
       <div class="review-show_content">
 
         <div class="board-show_head">
@@ -20,14 +20,14 @@
           <div id="js-board_type" class="board_type" data-type="<%= @board.board_type %>"><%= t("boards.#{@board.board_type}") %></div>
         </div>
 
-          <%# -----レビュー内容----- %>
-          <div id="js-board-text" class="review-show_txt text-center">
-            <p><%= safe_join(@board.description.split("\n"), tag(:br)) %></p>
-            <%= image_tag @board.image.variant(resize: '500x500'), id:"js-board-img", class:"board-show-img", data: {image: "#{url_for(@board.image)}"} if @board.image.attached? %>
-          </div>
+        <%# -----レビュー内容----- %>
+        <div id="js-board-text" class="review-show_txt text-center">
+          <p><%= safe_join(@board.description.split("\n"), tag(:br)) %></p>
+          <%= image_tag @board.image.variant(resize: '500x500'), id:"js-board-img", class:"board-show-img", data: {image: "#{url_for(@board.image)}"} if @board.image.attached? %>
+        </div>
 
       </div>
-      <button type="button" class="btn btn-primary mb-5" data-toggle="modal" data-target="#board_commentModal">
+      <button type="button" class="board-comment_btn" data-toggle="modal" data-target="#board_commentModal">
         返信する <i class="fas fa-reply"></i>
       </button>
 

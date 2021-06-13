@@ -25,13 +25,13 @@
 
   &-will-read-btn {
     padding: 1rem;
-    border: 2px solid #000;
-    background: #fff;
+    border: 2px solid $accent-color;
+    color: $accent-color;
     cursor: pointer;
     transition: all 0.3s;
     &:hover {
-      color: #fff;
-      background: #000;
+      color: $cWhite;
+      background: $accent-color;
     }
   }
 

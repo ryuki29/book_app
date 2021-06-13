@@ -190,7 +190,7 @@
 
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-2 mt-3">
       <%# -----グラフ----- %>
       <div class="user-show_category_graph mb-4">
         <canvas id="categoryChart" width="350" height="350"></canvas>
@@ -225,13 +225,13 @@
 
       <% if user_signed_in? %>
         <% if @user.id == current_user.id %>
-          <%= link_to rooms_path, class:"btn btn-primary btn-lg user-show-chat mb-4" do %>
-            メッセージ
+          <%= link_to rooms_path, class:"user-show_chat mb-4" do %>
+            メッセージ <i class="fas fa-envelope fa-size"></i>
           <% end %>
         <% else %>
           <% if @isRoom == true %>
             <p class="user-show-room">
-              <%= link_to room_path(@roomId), class:"btn btn-primary btn-lg mb-4" do %>
+              <%= link_to room_path(@roomId), class:"btn-lg user-show_chat mb-4" do %>
                 チャットへ
               <% end %>
             </p>
@@ -240,14 +240,14 @@
               <%= fields_for @entry do |e| %>
                 <%= e.hidden_field :user_id, value: @user.id %>
               <% end %>
-              <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat mb-4"%>
+              <%= f.submit "チャットを始める", class:"btn-lg user-show_chat mb-4"%>
             <% end %>
           <% end %>
         <% end %>
       <% end %>
 
-      <%= link_to reviews_action_plan_path(@user), class: "btn btn-danger" do %>
-        アクションプラン<i class="fas fa-running fa-size btn-lg"></i>
+      <%= link_to reviews_action_plan_path(@user), class: "user-show_plans" do %>
+        アクションプラン<i class="fas fa-running fa-size"></i>
       <% end %>
 
     </div>

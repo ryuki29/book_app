@@ -29,7 +29,6 @@
         <p><strong>登録する</strong></strong>をクリックすると、本アプリの<a href="javascript:void(0)">利用規約</a>に同意したことになります</p>
         <hr/><p>SNSでの登録はこちら</p>
 
-        <%# render "devise/shared/social_item" %>
         <%= render partial: "devise/shared/social_item" %>
 
 
@@ -40,14 +39,14 @@
       function toggleSignup() {
         document.getElementById("login-toggle").style.backgroundColor="#fff";
         document.getElementById("login-toggle").style.color="#222";
-        document.getElementById("signup-toggle").style.backgroundColor="#3a687e";
+        document.getElementById("signup-toggle").style.backgroundColor="#007ac4";
         document.getElementById("signup-toggle").style.color="#fff";
         document.getElementById("login-form").style.display="none";
         document.getElementById("signup-form").style.display="block";
       }
 
       function toggleLogin() {
-        document.getElementById("login-toggle").style.backgroundColor="#3a687e";
+        document.getElementById("login-toggle").style.backgroundColor="#007ac4";
         document.getElementById("login-toggle").style.color="#fff";
         document.getElementById("signup-toggle").style.backgroundColor="#fff";
         document.getElementById("signup-toggle").style.color="#222";

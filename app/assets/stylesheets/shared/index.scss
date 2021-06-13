@@ -3,9 +3,6 @@ $base-font: helvetica, arial, tahoma, verdana;
 $base-font-title: "Dosis", arial, tahoma, verdana;
 $base-font-color: #726f77;
 
-// timeline-color
-$timeline-color: $accent-color;
-
 .timeline {
   position: relative;
   padding: 15px 15px 20px;
@@ -39,7 +36,7 @@ $timeline-color: $accent-color;
   font-size: 1.3em;
   border: none;
   background: none;
-  color: #3879D9;
+  color: $accent-color;
   position: absolute;
   width: 2.5em;
   height: 2.5em;
@@ -56,7 +53,7 @@ $timeline-color: $accent-color;
 
   &_item {
     position: relative;
-    height: 50vh;
+    height: 25rem;
     width: 100%;
     border-radius: 20px;
     overflow: hidden;
@@ -116,7 +113,7 @@ $timeline-color: $accent-color;
     justify-content: center;
     &_img {
       position: relative;
-      height: 20vh;
+      height: 10.3rem;
       width: 100%;
       padding: 15px;
       background-size: cover;
@@ -133,7 +130,7 @@ $timeline-color: $accent-color;
   }
 
   &_inner_content {
-    top: 20vh;
+    top: 10.5rem;
     padding: 0 20px;
     position: relative;
     background-color: #fff;
@@ -166,7 +163,7 @@ $timeline-color: $accent-color;
     right: 0;
     margin-top: 10%;
     a, a:hover {
-      color: orange;
+      color: $accent-color;
     }
   }
 
@@ -185,7 +182,7 @@ $timeline-color: $accent-color;
   &_top {
     text-align: center;
     margin-top: 2rem;
-    margin-bottom: 3vh;
+    margin-bottom: 1.6rem;
     font-weight: bold;
   }
 
@@ -231,7 +228,7 @@ $timeline-color: $accent-color;
 
   &_top {
     margin-top: 2rem;
-    margin-bottom: 3vh;
+    margin-bottom: 1.6rem;
     font-weight: bolder;
   }
 
@@ -241,15 +238,23 @@ $timeline-color: $accent-color;
 
   &_title {
     font-weight: bold;
-    margin-bottom: 5vh;
+    margin-bottom: 2.7rem;
   }
 
   &_cover {
     box-shadow: 0px 1px 7px 0px rgb(161, 161, 161);
     margin-bottom: 1rem;
+    position: relative;
     &:hover {
       box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
     }
+  }
+
+  &_circle {
+    position: absolute;
+    top: -10%;
+    left: -10%;
   }
 
   .rank1 { color: #FFD700; }
@@ -266,7 +271,8 @@ $timeline-color: $accent-color;
     color: #696969;
   }
   .active > a {
-    background: #93c9ff;
+    // background: #93c9ff;
+    background-color: $accent-color;
     border-radius: 5%;
     &:hover {
       border-radius: 5%;
