@@ -1,0 +1,32 @@
+@mixin submit-btn() {
+  background-color: $accent-color;
+  border: 1px solid $accent-color;
+  border-radius: 5px;
+  color: $cWhite;
+  height: 40px;
+  width: 100px;
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin  board-new_btn() {
+  background-color: $accent-color;
+  color: $cWhite;
+}
+
+@mixin user-show_btn($color) {
+  background-color: $color;
+  border-radius: 5%;
+  color: $cWhite;
+  display: inline-block;
+  font-size: 1.1rem;
+  padding: 1rem;
+  &:hover {
+    color: $cWhite;
+    text-decoration: none;
+  }
+  i {
+    margin-left: 1rem;
+  }
+}

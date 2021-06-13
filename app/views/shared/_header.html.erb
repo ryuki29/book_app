@@ -14,21 +14,21 @@
           <%# -----ホーム----- %>
           <li class="nav__item">
             <%= link_to root_path do %>
-              <i class="fas fa-home fa-size"></i>
+              <i class="fas fa-home header-fa-size"></i>
               <small>ホーム</small>
             <% end %>
           </li>
           <%# -----スレッド----- %>
           <li class="nav__item">
             <%= link_to boards_path do %>
-              <i class="fas fa-comments fa-size"></i>
+              <i class="fas fa-comments header-fa-size"></i>
               <small>スレッド</small>
             <% end %>
           </li>
           <%# -----ユーザー一覧----- %>
           <li class="nav__item">
             <%= link_to users_path do %>
-              <i class="fas fa-users fa-size"></i>
+              <i class="fas fa-users header-fa-size"></i>
               <small>ユーザー一覧</small>
             <% end %>
           </li>
@@ -36,7 +36,7 @@
             <%# -----アクションプラン----- %>
             <li class="nav__item">
               <%= link_to reviews_action_plan_path(current_user) do %>
-                <i class="fas fa-running fa-size"></i>
+                <i class="fas fa-running header-fa-size"></i>
                 <small>アクションプラン</small>
               <% end %>
             </li>
@@ -44,28 +44,28 @@
             <li class="nav__item">
               <%= link_to notifications_path do %>
                 <%= render "notifications/alert" %>
-                <i class="fas fa-bell fa-size"></i>
+                <i class="fas fa-bell header-fa-size"></i>
                 <small>通知</small>
               <% end %>
             </li>
             <%# -----マイページ----- %>
             <li class="nav__item">
               <%= link_to user_path(current_user) do %>
-                <i class="fas fa-user-circle fa-size"></i>
+                <i class="fas fa-user-circle header-fa-size"></i>
                 <small>プロフィール</small>
               <% end %>
             </li>
             <%# -----サインアウト----- %>
             <li class="nav__item">
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fas fa-sign-out-alt fa-size"></i>
+                <i class="fas fa-sign-out-alt header-fa-size"></i>
                 <small>サインアウト</small>
               <% end %>
             </li>
           <% else %>
             <li class="nav__item">
               <%= link_to new_user_registration_path do %>
-                <i class="fas fa-user-plus fa-size"></i>
+                <i class="fas fa-user-plus header-fa-size"></i>
                 <small>新規登録/</br>ログイン</small>
               <% end %>
             </li>

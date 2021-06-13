@@ -40,30 +40,38 @@
         <%# -----1位----- %>
         <% if @book_ranks.first.present? %>
           <div class="ranking-book_info">
-            <p><i class="fas fa-crown rank1 fa-2x">1位</i></p>
-            <%= link_to book_path(@book_ranks.first[0].id) do %>
-              <%= image_tag @book_ranks.first[0].image_url, class:"ranking-book_cover" %>
-            <% end %>
+            <%# <p><i class="fas fa-crown rank1 fa-2x">1位</i></p> %>
+            <div class="ranking-book_cover">
+              <%# <div class="ranking-book_circle"><i class="fas fa-crown rank1 fa-2x"></i></div> %>
+              <div class="ranking-book_circle"><i class="fas fa-circle fa-2x rank1"></i></div>
+              <%= link_to book_path(@book_ranks.first[0].id) do %>
+                <%= image_tag @book_ranks.first[0].image_url, class:"" %>
+              <% end %>
+            </div>
             <p class="ranking-book_title"><%= @book_ranks.first[0].title %></p>
           </div>
         <% end %>
         <%# -----2位----- %>
         <% if @book_ranks.second.present? %>
           <div class="ranking-book_info">
-            <p><i class="fas fa-crown rank2 fa-2x">2位</i></p>
-            <%= link_to book_path(@book_ranks.second[0].id) do %>
-              <%= image_tag @book_ranks.second[0].image_url, class:"ranking-book_cover" %>
-            <% end %>
+            <div class="ranking-book_cover">
+              <div class="ranking-book_circle"><i class="fas fa-circle fa-2x rank2"></i></div>
+              <%= link_to book_path(@book_ranks.second[0].id) do %>
+                <%= image_tag @book_ranks.second[0].image_url %>
+              <% end %>
+            </div>
             <p class="ranking-book_title"><%= @book_ranks.second[0].title %></p>
           </div>
         <% end %>
         <%# -----3位----- %>
         <% if @book_ranks.third.present? %>
           <div class="ranking-book_info">
-            <p><i class="fas fa-crown rank3 fa-2x">3位</i></p>
-            <%= link_to book_path(@book_ranks.third[0].id) do %>
-              <%= image_tag @book_ranks.third[0].image_url, class:"ranking-book_cover" %>
-            <% end %>
+            <div class="ranking-book_cover">
+              <div class="ranking-book_circle"><i class="fas fa-circle fa-2x rank3"></i></div>
+              <%= link_to book_path(@book_ranks.third[0].id) do %>
+                <%= image_tag @book_ranks.third[0].image_url %>
+              <% end %>
+            </div>
             <p class="ranking-book_title"><%= @book_ranks.third[0].title %></p>
           </div>
         <% end %>

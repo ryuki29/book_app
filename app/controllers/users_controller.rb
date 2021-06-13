@@ -34,16 +34,15 @@ class UsersController < ApplicationController
         end
       end
     end
-
-    review_categories  = @user.reviews.group(:category)
-    @review_it         = review_categories.where(category: "it").length
-    @review_management = review_categories.where(category: "management").length
-    @review_economy    = review_categories.where(category: "economy").length
-    @review_finance    = review_categories.where(category: "finance").length
-    @review_thinking   = review_categories.where(category: "thinking").length
-    @review_motivation = review_categories.where(category: "motivation").length
-    @review_novel      = review_categories.where(category: "novel").length
-    @review_etc        = review_categories.where(category: "etc").length
+    review_categories = @user.reviews.group(:category).count
+    @review_it         = review_categories["it"]
+    @review_management = review_categories["management"]
+    @review_economy    = review_categories["economy"]
+    @review_finance    = review_categories["finance"]
+    @review_thinking   = review_categories["thinking"]
+    @review_motivation = review_categories["motivation"]
+    @review_novel      = review_categories["novel"]
+    @review_etc        = review_categories["etc"]
   end
 
   def update

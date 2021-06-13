@@ -3,7 +3,7 @@
   max-width: 700px;
 
   .card-header {
-    background-color: white;
+    background-color: $cWhite;
     color: gray;
     font-size: 14px;
     font-weight: bold;
@@ -50,7 +50,7 @@
     &:hover {
       background-color: gray;
       border: 1px solid gray;
-      color: white;
+      color: $cWhite;
       transition: 0.2s;
     }
   }
@@ -58,7 +58,7 @@
   .btn-selected {
     background-color: gray;
     border: 1px solid gray;
-    color: white;
+    color: $cWhite;
 
     &:hover {
       opacity: 0.8;
@@ -89,27 +89,18 @@
 
 .review-text,
 .review-date {
-  background-color: white;
+  background-color: $cWhite;
   border: 1px solid gray;
 
   &:focus {
-    background-color: white;
+    background-color: $cWhite;
     border: 1px solid gray;
     box-shadow: none;
   }
 }
 
 .review-submit {
-  background-color: lightskyblue;
-  border: 1px solid lightskyblue;
-  border-radius: 5px;
-  color: white;
-  height: 40px;
-  width: 100px;
-
-  &:focus {
-    outline: none;
-  }
+  @include submit-btn()
 }
 
 .submit-disabled {
@@ -140,15 +131,11 @@
 .book-menu li {
   height: 0;
   overflow: hidden;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  -ms-transition: all 0.5s;
-  -o-transition: all 0.5s;
   transition: all 0.5s;
 }
 
 .book-menu li:hover {
-background-color: gray;
+background-color: $accent-color;
 cursor :pointer;
 }
 
@@ -220,7 +207,7 @@ cursor :pointer;
 
   .add-book {
     display: none;
-    background-color: white;
+    background-color: $cWhite;
     border: 1px solid gray;
     border-radius: 5px;
     color: black;
@@ -275,7 +262,7 @@ cursor :pointer;
   font-weight: bold;
 }
 .del {
-  color: white;
+  color: $cWhite;
   background-color: #F44336;
   opacity: 0.9;
 }

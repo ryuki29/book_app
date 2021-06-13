@@ -23,8 +23,6 @@
 
   position: relative;
   display: inline-block;
-  // width: 100%;
-  // height: calc(1.5em + 0.75rem + 2px);
   margin-bottom: 0;
   margin-left: 35%;
 }
@@ -46,4 +44,8 @@
   color: rgb(92, 92, 92);
   font-size: 0.9rem;
   float: right;
+}
+
+.edit-user_submit {
+  @include submit-btn()
 }
