@@ -3,31 +3,35 @@
     <div class="row">
       <%# -----スレッドランキング----- %>
       <div class="ranking-board col-md-3">
-        <h4 class="ranking-board_top">注目のスレッド</h4>
-        <% @board_comment_ranks.each do |comment| %>
-          <div class="ranking-board_content">
-            <div class="ranking-board_user_info">
-              <div class="ranking-board_user_icon mb-3">
-                <%= link_to user_path(comment.user.id) do %>
-                  <% if comment.user.image.attached? %>
-                    <%= image_tag(comment.user.image) %>
-                  <% else %>
-                    <%= image_tag("default-user.png")%>
+        <% if @board_comment_ranks.present? %>
+          <h4 class="ranking-board_top">注目のスレッド</h4>
+          <% @board_comment_ranks.each do |comment| %>
+            <div class="ranking-board_content">
+              <div class="ranking-board_user_info">
+                <div class="ranking-board_user_icon mb-3">
+                  <%= link_to user_path(comment.user.id) do %>
+                    <% if comment.user.image.attached? %>
+                      <%= image_tag(comment.user.image) %>
+                    <% else %>
+                      <%= image_tag("default-user.png")%>
+                    <% end %>
                   <% end %>
-                <% end %>
+                </div>
+                <div class="ranking-board_user_name"><%= comment.user.username %></div>
               </div>
-              <div class="ranking-board_user_name"><%= comment.user.username %></div>
+              <%= link_to board_path(comment.id) do %>
+                <div class="ranking-board_title"><%= comment.title %></div>
+              <% end %>
             </div>
-            <%= link_to board_path(comment.id) do %>
-              <div class="ranking-board_title"><%= comment.title %></div>
-            <% end %>
-          </div>
+          <% end %>
         <% end %>
       </div>
       <%# -----投稿一覧----- %>
       <div class="review-index col-md-7">
         <%# -----投稿検索機能----- %>
-        <%= render "shared/review-search" %>
+        <% if @reviews.present? %>
+          <%= render "shared/review-search" %>
+        <% end %>
         <% @reviews.each do |review| %>
           <%= render partial: "shared/review", locals: { review: review } %>
         <% end %>
@@ -40,9 +44,8 @@
         <%# -----1位----- %>
         <% if @book_ranks.first.present? %>
           <div class="ranking-book_info">
-            <%# <p><i class="fas fa-crown rank1 fa-2x">1位</i></p> %>
             <div class="ranking-book_cover">
-              <%# <div class="ranking-book_circle"><i class="fas fa-crown rank1 fa-2x"></i></div> %>
+
               <div class="ranking-book_circle"><i class="fas fa-circle fa-2x rank1"></i></div>
               <%= link_to book_path(@book_ranks.first[0].id) do %>
                 <%= image_tag @book_ranks.first[0].image_url, class:"" %>

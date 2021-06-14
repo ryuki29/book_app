@@ -107,7 +107,11 @@
           </div>
           <div class="col-sm-6 text-center">
             <p>達成率</p>
-            <span class="plans-show-count plan_achievement_rate_count"><%= @plan_achievement_rate %>%</span>
+            <% if @completed_plans.present? %>
+              <span class="plans-show-count plan_achievement_rate_count"><%= @plan_achievement_rate %>%</span>
+            <% else %>
+              <span class="plans-show-count plan_achievement_rate_count">0%</span>
+            <% end %>
           </div>
         </div>
       </div>

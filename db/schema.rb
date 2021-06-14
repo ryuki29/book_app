@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_08_204922) do
+ActiveRecord::Schema.define(version: 2021_06_14_065724) do
 
   create_table "action_plans", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "plan", default: "", null: false
@@ -127,6 +127,10 @@ ActiveRecord::Schema.define(version: 2021_06_08_204922) do
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "board_id"
+    t.bigint "board_comment_id"
+    t.index ["board_comment_id"], name: "index_notifications_on_board_comment_id"
+    t.index ["board_id"], name: "index_notifications_on_board_id"
     t.index ["comment_id"], name: "index_notifications_on_comment_id"
     t.index ["review_id"], name: "index_notifications_on_review_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
@@ -207,6 +211,8 @@ ActiveRecord::Schema.define(version: 2021_06_08_204922) do
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "board_comments"
+  add_foreign_key "notifications", "boards"
   add_foreign_key "notifications", "comments"
   add_foreign_key "notifications", "reviews"
   add_foreign_key "notifications", "users", column: "visited_id"
