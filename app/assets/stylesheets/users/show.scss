@@ -1,6 +1,5 @@
 .user-show_tabs {
   padding-bottom: 1em;
-  // background-color: rgb(241, 238, 238);
   background-color: $base-color;
   margin-top: 30px;
 
@@ -50,12 +49,14 @@
   color: #fff;
 }
 
-
-
 .user-show_chat {
   @include user-show_btn($accent-color)
 }
 
 .user-show_plans {
   @include user-show_btn(orangered)
+}
+
+.user-show_boards {
+  @include user-show_btn($main-color)
 }

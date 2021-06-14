@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: %i[show update following followers]
+  before_action :find_user, only: %i[show update following followers boards]
 
   def index
     @users = User.all.search(params[:keyword]).page(params[:page]).per(10)
@@ -10,9 +10,7 @@ class UsersController < ApplicationController
     @reading = user_book_status(1)
     @will_read = user_book_status(2)
 
-    likes = Like.where(user_id: @user.id).ids
-    like_list = Like.find(likes)
-    @like_list = Kaminari.paginate_array(like_list).page(params[:page]).per(20)
+    @like_list = Kaminari.paginate_array(Like.find(Like.where(user_id: @user.id).ids)).page(params[:page]).per(20)
 
     @review = Review.new
 
@@ -34,6 +32,7 @@ class UsersController < ApplicationController
         end
       end
     end
+
     review_categories = @user.reviews.group(:category).count
     @review_it         = review_categories["it"]
     @review_management = review_categories["management"]
@@ -60,6 +59,12 @@ class UsersController < ApplicationController
     @title = 'Followers'
     @users = @user.followers
     render 'show_relationship'
+  end
+
+  def boards
+    @created_boards = Board.where(user_id: @user).order('created_at desc').page(params[:page]).per(10)
+    @participated_boards = Board.find(BoardComment.where(user_id: @user).order('created_at desc').page(params[:page]).per(10).pluck(:board_id))
+    render 'show_board'
   end
 
   private

@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+
+    <div class="board-show_tabs col-md-8">
+      <input id="tab1" type="radio" name="a" checked>
+      <label class="board-show_label board-show_created_tab" for="tab1">作成したスレッド</label>
+
+      <input id="tab2" type="radio" name="a">
+      <label class="board-show_label" for="tab2">返信したスレッド</label>
+
+      <div class="board-show_tab_content" id="tab1_content">
+        <h4 class="board-show_title">作成したスレッド</h4>
+        <%= render partial: "shared/board", collection: @created_boards, as: "board" %>
+      </div>
+
+      <div class="board-show_tab_content" id="tab2_content">
+        <h4 class="board-show_title">返信したスレッド</h4>
+        <%= render partial: "shared/board", collection: @participated_boards, as: "board" %>
+      </div>
+    </div>
+
+    <div class="col-md-2"></div>
+  </div>
+</div>
