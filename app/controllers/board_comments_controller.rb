@@ -1,9 +1,9 @@
 class BoardCommentsController < ApplicationController
   def create
-    board = Board.find(params[:board_id])
     @board_comment = BoardComment.create(board_comment_params)
     if @board_comment.save
-      board = @board_comment.board_id
+      board = Board.find(params[:board_id])
+      @board_comment.create_notification_comment(current_user, @board_comment.id, board.id)
       redirect_to request.referrer
     end
   end
