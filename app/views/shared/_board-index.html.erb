@@ -33,7 +33,7 @@
       </div>
 
       <% @boards.each do |board| %>
-        <%= render partial: "boards/board", locals: { board: board } %>
+        <%= render partial: "shared/board", locals: { board: board } %>
       <% end %>
 
       <%= paginate @boards %>

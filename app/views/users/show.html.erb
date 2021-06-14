@@ -246,8 +246,12 @@
         <% end %>
       <% end %>
 
-      <%= link_to reviews_action_plan_path(@user), class: "user-show_plans" do %>
+      <%= link_to reviews_action_plan_path(@user), class: "user-show_plans mb-4" do %>
         アクションプラン<i class="fas fa-running fa-size"></i>
+      <% end %>
+
+      <%= link_to boards_user_path(@user), class: "user-show_boards" do %>
+        スレッド<i class="fas fa-comments fa-size"></i>
       <% end %>
 
     </div>

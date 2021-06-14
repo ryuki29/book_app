@@ -143,3 +143,47 @@
 .board-index_comment {
   margin: auto 0;
 }
+
+// -----show-board-----
+.board-show_label {
+  @include board-new_btn();
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  &:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+  }
+}
+
+.board-show_tabs {
+  padding-bottom: 1rem;
+  margin-top: 3rem;
+  width: 100%;
+
+  button {
+    display: inline-block;
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.board-show_created_tab {
+  margin-left: 25%;
+  margin-right: 2%;
+}
+
+.board-show_title {
+  text-align: center;
+}
+
+#tab1:checked ~ #tab1_content,
+#tab2:checked ~ #tab2_content {
+  display: block;
+}
+
+.board-show_tab_content {
+  display: none;
+}
