@@ -10,9 +10,9 @@ class BoardComment < ApplicationRecord
 
     temp_ids.each do |temp_id|
       save_notification_comment(current_user, temp_id['user_id'], board_comment_id, board_id)
-      binding.pry
     end
 
+    visited_id = Board.find(board_id).user_id
     save_notification_comment(current_user, visited_id, board_comment_id, board_id) if temp_ids.blank?
   end
 

@@ -10,9 +10,9 @@
         <%= f.email_field :email, placeholder: 'メールアドレス', autofocus: true %>
         <%= f.password_field :password, placeholder: 'パスワード' %>
         <%= f.submit "ログイン", class: 'btn login' %>
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class:"btn login" %>
         <p>パスワードを忘れた方は<a href="javascript:void(0)">こちら</a></p>
         <hr/><p>SNSでのログインはこちら</p>
-
 
         <%= render partial: "devise/shared/social_item" %>
 
@@ -30,7 +30,6 @@
         <hr/><p>SNSでの登録はこちら</p>
 
         <%= render partial: "devise/shared/social_item" %>
-
 
       <% end %>
     </div>

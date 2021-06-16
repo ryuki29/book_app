@@ -11,3 +11,16 @@ html {
 li {
   list-style: none;
 }
+
+.notifications {
+  color: $cWhite;
+  text-align: center;
+
+  .notice {
+    background-color: $sub-color;
+  }
+
+  .alert {
+    background-color: orangered;
+  }
+}
