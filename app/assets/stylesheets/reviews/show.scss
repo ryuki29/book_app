@@ -23,9 +23,12 @@
     }
   }
 
-  &_txt {
-    border-radius: 3px;
-    padding: 3px;
+  &_tegline {
+    padding: 1rem;
+  }
+
+  &_text {
+    padding: 1rem;
   }
 
   &_label {
@@ -33,9 +36,8 @@
   }
 
   &_phrase, &_plan {
-    border-radius: 3px;
-    padding: 3px;
-    margin-bottom: 3px;
+    padding: 0.3rem;
+    margin-bottom: 0.3rem;
   }
 
   &_comment {
@@ -54,7 +56,7 @@
     margin-top: 50px;
   }
 
-  &_txt, &_phrase, &_plan, &_comment {
+  &_text, &_phrase, &_plan, &_comment {
     word-break: break-all;
   }
 

@@ -18,9 +18,15 @@
           <div class="row my-3">
             <%= f.label :image, "画像", class:"col-lg-3" %>
           </div>
-          <div class="boards_new-img">
-            <%= image_tag "", size:"300x300", class:"col mx-2 board_comment-img" %>
-            <%= f.file_field :image, class:"board_comment-img_input" %>
+          <hr>
+
+          <div>
+            <% if @board_comment.image.attached? %>
+              <%= image_tag @board.image, class:"col mx-2 edit-board_img" %>
+            <% else %>
+              <%= image_tag "no-image.png", class:"col mx-2 edit-board_img" %>
+            <% end %>
+            <%= f.file_field :image, class:"edit-board_img_input" %>
           </div>
 
           <div class="row">

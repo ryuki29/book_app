@@ -13,8 +13,6 @@
   }
 }
 
-
-
 .boards-new_btn, .board-submit {
   @include board-new_btn()
 }
@@ -89,6 +87,7 @@
     }
   }
 }
+
 .board-search_btn {
   cursor: pointer;
   font-size: 1.3em;
@@ -99,7 +98,6 @@
   right: 0.5rem;
   outline : none;
 }
-
 
 .board-index_type {
   margin: auto 0;

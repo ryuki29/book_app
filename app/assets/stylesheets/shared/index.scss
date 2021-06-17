@@ -6,13 +6,14 @@ $base-font-color: #726f77;
 .timeline {
   position: relative;
   padding: 15px 15px 20px;
-  padding-bottom: calc(20px + env(safe-area-inset-bottom)); /* For iPhone X */
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
   max-width: 400px;
   margin: auto;
 }
 
 .review-search_form {
   margin-top: 2rem;
+  margin-bottom: 1rem;
   margin-left: 33%;
   box-sizing: border-box;
   position: relative;
