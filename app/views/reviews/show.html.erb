@@ -25,17 +25,21 @@
             </div>
           </div>
         </div>
+        <hr>
 
+        <%# -----レビュー内容----- %>
         <div class="review-show_review">
-          <div class="review-show_txt text-center">
+          <%# -----ヒトコト----- %>
+          <div class="review-show_tegline text-center">
             <h4><b><%= @review.tegline %></b></h4>
           </div>
 
-          <%# -----レビュー内容----- %>
-          <div class="review-show_txt">
+          <%# -----感想----- %>
+          <div class="review-show_text">
             <%= @review.text %>
             <%= safe_join(@review.text.split("\n"), tag(:br)) %>
           </div>
+          <hr>
 
           <%# -----印象に残ったフレーズ----- %>
           <% if @review.impressive_phrases.first.phrase.present? %>

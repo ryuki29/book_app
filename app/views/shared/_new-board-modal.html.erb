@@ -29,11 +29,12 @@
           <div class="row my-3">
             <%= f.label :image, "画像", class:"col-lg-3" %>
           </div>
-          <div class="">
+          <hr>
+          <div>
             <% if @board.image.attached? %>
-              <%= image_tag @board.image, size:"300x300", class:"col mx-2 edit-board_img" %>
+              <%= image_tag @board.image, class:"col mx-2 edit-board_img" %>
             <% else %>
-              <%= image_tag "", size:"300x300", class:"col mx-2 edit-board_img" %>
+              <%= image_tag "no-image.png", class:"col mx-2 edit-board_img" %>
             <% end %>
             <%= f.file_field :image, class:"edit-board_img_input" %>
           </div>
