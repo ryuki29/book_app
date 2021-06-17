@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="header__right">
-      <nav class="nav">
+      <nav class="pc">
         <ul class="nav__wrapper">
           <%# -----ホーム----- %>
           <li class="nav__item">
@@ -72,6 +72,78 @@
           <% end %>
         </ul>
       </nav>
+
+      <div id="hamburger">
+        <div class="icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <nav class="sm">
+        <ul class="sm_ul">
+          <%# -----ホーム----- %>
+          <li class="nav__item">
+            <%= link_to root_path do %>
+              ホーム
+            <% end %>
+          </li>
+          <%# -----スレッド----- %>
+          <li class="nav__item">
+            <%= link_to boards_path do %>
+              スレッド
+            <% end %>
+          </li>
+          <%# -----ユーザー一覧----- %>
+          <li class="nav__item">
+            <%= link_to users_path do %>
+              ユーザー一覧
+            <% end %>
+          </li>
+          <% if user_signed_in? %>
+            <%# -----アクションプラン----- %>
+            <li class="nav__item">
+              <%= link_to reviews_action_plan_path(current_user) do %>
+                アクションプラン
+              <% end %>
+            </li>
+            <%# -----通知----- %>
+            <li class="nav__item">
+              <%= link_to notifications_path do %>
+                <%= render "notifications/alert" %>
+                通知
+              <% end %>
+            </li>
+            <%# -----マイページ----- %>
+            <li class="nav__item">
+              <%= link_to user_path(current_user) do %>
+                プロフィール
+              <% end %>
+            </li>
+            <%# -----サインアウト----- %>
+            <li class="nav__item">
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                サインアウト
+              <% end %>
+            </li>
+          <% else %>
+            <li class="nav__item">
+              <%= link_to new_user_registration_path do %>
+                新規登録/ログイン
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+
+      <script>
+        $('#hamburger').on('click', function(){
+        $('.icon').toggleClass('close');
+        $('.sm').slideToggle();
+        });
+      </script>
+
     </div>
   </div>
 </header>
