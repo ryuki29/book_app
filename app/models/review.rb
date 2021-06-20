@@ -1,13 +1,13 @@
 class Review < ApplicationRecord
-  has_many :action_plans, dependent: :destroy
-  accepts_nested_attributes_for :action_plans, allow_destroy: true
-  has_many :impressive_phrases, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  accepts_nested_attributes_for :impressive_phrases, allow_destroy: true
-  belongs_to :book, dependent: :destroy
   belongs_to :user
+  belongs_to :book, dependent: :destroy
+  has_one :action_plan, dependent: :destroy
+  has_one :impressive_phrase, dependent: :destroy
+  accepts_nested_attributes_for :action_plan, allow_destroy: true
+  accepts_nested_attributes_for :impressive_phrase, allow_destroy: true
 
   enum category: {
     it:         0, # IT
@@ -23,10 +23,9 @@ class Review < ApplicationRecord
   validates :category, presence: true
   validates :tegline, presence: true, length: { maximum: 25 }
   validates :text, length: { maximum: 400 }
-  validates :rating, numericality: {
+  validates :rating, presence: true, numericality: {
     less_than: 6,
     greater_than_or_equal_to: 0,
-    allow_blank: true
   }
 
   def self.search(search)

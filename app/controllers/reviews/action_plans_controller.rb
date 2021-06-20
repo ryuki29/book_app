@@ -7,12 +7,8 @@ class Reviews::ActionPlansController < ApplicationController
     @completed_plans = []
 
     @reviews.each do |r|
-      r.action_plans.each do |p|
-        if p.plan?
-          p.progress == 0 ? @not_started_plans << p : @completed_plans << p
-          @plans << p
-        end
-      end
+      r.action_plan.progress == 0 ? @not_started_plans << r.action_plan : @completed_plans << r.action_plan
+      @plans << r.action_plan
     end
 
     @remind_plans = []

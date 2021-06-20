@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        レビューを投稿する
+        <span id="post-review-modal-title">レビューを投稿する</span>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"><i class="fas fa-times text-muted"></i></span>
         </button>
@@ -23,17 +23,19 @@
             <%= hidden_field_tag "book[image_url]", "", class: "modal-book-img" %>
             <%= hidden_field_tag "book[uid]", "", class: "modal-book-uid" %>
 
+            <p class="text-center"><span class="red-point">*</span> は必須項目です</p>
+
             <%# -----読み終わった日----- %>
             <div class="row">
-              <%= f.label :date, "読み終わった日", class:"col-lg-3 post-review-label my-auto" %>
+              <p class="col-lg-3 post-review-label my-auto">読み終わった日<span class="red-point">*</span></p>
               <div class="input-group date col-lg-3">
-                <%= f.text_field :date, class:"date result form-control review-date", id:"date-input"%>
+                <%= f.text_field :date, id:"date-input", class:"date result form-control review-date" %>
               </div>
             </div>
 
             <%# -----ジャンル----- %>
             <div class="row mt-3">
-              <%= f.label :category, "ジャンル", class:"col-lg-3 post-review-label"%>
+              <p class="col-lg-3 post-review-label my-auto">ジャンル<span class="red-point">*</span></p>
               <div class="col-lg-5 post-review-genre">
                 <%= f.select :category, options_for_select(Review.categories.keys.map {|k| [I18n.t("enums.review.category.#{k}"), k]}, selected: @review.category), {include_blank: "選択してください"}, {class: "post-review-genre-select", required: true} %>
               </div>
@@ -41,8 +43,8 @@
 
             <%# -----ヒトコト----- %>
             <div class="row mt-3">
-              <%= f.label :tegline, "この本をヒトコトでいうと？", class:"col-lg-3 post-review-label"%>
-              <%= f.text_field :tegline, class:"review-tegline col form-control mx-2", id:"review-tegline", rows:"8", required: true %>
+              <p class="col-lg-3 post-review-label my-auto">ヒトコト<span class="red-point">*</span></p>
+              <%= f.text_field :tegline, id:"review-tegline", class:"review-tegline col form-control mx-2", rows:"8", placeholder:"この本をヒトコトでいうと？", required: true %>
               <span class="review_count col-2">
                 <span id="review-tegline_count"></span>
                 <span>/25</span>
@@ -51,7 +53,7 @@
 
             <%# -----感想----- %>
             <div class="row my-3">
-              <%= f.label :text, "感想", class:"col-lg-3 post-review-label"%>
+              <p class="col-lg-3 post-review-label">感想</p>
               <%= f.text_area :text, class:"review-text col form-control mx-2", id:"review-text", rows:"8" %>
               <span class="review_count col-2">
                 <span id="review-text_count"></span>
@@ -61,30 +63,24 @@
 
             <%# -----印象に残ったフレーズ----- %>
             <div class="row my-2 phrase-form-area">
-              <%= f.fields_for :impressive_phrases, @review.impressive_phrases.build do |phrase|%>
-                <%= phrase.label :phrase, "印象に残ったフレーズ", class:"col-lg-3 post-review-label" %>
-                <%# フォーム追加ここから %>
+              <%= f.fields_for :impressive_phrase, @review.build_impressive_phrase do |phrase| %>
+                <p class="col-lg-3 post-review-label my-auto">印象的なフレーズ</p>
                 <div class="js-phrase-form-group col-lg-7 mb-2" data-index="<%= phrase.index %>">
                   <div class="phrase input-group">
-                    <%= phrase.text_field :phrase, class:"form-control", id:"phrase-input", placeholder: "印象に残ったフレーズを記入"%>
+                    <%= phrase.text_field :phrase, class:"form-control", id:"phrase-input_#{phrase.index}", placeholder: "印象的なフレーズを記入" %>
                   </div>
-                </div>
-                <%# フォーム追加ボタン %>
-                <div class="phrase-form-plus-btn">
-                  <input type="button" value="+" class="add pluralBtn">
                 </div>
               <% end %>
             </div>
 
             <%# -----アクションプラン----- %>
             <div class="row my-2 plan-form-area">
-              <%= f.fields_for :action_plans, @review.action_plans.build do |plan| %>
-                <%= plan.label :plan, "アクションプラン", class:"col-lg-3 post-review-label" %>
-                <%# フォーム追加ここから %>
+              <%= f.fields_for :action_plan, @review.build_action_plan do |plan| %>
+                <p class="col-lg-3 post-review-label my-auto">アクションプラン<span class="red-point">*</span></p>
                 <div class="js-plan-form-group col-lg-7" data-index="<%= plan.index %>">
                   <div class="plan input-group">
-                    <%= plan.text_field :plan, class:"form-control", id:"plan-input", placeholder:"アクションプランを記入", required: true %>
-                    <%= plan.text_field :deadline, class:"date result form-control review-date", placeholder:"期限", required: true %>
+                    <%= plan.text_field :plan, class:"form-control", id:"plan-input_#{plan.index}", placeholder:"アクションプランを記入", required: true %>
+                    <%= plan.text_field :deadline, id:"deadline-input_#{plan.index}", class:"date result form-control review-date", placeholder:"期限", required: true %>
                   </div>
                 </div>
                 <script>
@@ -95,17 +91,12 @@
                     });
                   });
                 </script>
-
-                <%# フォーム追加ボタン %>
-                <div class="plan-form-plus-btn">
-                  <input type="button" value="+" class="add pluralBtn">
-                </div>
               <% end %>
             </div>
 
             <%# -----星評価機能----- %>
             <div class="row mt-2 mx-2" id="star">
-              <%= f.label :rating, "評価", class:"col-lg-3 post-review-rating" %>
+              <p class="col-lg-3 post-review-rating my-auto">評価<span class="red-point">*</span></p>
             </div>
 
             <%# -----登録するボタン----- %>

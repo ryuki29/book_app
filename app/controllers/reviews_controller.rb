@@ -21,15 +21,15 @@ class ReviewsController < ApplicationController
     )
 
     @review = Review.new(review_params)
-    impressive_phrases = @review.impressive_phrases
-    action_plans = @review.action_plans
+    impressive_phrase = @review.impressive_phrase
+    action_plan = @review.action_plan
 
     create_review
 
     if @review.save
       @book.save && user_book.save
-      @review.impressive_phrases = impressive_phrases
-      @review.action_plans = action_plans
+      @review.impressive_phrase = impressive_phrase
+      @review.action_plan = action_plan
       redirect_to user_path(current_user.id)
     end
   end
@@ -56,8 +56,8 @@ class ReviewsController < ApplicationController
       :text,
       :category,
       :rating,
-      impressive_phrases_attributes: %i[phrase _destroy id],
-      action_plans_attributes: %i[plan deadline _destroy id]
+      impressive_phrase_attributes: %i[phrase _destroy id],
+      action_plan_attributes: %i[plan deadline _destroy id]
     ).merge(
       user: current_user
     )
