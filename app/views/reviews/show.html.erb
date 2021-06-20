@@ -36,30 +36,22 @@
 
           <%# -----感想----- %>
           <div class="review-show_text">
-            <%= @review.text %>
             <%= safe_join(@review.text.split("\n"), tag(:br)) %>
           </div>
           <hr>
 
           <%# -----印象に残ったフレーズ----- %>
-          <% if @review.impressive_phrases.first.phrase.present? %>
-            <label class="review-show_label">■ 印象に残ったフレーズ</label>
-            <% @review.impressive_phrases.each do |ip| %>
-              <div class="review-show_phrase">
-                ・<%= ip.phrase %>
-              </div>
-            <% end %>
+          <% if @review.impressive_phrase.present? %>
+            <label class="review-show_label">■ 印象的なフレーズ</label>
+            <div class="review-show_phrase">
+              ・<%= @review.impressive_phrase.phrase %>
+            </div>
           <% end %>
-
           <%# -----アクションプラン----- %>
-          <% if @review.action_plans.first.plan.present? %>
-            <label class="review-show_label">■ アクションプラン</label>
-            <% @review.action_plans.each do |ap| %>
-              <div class="review-show_plan">
-                ・<%= ap.plan %>【<%= ap.deadline %>】
-              </div>
-            <% end %>
-          <% end %>
+          <label class="review-show_label">■ アクションプラン</label>
+          <div class="review-show_plan">
+            ・<%= @review.action_plan.plan %>【<%= @review.action_plan.deadline %>】
+          </div>
 
           <%# -----レーティング----- %>
           <div class="review-show_rating">
@@ -99,7 +91,7 @@
 
     </div>
 
-    <div class="col-md-2 review-show_icons">
+    <div cleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeass="col-md-2 review-show_icons">
       <%# -----コメントアイコン----- %>
       <div class="review-show_comment_icon">
         <a href="#comments_area"><i class="far fa-comment fa-2x"></i></a>
