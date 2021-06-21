@@ -64,6 +64,10 @@
     margin-top: 3%;
   }
 
+  &_edit {
+    cursor: pointer;
+  }
+
   .review-show_comment_icon, .review-show_fav_icon, .review-show_edit, .review-show_del {
     margin-top: 30px;
   }

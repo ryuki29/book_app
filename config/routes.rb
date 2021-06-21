@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :action_plans, only: %i[show update]
   end
 
-  resources :reviews, only: %i[create destroy show] do
+  resources :reviews, only: %i[create destroy show update] do
     resources :comments, only: %i[create destroy]
     resource :likes, only: %i[create destroy]
   end
