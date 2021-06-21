@@ -47,6 +47,11 @@ class ReviewsController < ApplicationController
     @comments = @review.comments.all.includes(:user).order(created_at: :asc)
   end
 
+  def update
+    @review = Review.find(params[:id])
+    redirect_to request.referrer if @review.update(review_params)
+  end
+
   private
 
   def review_params

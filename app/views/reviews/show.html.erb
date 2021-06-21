@@ -8,7 +8,7 @@
       <div class="review-show_content">
         <div class="review-show_book d-flex">
           <%# -----本の表紙----- %>
-          <div class="review-show_book_img">
+          <div id="book-img" class="review-show_book_img" data-image="<%= @review.book[:image_url] %>">
             <%= link_to book_path(@review.book) do %>
               <%= image_tag(@review.book.image_url) %>
             <% end %>
@@ -55,13 +55,16 @@
 
           <%# -----レーティング----- %>
           <div class="review-show_rating">
-            <div id="star-rate-<%= @review.id %>"></div>
+            <div id="star-rate-<%= @review.id %>" class="star-rate" data-index="<%= @review.id %>"></div>
           </div>
+
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/raty/3.0.0/jquery.raty.min.js"></script>
           <script>
             $('#star-rate-<%= @review.id %>').raty({
               size: 36,
               starOff: "<%= asset_path('star-off.png') %>",
               starOn: "<%= asset_path('star-on.png') %>",
+              readOnly: true,
               score: <%= @review.rating %>
             });
           </script>
@@ -91,7 +94,7 @@
 
     </div>
 
-    <div cleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeass="col-md-2 review-show_icons">
+    <div class="col-md-2 review-show_icons">
       <%# -----コメントアイコン----- %>
       <div class="review-show_comment_icon">
         <a href="#comments_area"><i class="far fa-comment fa-2x"></i></a>
@@ -104,8 +107,8 @@
 
       <%# -----編集アイコン----- %>
       <% if user_signed_in? && current_user.id == @review.user_id %>
-        <div class="review-show_edit">
-          <a href="#"><i class="far fa-edit fa-2x"></i></a>
+        <div id="edit-review" class="review-show_edit" data-toggle="modal" data-target="#edit-review-modal">
+          <i class="far fa-edit fa-2x"></i>
         </div>
       <% end %>
 
@@ -120,3 +123,4 @@
     </div>
   </div>
 </div>
+<%= render "shared/edit-review-modal" %>

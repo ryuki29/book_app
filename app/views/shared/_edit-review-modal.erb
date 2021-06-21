@@ -1,8 +1,8 @@
-<div class="modal fade" id="post-review-modal" tabindex="-1" role="dialog"aria-hidden="true">
+<div class="modal fade" id="edit-review-modal" tabindex="-1" role="dialog"aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <span id="post-review-modal-title">レビューを投稿する</span>
+        <span id="post-review-modal-title">レビューを編集する</span>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true"><i class="fas fa-times text-muted"></i></span>
         </button>
@@ -63,7 +63,7 @@
 
             <%# -----印象に残ったフレーズ----- %>
             <div class="row my-2 phrase-form-area">
-              <%= f.fields_for :impressive_phrase, @review.build_impressive_phrase do |phrase| %>
+              <%= f.fields_for :impressive_phrase, @review.impressive_phrase do |phrase| %>
                 <p class="col-lg-3 post-review-label my-auto">印象的なフレーズ</p>
                 <div class="js-phrase-form-group col-lg-7 mb-2" data-index="<%= phrase.index %>">
                   <div class="phrase input-group">
@@ -75,7 +75,7 @@
 
             <%# -----アクションプラン----- %>
             <div class="row my-2 plan-form-area">
-              <%= f.fields_for :action_plan, @review.build_action_plan do |plan| %>
+              <%= f.fields_for :action_plan, @review.action_plan do |plan| %>
                 <p class="col-lg-3 post-review-label my-auto">アクションプラン<span class="red-point">*</span></p>
                 <div class="js-plan-form-group col-lg-7" data-index="<%= plan.index %>">
                   <div class="plan input-group">
@@ -95,13 +95,11 @@
             </div>
 
             <%# -----星評価機能----- %>
-            <div class="row mt-2 mx-2" id="star">
+            <div class="row mt-2 mx-2" id="edit-star">
               <p class="col-lg-3 post-review-rating my-auto">評価<span class="red-point">*</span></p>
             </div>
-
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/raty/3.0.0/jquery.raty.min.js"></script>
             <script>
-              $('#star').raty({
+              $('#edit-star').raty({
                 size: 36,
                 starOff: "/assets/star-off.png",
                 starOn: "/assets/star-on.png",
@@ -114,7 +112,7 @@
               <div class="col-8"></div>
               <div class="col-3">
                 <div class="col-9 d-flex">
-                  <%= f.submit "登録する", class: "review-submit" %>
+                  <%= f.submit "更新する", class: "review-submit" %>
                 </div>
               </div>
             </div>

@@ -54,124 +54,19 @@ $(document).on("turbolinks:load", function(){
     $("#date-input").val(moment().format("YYYY/MM/DD"));
     $("#date-input").attr("disabled", false).removeClass("form-disabled");
   });
+  $("#edit-review").on("click", function() {
+    let image = $("#book-img").data("image");
+    $("#modal-review-img").attr("src", image);
+
+    let rateIndex = $(".star-rate").data("index");
+    let rate = $(`#star-rate-${rateIndex} input`).val();
+    $("#edit-star input").val(rate);
+
+    let tegline = $(".review-show_tegline").text();
+    $("#review-tegline_count").text($.trim(tegline).length);
+
+    let text = $(".review-show_text").text();
+    $("#review-text_count").text($.trim(text).length);
+  })
 
 });
-
-// // ----- impressive_phraseフォーム ------
-// $(function(){
-//   // impressive_phraseフォームの追加・削除
-//   function buildImpressivePhraseField(index) {
-//     const html =
-//                   `<div class="col-lg-3"></div>
-//                   <div class="js-phrase-form-group col-lg-7 mb-1" data-index="${index}">
-//                     <div class="phrase input-group">
-//                       <input class="impressive-phrase-field form-control" type="text" name="review[impressive_phrases_attributes][${index}][phrase]" id="phrase-input">
-//                       <div class="phrase-form-minus-btn input-group-append">
-//                         <input type="button" value="－" class="del pluralBtn">
-//                       </div>
-//                     </div>
-//                   </div>`
-//     return html
-//   }
-
-//   let fileIndex = [1, 2, 3, 4]
-//   var lastIndex = $(".js-phrase-form-group:last").data("index");
-//   fileIndex.splice(0, lastIndex);
-//   let fileCount = 5- fileIndex.length; // データが存在するフォームの数を取得する
-
-//   if (fileIndex.length == 0) $(".phrase-from-plus-btn").css("display", "none");
-
-//   $(".phrase-form-plus-btn").on("click", function(){
-//     $(".phrase-form-area").append(buildImpressivePhraseField(fileIndex[0]));
-//     fileIndex.shift();
-//     if (fileIndex.length == 0) $(".phrase-form-plus-btn").css("display", "none");
-//   })
-
-//   // フォーム削除処理
-//   $(".phrase-form-area").on("click", ".phrase-form-minus-btn", function(){
-//     $(".phrase-form-plus-btn").css("display", "inline-block");
-//     const targetIndex = $(this).parent().data("index");
-//     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
-//     var lastIndex = $("js-phrase-form-group:last").data("index");
-
-//     if (targetIndex < fileCount) {
-//       $(this).parent().css("display", "none")
-//       hiddenCheck.prop("checked", true);
-//     } else {
-//       $(this).parent().remove();
-//     }
-
-//     if (fileIndex.length >= 1) {
-//       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
-//     } else {
-//       fileIndex.push(lastIndex + 1);
-//     }
-//   })
-// })
-
-// // ----- action_plansフォーム ------
-// $(function(){
-//   // action_plansフォームの追加・削除
-//   // function buildActionPlanField(index) {
-//   //   const html =
-//   //                 `<div class="col-lg-3"></div>
-//   //                 <div class="js-plan-form-group col-lg-7 mb-1" data-index="${index}">
-//   //                   <div class="plan input-group">
-//   //                     <input type="text" id="plan-input" class="action-plan-field form-control" name="review[action_plans_attributes][${index}][plan]" placeholder="アクションプランを記入">
-//   //                     <input type="text" class="date result form-control review-date" name="review[action_plans_attributes][${index}][deadline]" placeholder="期限">
-//   //                     <div class="plan-form-minus-btn input-group-append">
-//   //                       <input type="button" value="－" class="del pluralBtn">
-//   //                     </div>
-//   //                   </div>
-//   //                 </div>
-//   //                 <script>
-//   //                   $(function () {
-//   //                     $('.date').bootstrapMaterialDatePicker({
-//   //                         time: false,
-//   //                         lang:"ja",
-//   //                     });
-//   //                   });
-//   //                 </script>`
-//   //   return html
-//   // }
-  
-
-//   let fileIndex = [1, 2, 3, 4]
-//   var lastIndex = $(".js-plan-form-group:last").data("index");
-//   fileIndex.splice(0, lastIndex);
-//   let fileCount = 5- fileIndex.length;
-
-//   if (fileIndex.length == 0) $(".plan-from-plus-btn").css("display", "none");
-
-//   $(".plan-form-plus-btn").on("click", function(){
-//     $(".plan-form-area").append(buildActionPlanField(fileIndex[0]));
-//     fileIndex.shift();
-//     if (fileIndex.length == 0) $(".plan-form-plus-btn").css("display", "none");
-//   })
-
-//   $(".plan-form-area").on("click", ".plan-form-minus-btn", function() {
-//     $(".plan-form-plus-btn").css("display", "inline-block");
-//     const targetIndex = $(this).parent().data("index");
-//     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
-//     var lastIndex = $("js-plan-form-group:last").data("index");
-
-//     if (targetIndex < fileCount) {
-//       $(this).parent().css("display", "none")
-//       hiddenCheck.prop("checked", true);
-//     } else {
-//       $(this).parent().remove();
-//     }
-
-//     if (fileIndex.length >= 1) {
-//       fileIndex.push(fileIndex[fileIndex.length -1] + 1);
-//     } else {
-//       fileIndex.push(lastIndex + 1);
-//     }
-//   })
-
-//   $(".read-book").on("click", function() {
-//     if (fileIndex.length >= 4) {
-//       $(".del").prop("disabled", "true");
-//     }
-//   })
-// })
