@@ -11,7 +11,11 @@
         <%= form_with model: @board do |f| %>
           <div class="row mt-3">
             <%= f.label :title, "タイトル", class:"col-lg-3" %>
-            <%= f.text_field :title, id:"js-edit-board-title", class:"col form-control mx-2", rows:"8", placeholder:"例）おすすめの本を教えてください", required: true %>
+            <%= f.text_field :title, id:"js-board-title", class:"col form-control mx-2 js-board-title", rows:"8", placeholder:"例）おすすめの本を教えてください", required: true %>
+            <span class="review_count col-2">
+              <span id="js-board-title_count" class="js-board-title_count"></span>
+              <span>/25</span>
+            </span>
           </div>
 
           <div class="row my-3">
@@ -23,7 +27,11 @@
 
           <div class="row my-3">
             <%= f.label :description, "内容", class:"col-lg-3" %>
-            <%= f.text_area :description, id:"js-edit-board-text", class:"col form-control mx-2", rows:"8", placeholder:"なるべくわかりやすく質問をしましょう", required: true %>
+            <%= f.text_area :description, id:"js-board-text", class:"col form-control mx-2 js-board-text", rows:"8", placeholder:"なるべくわかりやすく質問をしましょう", required: true %>
+            <span class="review_count col-2">
+              <span id="js-board-text_count" class="js-board-text_count"></span>
+              <span>/200</span>
+            </span>
           </div>
 
           <div class="row my-3">
