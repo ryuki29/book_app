@@ -12,7 +12,9 @@
 
           <div class="row my-3">
             <%= f.label :text, "内容", class:"col-lg-3" %>
-            <%= f.text_area :text, class:"col form-control mx-2", rows:"8", placeholder:"コメントを記入しましょう", required: true %>
+            <%= f.text_area :text, id:"js-board-comment", class:"col form-control mx-2 js-board-comment", rows:"8", placeholder:"コメントを記入しましょう", required: true %>
+            <span id="js-board-comment_count" class="js-board-comment_count"></span>
+            <span>/200</span>
           </div>
 
           <div class="row my-3">

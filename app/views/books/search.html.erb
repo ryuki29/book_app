@@ -57,4 +57,6 @@
   </div>
 </div>
 
-<%= render partial: "shared/post-review-modal" %>
+<% unless params[:keyword].empty? %>
+  <%= render partial: "shared/post-review-modal" %>
+<% end %>

@@ -21,9 +21,7 @@ $(document).on("turbolinks:load", function(){
     $('.modal-book-authors').attr("value", authors);
     $('.modal-book-img').attr("value", image);
     $('.modal-book-uid').attr("value", uid);
-  });
 
-  $(".read-book").on("click", function() {
     $("#review-text_count").text($("#review-text").val().length);
     $("#review-tegline_count").text($("#review-tegline").val().length);
   });
@@ -54,6 +52,7 @@ $(document).on("turbolinks:load", function(){
     $("#date-input").val(moment().format("YYYY/MM/DD"));
     $("#date-input").attr("disabled", false).removeClass("form-disabled");
   });
+
   $("#edit-review").on("click", function() {
     let image = $("#book-img").data("image");
     $("#modal-review-img").attr("src", image);

@@ -17,7 +17,7 @@ require("../edit_users")
 require("../create_books")
 require("../show_books")
 require("../action_plans")
-require("../boards/edit-boards")
+require("../boards/boards")
 
 import 'bootstrap';
 import '../stylesheets/application';
