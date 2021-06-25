@@ -21,7 +21,7 @@
         </div>
       <% end %>
         <%# -----プロフィール文----- %>
-      <div class="profile-card_txt">
+      <div class="profile-card_text">
         <% unless user.profile.nil? %>
           <%= safe_join(user.profile.split("\n"), tag(:br)) %>
         <% end %>
@@ -32,7 +32,7 @@
         <div class="profile-card-info_item">
           <%= link_to followers_user_path(@user) do %>
             <div id="followers" class="profile-card-info_title"><%= user.followers.count %></div>
-            <div class="profile-card-info_txt">フォロワー</div>
+            <div class="profile-card-info_text">フォロワー</div>
           <% end %>
         </div>
 
@@ -40,36 +40,18 @@
         <div class="profile-card-info_item">
           <%= link_to following_user_path(@user) do %>
             <div id="following" class="profile-card-info_title"><%= user.following.count %></div>
-            <div class="profile-card-info_txt">フォロー</div>
+            <div class="profile-card-info_text">フォロー</div>
           <% end %>
         </div>
 
         <%# -----投稿数----- %>
         <div class="profile-card-info_item">
           <div class="profile-card-info_title"><%= user.reviews.count %></div>
-          <div class="profile-card-info_txt">投稿数</div>
+          <div class="profile-card-info_text">投稿数</div>
         </div>
-
-      </div>
-
-      <%# -----facebook----- %>
-      <div class="profile-card-social">
-        <a href="#" class="profile-card-social_item facebook" target="_blank">
-          <span class="icon-font">
-            <i class="fab fa-facebook-f"></i>
-          </span>
-        </a>
-
-        <%# -----twitter----- %>
-        <a href="#" class="profile-card-social_item twitter" target="_blank">
-          <span class="icon-font">
-            <i class="fab fa-twitter"></i>
-          </span>
-        </a>
       </div>
 
       <%# -----フォローボタン----- %>
-      <%# unless user_signed_in? && user.id == current_user.id %>
       <% if user_signed_in? && user.id != current_user.id %>
         <div class="profile-card-ctr">
           <%= render 'relationships/follow_form' %>
