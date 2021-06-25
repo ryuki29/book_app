@@ -16,7 +16,7 @@ RSpec.describe UserBook, type: :model do
       it 'statusが3以上の場合登録できない' do
         @user_book.status = 3
         @user_book.valid?
-        expect(@user_book.errors.full_messages).to include('Statusは2以下の値にしてください')
+        expect(@user_book.errors.full_messages).to include 'Statusは2以下の値にしてください'
       end
     end
   end

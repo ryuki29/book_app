@@ -56,10 +56,10 @@
               <% end %>
             </li>
             <%# -----サインアウト----- %>
-            <li class="nav__item">
+            <li id="nav__sign_out" class="nav__item">
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <i class="fas fa-sign-out-alt header-fa-size"></i>
-                <small>サインアウト</small>
+                <small>ログアウト</small>
               <% end %>
             </li>
           <% else %>

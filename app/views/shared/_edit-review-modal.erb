@@ -79,8 +79,8 @@
                 <p class="col-lg-3 post-review-label my-auto">アクションプラン<span class="red-point">*</span></p>
                 <div class="js-plan-form-group col-lg-7" data-index="<%= plan.index %>">
                   <div class="plan input-group">
-                    <%= plan.text_field :plan, class:"form-control", id:"plan-input_#{plan.index}", placeholder:"アクションプランを記入", required: true %>
-                    <%= plan.text_field :deadline, id:"deadline-input_#{plan.index}", class:"date result form-control review-date", placeholder:"期限", required: true %>
+                    <%= plan.text_field :plan, class:"form-control", id:"plan-input", placeholder:"アクションプランを記入", required: true %>
+                    <%= plan.text_field :deadline, id:"deadline-input", class:"date result form-control review-date", placeholder:"期限", required: true %>
                   </div>
                 </div>
                 <script>

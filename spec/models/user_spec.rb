@@ -20,55 +20,55 @@ RSpec.describe User, type: :model do
         it 'usernameが空では登録できない' do
           @user.username = ''
           @user.valid?
-          expect(@user.errors.full_messages).to include "Usernameを入力してください"
+          expect(@user.errors.full_messages).to include 'Usernameを入力してください'
         end
         it 'emailが空では登録できない' do
           @user.email = ''
           @user.valid?
-          expect(@user.errors.full_messages).to include "Emailを入力してください"
+          expect(@user.errors.full_messages).to include 'メールアドレスが入力されていません。'
         end
         it 'passwordが空では登録できない' do
           @user.password = ''
           @user.valid?
-          expect(@user.errors.full_messages).to include "Passwordを入力してください"
+          expect(@user.errors.full_messages).to include 'パスワードが入力されていません。'
         end
         it 'passwordが存在してもpassword_confirmationが空では登録できない' do
           @user.password_confirmation = ''
           @user.valid?
-          expect(@user.errors.full_messages).to include "Password confirmationとPasswordの入力が一致しません"
+          expect(@user.errors.full_messages).to include '確認用パスワードとパスワードの入力が一致しません'
         end
         it 'usernameが20文字以上では登録できない' do
           @user.username = 'a' * 21
           @user.valid?
-          expect(@user.errors.full_messages).to include "Usernameは20文字以内で入力してください"
+          expect(@user.errors.full_messages).to include 'Usernameは20文字以内で入力してください'
         end
         it '重複したemailが存在する場合登録できない' do
           @user.save
           another_user = FactoryBot.build(:user)
           another_user.email = @user.email
           another_user.valid?
-          expect(another_user.errors.full_messages).to include "Emailはすでに存在します"
+          expect(another_user.errors.full_messages).to include 'メールアドレスは既に使用されています。'
         end
         it 'emailに@が無ければ登録できない' do
           @user.email = 'aa'
           @user.valid?
-          expect(@user.errors.full_messages).to include 'Emailは不正な値です'
+          expect(@user.errors.full_messages).to include 'メールアドレスは有効でありません。'
         end
         it 'emailに.が無ければ登録できない' do
           @user.email = 'aa@bb'
           @user.valid?
-          expect(@user.errors.full_messages).to include 'Emailのフォーマットが不適切です'
+          expect(@user.errors.full_messages).to include 'メールアドレスは有効でありません。'
         end
         it 'passwordが5文字以下では登録できない' do
           @user.password = '00000'
           @user.password_confirmation = '00000'
           @user.valid?
-          expect(@user.errors.full_messages).to include "Passwordは6文字以上で入力してください"
+          expect(@user.errors.full_messages).to include 'パスワードは6文字以上に設定して下さい。'
         end
         it '自己紹介文が101文字だと登録できない' do
-          @user.profile = "a" * 161
+          @user.profile = 'a' * 161
           @user.valid?
-          expect(@user.errors.full_messages).to include "Profileは160文字以内で入力してください"
+          expect(@user.errors.full_messages).to include 'Profileは160文字以内で入力してください'
         end
       end
     end

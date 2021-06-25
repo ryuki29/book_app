@@ -21,22 +21,22 @@ RSpec.describe SnsCredential, type: :model do
       it 'providerが空では登録できない' do
         @sns_credential.provider = ''
         @sns_credential.valid?
-        expect(@sns_credential.errors.full_messages).to include('Providerを入力してください')
+        expect(@sns_credential.errors.full_messages).to include 'Providerを入力してください'
       end
       it 'providerがTwitter以外では登録できない' do
         @sns_credential.provider = 'GitHub'
         @sns_credential.valid?
-        expect(@sns_credential.errors.full_messages).to include('Providerは一覧にありません')
+        expect(@sns_credential.errors.full_messages).to include 'Providerは一覧にありません'
       end
       it 'uidが空では登録できない' do
         @sns_credential.uid = ''
         @sns_credential.valid?
-        expect(@sns_credential.errors.full_messages).to include('Uidを入力してください')
+        expect(@sns_credential.errors.full_messages).to include 'Uidを入力してください'
       end
       it 'ユーザーが紐付いていなければ登録できない' do
         @sns_credential.user = nil
         @sns_credential.valid?
-        expect(@sns_credential.errors.full_messages).to include('Userを入力してください')
+        expect(@sns_credential.errors.full_messages).to include 'Userを入力してください'
       end
     end
   end
