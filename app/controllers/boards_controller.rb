@@ -1,14 +1,15 @@
 class BoardsController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
+  before_action :set_board, only: %i[show update destroy]
+
   def index
-    @boards = Board.all.includes(:user).order(created_at: :desc).page(params[:page]).per(10)
+    @boards = Board.includes(:user).recent.page(params[:page])
     @board = Board.new
   end
 
   def show
-    @board = Board.find(params[:id])
     @user = @board.user
-    @comments = @board.comments.all.includes(:user).order(created_at: :desc)
+    @comments = @board.comments.includes(:user).recent.page(params[:page])
     @board_comment = BoardComment.new
   end
 
@@ -18,16 +19,18 @@ class BoardsController < ApplicationController
   end
 
   def update
-    board = Board.find(params[:id])
-    redirect_to request.referrer if board.update(board_params)
+    redirect_to request.referrer if @board.update(board_params)
   end
 
   def destroy
-    board = Board.find(params[:id])
-    redirect_to boards_path if board.destroy
+    redirect_to boards_path if @board.destroy
   end
 
   private
+
+  def set_board
+    @board = Board.find(params[:id])
+  end
 
   def board_params
     params.require(:board).permit(

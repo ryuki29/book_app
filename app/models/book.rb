@@ -33,4 +33,9 @@ class Book < ApplicationRecord
     end
     books
   end
+
+  def self.book_ranks
+    uids = UserBook.joins(:book).where(status: 0).group(:uid).order('count_uid DESC').limit(3).count(:uid).keys
+    uids.map { |uid| Book.where(uid: uid) }
+  end
 end

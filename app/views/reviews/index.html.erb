@@ -3,24 +3,24 @@
     <div class="row">
       <%# -----スレッドランキング----- %>
       <div class="ranking-board col-md-3">
-        <% if @board_comment_ranks.present? %>
+        <% if @board_ranks.present? %>
           <h4 class="ranking-board_top">注目のスレッド</h4>
-          <% @board_comment_ranks.each do |comment| %>
+          <% @board_ranks.each do |board| %>
             <div class="ranking-board_content">
               <div class="ranking-board_user_info">
                 <div class="ranking-board_user_icon mb-3">
-                  <%= link_to user_path(comment.user.id) do %>
-                    <% if comment.user.image.attached? %>
-                      <%= image_tag(comment.user.image) %>
+                  <%= link_to user_path(board.user.id) do %>
+                    <% if board.user.image.attached? %>
+                      <%= image_tag(board.user.image) %>
                     <% else %>
                       <%= image_tag("default-user.png")%>
                     <% end %>
                   <% end %>
                 </div>
-                <div class="ranking-board_user_name"><%= comment.user.username %></div>
+                <div class="ranking-board_user_name"><%= board.user.username %></div>
               </div>
-              <%= link_to board_path(comment.id) do %>
-                <div class="ranking-board_title"><%= comment.title %></div>
+              <%= link_to board_path(board.id) do %>
+                <div class="ranking-board_title"><%= board.title %></div>
               <% end %>
             </div>
           <% end %>

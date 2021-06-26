@@ -4,4 +4,6 @@ class Comment < ApplicationRecord
   belongs_to :review
 
   validates :text, presence: true
+
+  scope :asc, -> { order(created_at: :asc) }
 end
