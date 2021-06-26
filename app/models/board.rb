@@ -13,8 +13,16 @@ class Board < ApplicationRecord
   validates :board_type,  presence: true
   validates :description, presence: true, length: { maximum: 200 }
 
+  scope :recent, -> { order(created_at: :desc) }
+
+  paginates_per 10
+
   def self.search(search)
     return Board.all unless search
     Board.where('title LIKE(?)', "%#{search}%").or(where('description LIKE(?)', "%#{search}%"))
+  end
+
+  def self.board_ranks
+    Board.find(BoardComment.group(:board_id).order('count(board_id) desc').limit(5).pluck(:board_id))
   end
 end

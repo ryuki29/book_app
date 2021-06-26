@@ -29,9 +29,17 @@ class Review < ApplicationRecord
     greater_than_or_equal_to: 0,
   }
 
+  scope :recent, -> { order(created_at: :desc) }
+
+  paginates_per 10
+
   def self.search(search)
     return Review.all unless search
     Review.where('text LIKE(?)', "%#{search}%").or(where('tegline LIKE(?)', "%#{search}%"))
+  end
+
+  def self.select_uid_book(book)
+    select{ |r| r.book.uid == book.uid }
   end
 
   # --------------------いいね通知--------------------
