@@ -13,7 +13,7 @@
                     <% if board.user.image.attached? %>
                       <%= image_tag(board.user.image) %>
                     <% else %>
-                      <%= image_tag("default-user.png")%>
+                      <%= image_tag("default-user.png") %>
                     <% end %>
                   <% end %>
                 </div>
@@ -21,7 +21,7 @@
               </div>
               <%= link_to board_path(board.id) do %>
                 <div class="ranking-board_title"><%= board.title %></div>
-              <% end %>
+            <% end %>
             </div>
           <% end %>
         <% end %>
