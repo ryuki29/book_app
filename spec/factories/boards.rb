@@ -3,7 +3,7 @@ FactoryBot.define do
     title       { Faker::Lorem.sentence }
     board_type  { 1 }
     description { Faker::Lorem.sentence }
-    association :comment, factory: :board_comment
+    association :comment, factory: :board_comments
     association :user
   end
 end
