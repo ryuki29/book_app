@@ -11,10 +11,12 @@ describe ReviewsController, type: :request do
       get root_path
       expect(response.status).to eq 200
     end
+
     it 'indexアクションにリクエストするとレスポンスに投稿済みのレビューのテキストが存在する' do
       get root_path
       expect(response.body).to include(@review.text)
     end
+
     it 'indexアクションにリクエストするとレスポンスに投稿済みのレビューの一言が存在する' do
       get root_path
       expect(response.body).to include(@review.tegline)
@@ -26,6 +28,7 @@ describe ReviewsController, type: :request do
       get review_path(@review)
       expect(response.status).to eq 200
     end
+
     it 'テキストが存在する' do
       get review_path(@review)
       expect(response.body).to include(@review.text)

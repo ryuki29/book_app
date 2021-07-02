@@ -3,7 +3,11 @@ class BoardCommentsController < ApplicationController
     @board_comment = BoardComment.create(board_comment_params)
     if @board_comment.save
       board = Board.find(params[:board_id])
-      @board_comment.create_notification_comment(current_user, @board_comment.id, board.id)
+      @board_comment.create_notification_comment(
+        current_user,
+        @board_comment.id,
+        board.id
+      )
       redirect_to request.referrer
     end
   end
@@ -16,6 +20,9 @@ class BoardCommentsController < ApplicationController
   private
 
   def board_comment_params
-    params.permit(:text, :image).merge(user_id: current_user.id, board_id: params[:board_id])
+    params.permit(:text, :image).merge(
+      user_id: current_user.id,
+      board_id: params[:board_id]
+    )
   end
 end

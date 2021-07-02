@@ -11,13 +11,11 @@ class ReviewsController < ApplicationController
   def create
     @book = Book.new(book_params)
     status = user_book_params[:status].to_i
-
     user_book = UserBook.new(
       user: current_user,
       book: @book,
       status: status
     )
-
     @review = Review.new(review_params)
     impressive_phrase = @review.impressive_phrase
     action_plan = @review.action_plan
