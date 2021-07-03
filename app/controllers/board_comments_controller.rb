@@ -8,13 +8,13 @@ class BoardCommentsController < ApplicationController
         @board_comment.id,
         board.id
       )
-      redirect_to request.referrer
+      redirect_to request.referer
     end
   end
 
   def destroy
     board_comment = BoardComment.find(params[:board_id])
-    redirect_to request.referrer if board_comment.destroy
+    redirect_to request.referer if board_comment.destroy
   end
 
   private

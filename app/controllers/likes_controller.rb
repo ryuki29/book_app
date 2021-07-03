@@ -4,9 +4,7 @@ class LikesController < ApplicationController
 
   def create
     @review.create_notification_like(current_user)
-    if @review.user_id != current_user.id
-      @like = Like.create(user_id: current_user.id, review_id: @review.id)
-    end
+    @like = Like.create(user_id: current_user.id, review_id: @review.id) if @review.user_id != current_user.id
   end
 
   def destroy

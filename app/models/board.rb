@@ -4,9 +4,9 @@ class Board < ApplicationRecord
   has_one_attached :image
 
   enum board_type: {
-    question:  0,
+    question: 0,
     recommend: 1,
-    chat:      2
+    chat: 2
   }
 
   validates :title,       presence: true, length: { maximum: 25 }
@@ -19,6 +19,7 @@ class Board < ApplicationRecord
 
   def self.search(search)
     return Board.all unless search
+
     Board.where('title LIKE(?)', "%#{search}%").or(where('description LIKE(?)', "%#{search}%"))
   end
 

@@ -41,7 +41,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    redirect_to request.referrer if @review.update(review_params)
+    redirect_to request.referer if @review.update(review_params)
   end
 
   private
@@ -88,5 +88,4 @@ class ReviewsController < ApplicationController
       category: review_params[:category]
     )
   end
-
 end

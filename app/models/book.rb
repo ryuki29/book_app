@@ -21,7 +21,12 @@ class Book < ApplicationRecord
       uid = item['id']
       title = item['volumeInfo']['title'] ||= ''
       authors = item['volumeInfo']['authors'] ||= []
-      image_url = item['volumeInfo']['imageLinks'] ? item['volumeInfo']['imageLinks']['thumbnail'].sub(/http/, 'https') : 'default-book.png'
+      image_url = if item['volumeInfo']['imageLinks']
+                    item['volumeInfo']['imageLinks']['thumbnail'].sub(/http/,
+                                                                      'https')
+                  else
+                    'default-book.png'
+                  end
 
       book = {
         uid: uid,

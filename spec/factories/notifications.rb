@@ -4,7 +4,7 @@ FactoryBot.define do
     visited { nil }
     review { nil }
     comment { nil }
-    action { "MyString" }
+    action { 'MyString' }
     checked { false }
   end
 end

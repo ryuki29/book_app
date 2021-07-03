@@ -4,7 +4,6 @@ RSpec.describe Like, type: :model do
   let(:like) { create(:like) }
   describe '#create' do
     context 'likeを保存できる場合' do
-
       it 'review_idとuser_idがあれば保存できる' do
         expect(like).to be_valid
       end
@@ -19,7 +18,6 @@ RSpec.describe Like, type: :model do
     end
 
     context 'likeを保存できない場合' do
-
       it 'review_idが存在しないと保存できないこと' do
         like.review_id = ''
         expect(like).to be_invalid

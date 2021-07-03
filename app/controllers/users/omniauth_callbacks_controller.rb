@@ -1,5 +1,4 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-
   def twitter
     callback_for(:twitter)
   end
@@ -21,5 +20,4 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_session_path
     end
   end
-
 end
