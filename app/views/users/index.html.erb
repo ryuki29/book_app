@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="mt-4">
+  <h4 class="notification-title text-center">ユーザー一覧</h4>
+  <%= form_with url: users_path, method: :get, class:"user-search_form", local: true do |f| %>
+    <%= f.text_field :keyword, placeholder: "ユーザーを検索する", class: "user-search_input" %>
+    <%= f.button type: "submit", class: "user-search_btn" do %>
+      <i class="fas fa-search"></i>
+    <% end %>
+  <% end %>
+    <% if @users.present? %>
+      <%= render @users %>
+    <% else %>
+      <p class="text-center mt-5">該当のユーザーはいません</p>
+    <% end %>
+  </div>
+</div>

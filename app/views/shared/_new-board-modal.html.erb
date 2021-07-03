@@ -1,0 +1,62 @@
+<div class="modal fade" id="new_boardModal" tabindex="-1" role="dialog" aria-labelledby="new_boardModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-header-title">スレッドを作成する</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: @board do |f| %>
+          <div class="row mt-3">
+            <%= f.label :title, "タイトル", class:"col-lg-3" %>
+            <%= f.text_field :title, id:"js-board-title", class:"col form-control mx-2 js-board-title", rows:"8", placeholder:"例）おすすめの本を教えてください", required: true %>
+            <span class="review_count col-2">
+              <span id="js-board-title_count" class="js-board-title_count"></span>
+              <span>/25</span>
+            </span>
+          </div>
+
+          <div class="row my-3">
+            <%= f.label :boards_type, "カテゴリ", class:"col-lg-3" %>
+            <div class="col-lg-5">
+              <%= f.select :board_type, options_for_select(Board.board_types.keys.map {|k| [I18n.t("enums.board.board_type.#{k}"), k]}, selected: Board.board_types), {include_blank: "選択してください"}, {id:"js-edit-board_type", required: true} %>
+            </div>
+          </div>
+
+          <div class="row my-3">
+            <%= f.label :description, "内容", class:"col-lg-3" %>
+            <%= f.text_area :description, id:"js-board-text", class:"col form-control mx-2 js-board-text", rows:"8", placeholder:"なるべくわかりやすく質問をしましょう", required: true %>
+            <span class="review_count col-2">
+              <span id="js-board-text_count" class="js-board-text_count"></span>
+              <span>/200</span>
+            </span>
+          </div>
+
+          <div class="row my-3">
+            <%= f.label :image, "画像", class:"col-lg-3" %>
+          </div>
+          <hr>
+          <div>
+            <% if @board.image.attached? %>
+              <%= image_tag @board.image, class:"col mx-2 edit-board_img" %>
+            <% else %>
+              <%= image_tag "no-image.png", class:"col mx-2 edit-board_img" %>
+            <% end %>
+            <%= f.file_field :image, class:"edit-board_img_input" %>
+          </div>
+
+          <div class="row">
+            <div class="col-9"></div>
+            <div class="col-3">
+              <div class="col-9 d-flex">
+                <%= f.submit "作成する", class:"board-submit btn-primary" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

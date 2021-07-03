@@ -1,0 +1,272 @@
+.search-result {
+  margin: 0 auto;
+  max-width: 700px;
+
+  .card-header {
+    background-color: $cWhite;
+    color: gray;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .card-img-top {
+    padding: 10px 0;
+    width: 100px;
+  }
+
+  .search-item-body {
+    padding: 10px;
+  }
+}
+
+.modal {
+  h5 {
+    color: gray-6;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .modal-book-image {
+    width: 100px;
+  }
+
+  &-btn {
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: gray;
+    cursor: pointer;
+    font-size: 0.8rem;
+    line-height: 2.5;
+    margin: 5px;
+    text-align: center;
+    width: 80%;
+
+    &:hover {
+      background-color: gray;
+      border: 1px solid gray;
+      color: $cWhite;
+      transition: 0.2s;
+    }
+  }
+
+  .btn-selected {
+    background-color: gray;
+    border: 1px solid gray;
+    color: $cWhite;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.red-point {
+  color: orangered;
+}
+
+.modal-text {
+  color: gray;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.modal-review-img {
+  max-width: 100px;
+}
+
+.post-review-label {
+  color: gray;
+  font-size: 0.85rem;
+}
+
+.review-text {
+  font-size: 0.9rem;
+  overflow: scroll;
+  resize: none;
+}
+
+.review-text,
+.review-date {
+  background-color: $cWhite;
+  border: 1px solid gray;
+
+  &:focus {
+    background-color: $cWhite;
+    border: 1px solid gray;
+    box-shadow: none;
+  }
+}
+
+.review-submit {
+  @include submit-btn()
+}
+
+.submit-disabled {
+  background-color: gray;
+  border: 1px solid gray;
+  cursor: not-allowed;
+}
+
+
+.form-disabled {
+  color: gray;
+  cursor: not-allowed;
+}
+
+.book-menu {
+  max-width: 600px;
+}
+
+.book-menu ul {
+  width: 100px;
+  margin: 0px 0;
+  padding: 0;
+  background :$base-color;
+  list-style: none;
+  text-align:center;
+}
+
+.book-menu li {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+.book-menu li:hover {
+background-color: $accent-color;
+cursor :pointer;
+}
+
+#add-book-btn:checked ~ #book-btn li {
+  height: 54px;
+  opacity: 1;
+}
+
+@media screen and (max-width: 575px) {
+  .search-main {
+    background-color: $base-color;
+  }
+
+  .modal-review-img {
+    display: none;
+  }
+
+  .form-control textarea {
+    height: 400px;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .search-main {
+    background-color: $base-color;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search-item {
+    flex-direction: row;
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .add-book-cover {
+      margin-bottom: -100 0 0;
+      position: relative;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .search-result {
+    .card-img-top {
+      margin: 0 auto;
+    }
+
+    .card-title,
+    .card-text {
+      color: gray;
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.add-book-cover {
+  align-items: center;
+  display: flex;
+  height: 150px;
+  justify-content: center;
+  margin: 0 auto -160px;
+  position: relative;
+  width: 100px;
+
+  .add-book {
+    display: none;
+    background-color: $cWhite;
+    border: 1px solid gray;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin: 0 auto;
+    padding: 5px;
+    text-align: center;
+  }
+
+  &:hover .add-book {
+    display: block;
+    text-decoration: none;
+  }
+}
+
+#phrase-input {
+  border: none;
+}
+#plan-input {
+  border: none;
+}
+
+.phrase {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  display: block;
+}
+.plan {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.post-review-genre-select {
+  border: 1px solid #ced4da;
+}
+
+
+.phrase-form-area {
+  display: flex;
+}
+.phrase-form-group {
+  flex-direction: column;
+}
+.pluralBtn {
+  border: none;
+}
+.add {
+  height: 100%;
+  color: rgb(99, 111, 245);
+  font-weight: bold;
+}
+.del {
+  color: $cWhite;
+  background-color: #F44336;
+  opacity: 0.9;
+}

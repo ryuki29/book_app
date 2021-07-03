@@ -1,0 +1,282 @@
+// font
+$base-font: helvetica, arial, tahoma, verdana;
+$base-font-title: "Dosis", arial, tahoma, verdana;
+$base-font-color: #726f77;
+
+.timeline {
+  position: relative;
+  padding: 15px 15px 20px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
+  max-width: 400px;
+  margin: auto;
+}
+
+.review-search_form {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  margin-left: 33%;
+  box-sizing: border-box;
+  position: relative;
+  border: 1px solid #999;
+  display: block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  height: 2.3em;
+  width: 260px;
+  overflow: hidden;
+  input[type="text"] {
+    border: none;
+    height: 2rem;
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+.review-search_btn {
+  cursor: pointer;
+  font-size: 1.3em;
+  border: none;
+  background: none;
+  color: $accent-color;
+  position: absolute;
+  width: 2.5em;
+  height: 2.5em;
+  right: 0;
+  top: -10px;
+  outline : none;
+}
+
+.review-index {
+
+  a, a:hover {
+    text-decoration: none;
+  }
+
+  &_item {
+    position: relative;
+    height: 25rem;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.2s ease, box-shadow 0.2s ease;
+    opacity: 1;
+    margin-bottom: 40px;
+    &:hover {
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &_content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0);
+    overflow: hidden;
+    transition: border-radius 0.15s ease;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  &_user_icon {
+    background: #fff;
+    height: 70px;
+
+    overflow: hidden;
+    margin-left: -28px;
+    border-radius: 50%;
+
+    img {
+      width: 70px;
+      height: 70px;
+      position: absolute;
+      top: 0;
+      left: 30%;
+      overflow: hidden;
+      margin-left: -28px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  &_user_name {
+    padding-top: 5%;
+    padding-left: 8%;
+    color: gray;
+  }
+
+  &_head {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &_img {
+      position: relative;
+      height: 10.3rem;
+      width: 100%;
+      padding: 15px;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      overflow: hidden;
+      z-index: 1;
+      text-align: right;
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  &_inner_content {
+    top: 10.5rem;
+    padding: 0 20px;
+    position: relative;
+    background-color: #fff;
+  }
+
+  &_title {
+    position: relative;
+    margin: 10px 0 20px 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+  }
+
+  &_txt {
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0.6;
+    color: $base-font-color;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 4.2em;
+  }
+.a{
+  justify-content:space-between;
+}
+  &_fav {
+    right: 0;
+    margin-top: 10%;
+    a, a:hover {
+      color: $accent-color;
+    }
+  }
+
+  &_del {
+    text-align: left;
+    margin-top: 10%;
+    a, a:hover {
+      color: #ff6647;
+    }
+  }
+
+}
+
+// -----board-ranking-----
+.ranking-board {
+  &_top {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1.6rem;
+    font-weight: bold;
+  }
+
+  &_content {
+    box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    &:hover {
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &_user_info {
+    display: flex;
+    padding: 1rem;
+  }
+
+  &_user_icon {
+    background: #fff;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 1rem;
+    img {
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  &_user_name {
+    margin: auto 0;
+  }
+
+  &_title {
+    padding: 0 1rem 1rem;
+    margin-bottom: 3rem;
+  }
+}
+
+// -----book-ranking-----
+.ranking-book{
+
+  &_top {
+    margin-top: 2rem;
+    margin-bottom: 1.6rem;
+    font-weight: bolder;
+  }
+
+  &_info {
+    width: 8rem;
+  }
+
+  &_title {
+    font-weight: bold;
+    margin-bottom: 2.7rem;
+  }
+
+  &_cover {
+    box-shadow: 0px 1px 7px 0px rgb(161, 161, 161);
+    margin-bottom: 1rem;
+    position: relative;
+    &:hover {
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
+    }
+  }
+
+  &_circle {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+  }
+
+  .rank1 { color: #FFD700; }
+  .rank2 { color: #C0C0C0; }
+  .rank3 { color: #C47222; }
+
+}
+
+// -----paginate-----
+.pagination{
+  margin-left: 30%;
+  li > a {
+    border: none;
+    color: #696969;
+  }
+  .active > a {
+    // background: #93c9ff;
+    background-color: $accent-color;
+    border-radius: 5%;
+    &:hover {
+      border-radius: 5%;
+    }
+  }
+}

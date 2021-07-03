@@ -1,0 +1,35 @@
+$base-color: #c9daeb;
+$main-color: #0e5a88;
+$accent-color: #007ac4;
+$sub-color: #85b4d0;
+$cWhite: white;
+
+html {
+  scroll-behavior: smooth;
+}
+
+li {
+  list-style: none;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+.notifications {
+  color: $cWhite;
+  text-align: center;
+
+  .notice {
+    background-color: $sub-color;
+  }
+
+  .alert {
+    background-color: orangered;
+  }
+}

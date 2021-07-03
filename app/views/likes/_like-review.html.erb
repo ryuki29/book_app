@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+  <% if current_user.liked_by?(review) %>
+    <%= link_to review_likes_path(review), class: "like-btn like-delete", method: :delete, remote: true do %>
+      <i class="fas fa-bookmark fa-2x"></i>
+      <span class="likes_length"><%= review.likes.length %></span>
+    <% end %>
+  <% else %>
+    <%= link_to review_likes_path(review), class: "like-btn like-post", method: :post, remote: true do %>
+      <i class="far fa-bookmark fa-2x"></i>
+      <span class="likes_length"><%= review.likes.length %></span>
+    <% end %>
+  <% end %>
+<% end %>

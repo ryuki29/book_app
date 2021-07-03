@@ -1,0 +1,194 @@
+.plans-show_container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.plans-show {
+  max-width: 100rem;
+  margin: 0 auto;
+  justify-content: center;
+
+  &_title {
+    text-align: center;
+  }
+
+  &-label {
+    cursor: pointer;
+    width: 30rem;
+    padding: 3%;
+  }
+  &-p {
+    margin: 1rem auto;
+    width: 15rem;
+    padding: 3%;
+  }
+
+  &-not_started {
+    background-color: $sub-color;
+  }
+
+  &-completed {
+    background-color: $accent-color;
+  }
+
+  &-input {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    transform: scale(3.0);
+  }
+
+  &-count {
+    display: inline-block;
+    color: $cWhite;
+    border-radius: 50%;
+    font-size: 24px;
+    width: 5rem;
+    height: 5rem;
+    text-align:center;
+    line-height: 5rem;
+  }
+}
+
+.plans_count                 { background-color: $sub-color; }
+.completed_plans_count       { background-color: $accent-color; }
+.reviews_count               { background-color: $main-color; }
+.plan_achievement_rate_count { background-color: orangered; }
+
+// -----plans-card-----
+.plans-card {
+  background: $cWhite;
+  border-radius: 2px;
+  display: inline-block;
+  height: 20rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  width: 20rem;
+}
+
+@mixin card-shadow() {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.plans-profile-card {
+  @include card-shadow();
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+}
+
+.remind-card,
+.contents-card,
+.progress-card {
+  @include card-shadow();
+}
+
+.card-profile_img {
+    width: 150px;
+    height: 150px;
+
+    margin: 2rem auto;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    z-index: 4;
+    box-shadow: 0px 5px 50px 0px $accent-color,
+                0px 0px 0px 7px $accent-color;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+}
+
+.card-profile_name {
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 700;
+  font-size: 24px;
+  color: $accent-color;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.myChart {
+  position: relative;
+}
+
+.chart-title {
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: auto;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  top: 55%;
+  transform: translateY(-50%);
+  &-count {
+    font-size: 30px;
+  }
+}
+
+
+@media (max-width: 1199px) {
+  .plans-show_center {
+    width: 100%;
+    order: 3;
+  }
+
+  .plans-show_left {
+    order: 1;
+    width: 50%;
+  }
+  .plans-profile-card, .progress-card {
+    margin-left: 20%;
+  }
+  .plans-show_right {
+    order: 2;
+    width: 50%;
+  }
+}
+
+@media (max-width: 900px) {
+  .plans-show_center {
+    order: 3;
+    width: 100%;
+  }
+
+  .plans-show_left {
+    order: 1;
+    width: 50%;
+  }
+
+  .plans-show_right {
+    order: 2;
+    width: 50%;
+  }
+
+  .plans-profile-card, .progress-card,
+  .remind-card, .contents-card {
+    margin-left: 20%;
+  }
+
+  @media (max-width: 799px) {
+    .plans-profile-card, .progress-card,
+    .remind-card, .contents-card {
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .plans-profile-card, .progress-card,
+    .remind-card {
+      margin-left: 20%;
+    }
+    .contents-card {
+      display: none;
+    }
+  }
+}

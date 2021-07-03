@@ -1,0 +1,124 @@
+<div class="container-fulid plans-show_container">
+  <div class="col-xl-3 col-md-6 col-sm-6 col-xs-12 plans-show_left">
+    <%# -----プロフィール----- %>
+    <%= link_to user_path(@user) do %>
+      <div class="plans-card plans-profile-card">
+        <div class="card-profile_img">
+            <% if @user.image.attached? %>
+              <%= image_tag(@user.image) %>
+            <% else %>
+              <%= image_tag("default-user.png")%>
+            <% end %>
+        </div>
+        <div class="card-profile_name"><%= @user.username %></div>
+      </div>
+    <% end %>
+    <%# -----グラフ----- %>
+    <div class="plans-card progress-card">
+      <canvas id="progressChart" width="350" height="350"></canvas>
+      <p class="chart-title">アクションプラン<br><span class="chart-title-count"><%= @plans.count %></span></p>
+      <script>
+      var ctx = document.getElementById("progressChart").getContext('2d');
+      var progressChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+              labels: ["完了", "未完了"],
+              datasets: [{
+                  label: '達成数',
+                  data: ["<%= @completed_plans.count %>", "<%= @not_started_plans.count %>"],
+                  backgroundColor: [
+                      '#007ac4',
+                      '#85b4d0'
+                  ],
+                  borderColor: [
+                      '#007ac4',
+                      '#85b4d0'
+                  ],
+              }]
+          },
+      });
+      </script>
+    </div>
+  </div>
+
+  <div class="col-xl-6 plans-show_center">
+    <h4 class="text-center mt-4 mb-4">アクションプラン一覧</h4>
+    <div class="container">
+      <% if @plans.empty? %>
+        <p class="text-center">アクションプランはまだありません</p>
+      <% else %>
+        <% @plans.each_with_index do |p, i| %>
+          <div class="d-flex text-center plans-show">
+
+            <% if p.progress == 0 %>
+              <%# ----------未達成アクションプラン---------- %>
+              <%= link_to review_path(p.review) do %>
+                <label class="plans-show-label plans-show-not_started text-white" for="plan_<%= i %>"><%= p.plan %></label>
+              <% end %>
+              <%# ----------未達成チェックボックス---------- %>
+              <% if user_signed_in? && current_user.id == p.review.user_id %>
+                <input type="checkbox" id="plan_<%= i %>" class="plans-show-input" name="plan" data-index="<%= i %>" data-id="<%= p.id %>">
+              <% end %>
+            <% else %>
+              <%# ----------達成アクションプラン---------- %>
+              <%= link_to review_path(p.review) do %>
+                <label class="plans-show-label plans-show-completed text-white" for="plan_<%= i %>"><%= p.plan %></label>
+              <% end %>
+              <%# ----------達成チェックボックス---------- %>
+              <% if user_signed_in? && current_user.id == p.review.user_id %>
+                <input type="checkbox" id="plan_<%= i %>" class="plans-show-input" name="plan" data-index="<%= i %>" data-id="<%= p.id %>" checked>
+              <% end %>
+            <% end %>
+
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-md-6 col-sm-6 col-xs-12 plans-show_right">
+
+    <div class="plans-card remind-card">
+      <h4 class="text-center">期限の近い<br>アクションプラン</h4>
+      <% @remind_plans.first(3).each do |rp| %>
+        <p class="plans-show-p plans-show-not_started text-white text-center">
+          <%= rp.plan %>
+        </p>
+      <% end %>
+    </div>
+
+    <div class="plans-card contents-card">
+      <div class="row plans-show-head mb-5">
+        <%# -----アクションプラン----- %>
+        <div class="col-sm-6 col-xs-6 text-center">
+          <p>アクションプラン</p>
+          <span class="plans-show-count plans_count"><%= @plans.count %></span>
+        </div>
+        <%# -----完了数----- %>
+        <div class="col-sm-6 col-xs-6 text-center">
+          <p>完了数</p>
+          <span class="plans-show-count completed_plans_count"><%= @completed_plans.count %></span>
+        </div>
+      </div>
+
+      <div class="row plans-show-foot">
+        <%# -----読了数----- %>
+        <div class="col-sm-6 col-xs-6 text-center">
+          <p>読了数</p>
+          <span class="plans-show-count reviews_count"><%= @reviews.count %></span>
+        </div>
+        <%# -----達成率----- %>
+        <div class="col-sm-6 col-xs-6 text-center">
+          <p>達成率</p>
+          <% if @completed_plans.present? %>
+            <span class="plans-show-count plan_achievement_rate_count"><%= @plan_achievement_rate %>%</span>
+          <% else %>
+            <span class="plans-show-count plan_achievement_rate_count">0%</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

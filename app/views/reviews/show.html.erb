@@ -1,0 +1,126 @@
+<div class="container-fluid review-show">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render partial: "shared/user-profile", locals: { user: @user } %>
+    </div>
+
+    <div class="col-md-7">
+      <div class="review-show_content">
+        <div class="review-show_book d-flex">
+          <%# -----本の表紙----- %>
+          <div id="book-img" class="review-show_book_img" data-image="<%= @review.book[:image_url] %>">
+            <%= link_to book_path(@review.book) do %>
+              <%= image_tag(@review.book.image_url) %>
+            <% end %>
+          </div>
+
+          <div class="review-show_book">
+            <%# -----本のタイトル----- %>
+            <div class="review-show_book_title">
+              <h3><%= @review.book.title %></h3>
+            </div>
+            <%# -----本の作者----- %>
+            <div class="review-show_book_authors">
+              <%= @review.book.authors %>
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <%# -----レビュー内容----- %>
+        <div class="review-show_review">
+          <%# -----ヒトコト----- %>
+          <div class="review-show_tegline text-center">
+            <h4><b><%= @review.tegline %></b></h4>
+          </div>
+
+          <%# -----感想----- %>
+          <div class="review-show_text">
+            <%= safe_join(@review.text.split("\n"), tag(:br)) %>
+          </div>
+          <hr>
+
+          <%# -----印象に残ったフレーズ----- %>
+          <% if @review.impressive_phrase.present? %>
+            <label class="review-show_label">■ 印象的なフレーズ</label>
+            <div class="review-show_phrase">
+              ・<%= @review.impressive_phrase.phrase %>
+            </div>
+          <% end %>
+          <%# -----アクションプラン----- %>
+          <label class="review-show_label">■ アクションプラン</label>
+          <div class="review-show_plan">
+            ・<%= @review.action_plan.plan %>【<%= @review.action_plan.deadline %>】
+          </div>
+
+          <%# -----レーティング----- %>
+          <div class="review-show_rating">
+            <div id="star-rate-<%= @review.id %>" class="star-rate" data-index="<%= @review.id %>"></div>
+          </div>
+
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/raty/3.0.0/jquery.raty.min.js"></script>
+          <script>
+            $('#star-rate-<%= @review.id %>').raty({
+              size: 36,
+              starOff: "<%= asset_path('star-off.png') %>",
+              starOn: "<%= asset_path('star-on.png') %>",
+              readOnly: true,
+              score: <%= @review.rating %>
+            });
+          </script>
+
+        </div>
+      </div>
+
+      <%# -----コメント----- %>
+      <div class="review-show_comment_area">
+        <li id="comments_area">
+          <%= render partial: "comments/index", locals: { comments: @comments, review: @review } %>
+        </li>
+
+        <% if user_signed_in? %>
+          <div class="review-show_comment_create">
+            <%= render partial: "comments/form", locals: { comment: @comment, review: @review } %>
+          </div>
+        <% else %>
+          <strong><p>※ コメントの投稿には
+          <%= link_to new_user_registration_path do%>
+            新規登録/ログイン
+          <% end %>
+          が必要です</p></strong>
+        <% end %>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-2 review-show_icons">
+      <%# -----コメントアイコン----- %>
+      <div class="review-show_comment_icon">
+        <a href="#comments_area"><i class="far fa-comment fa-2x"></i></a>
+      </div>
+
+      <%# -----いいねアイコン----- %>
+      <div class="review-show_fav review-index_fav" id="like_<%= @review.id %>">
+        <%= render partial: "likes/like-review", locals: { review: @review} %>
+      </div>
+
+      <%# -----編集アイコン----- %>
+      <% if user_signed_in? && current_user.id == @review.user_id %>
+        <div id="edit-review" class="review-show_edit" data-toggle="modal" data-target="#edit-review-modal">
+          <i class="far fa-edit fa-2x"></i>
+        </div>
+      <% end %>
+
+      <%# -----削除アイコン----- %>
+      <% if user_signed_in? && current_user.id == @review.user_id %>
+        <div class="review-show_del review-index_del">
+          <%= link_to review_path(@review.id), method: :delete, class: "review-show_del_btn", data: { confirm: '本当に削除しますか' } do %>
+            <i class="far fa-trash-alt fa-2x"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= render "shared/edit-review-modal" %>

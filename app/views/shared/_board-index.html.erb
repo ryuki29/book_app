@@ -1,0 +1,49 @@
+<div class="review-blank"></div>
+  <div class="reviews-index container-fluid">
+    <div class="row">
+
+      <div class="blank col-md-2">
+      </div>
+
+      <div class="review-index col-md-8">
+
+      <div class="boards-form">
+        <div class="boards-new d-flex mb-3">
+          <i class="fas fa-pen fa-lg mt-2"></i> <h4>作成</h4>
+          <% if user_signed_in? %>
+            <button type="button" class="boards-new_btn" data-toggle="modal" data-target="#new_boardModal">
+              あたらしく作る
+            </button>
+          <% else %>
+            <%= link_to new_user_registration_path, class:"btn" do %>
+              あたらしく作る
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="board-search d-flex">
+          <i class="fas fa-search fa-lg mt-2"></i> <h4 class="board-search_label">検索</h4>
+          <%= form_with url: boards_searches_path, local: true, method: :get, class: 'board-search_form' do |f| %>
+            <%= f.text_field :keyword, placeholder: 'キーワード', class: 'board-search_input' %>
+            <%= f.button type: "submit", class: "board-search_btn" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+
+      <% @boards.each do |board| %>
+        <%= render partial: "shared/board", locals: { board: board } %>
+      <% end %>
+
+      <%= paginate @boards %>
+
+      </div>
+
+    <div class="ranking-book col-md-2">
+    </div>
+
+  </div>
+</div>
+
+<%= render "shared/new-board-modal" %>

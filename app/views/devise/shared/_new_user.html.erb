@@ -1,0 +1,58 @@
+<div class="form-modal">
+
+    <div class="form-toggle">
+        <button id="login-toggle" onclick="toggleLogin()">ログイン</button>
+        <button id="signup-toggle" onclick="toggleSignup()">新規登録</button>
+    </div>
+
+    <div id="login-form">
+      <%= form_with model: @user, url: user_session_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+        <%= f.email_field :email, placeholder: 'メールアドレス', autofocus: true %>
+        <%= f.password_field :password, placeholder: 'パスワード' %>
+        <%= f.submit "ログイン", class: 'btn login' %>
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class:"btn login" %>
+        <p>パスワードを忘れた方は<a href="javascript:void(0)">こちら</a></p>
+        <hr/><p>SNSでのログインはこちら</p>
+
+        <%= render partial: "devise/shared/social_item" %>
+
+      <% end %>
+    </div>
+
+    <div id="signup-form">
+      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+        <%= f.email_field :email, placeholder: 'メールアドレス' %>
+        <%= f.text_field :username, placeholder: 'ユーザーネーム' %>
+        <%= f.password_field :password, placeholder: 'パスワード' %>
+        <%= f.password_field :password_confirmation, placeholder: 'パスワード確認' %>
+        <%= f.submit "登録する", class: 'btn signup' %>
+        <p><strong>登録する</strong></strong>をクリックすると、本アプリの<a href="javascript:void(0)">利用規約</a>に同意したことになります</p>
+        <hr/><p>SNSでの登録はこちら</p>
+
+        <%= render partial: "devise/shared/social_item" %>
+
+      <% end %>
+    </div>
+
+    <script>
+      function toggleSignup() {
+        document.getElementById("login-toggle").style.backgroundColor="#fff";
+        document.getElementById("login-toggle").style.color="#222";
+        document.getElementById("signup-toggle").style.backgroundColor="#007ac4";
+        document.getElementById("signup-toggle").style.color="#fff";
+        document.getElementById("login-form").style.display="none";
+        document.getElementById("signup-form").style.display="block";
+      }
+
+      function toggleLogin() {
+        document.getElementById("login-toggle").style.backgroundColor="#007ac4";
+        document.getElementById("login-toggle").style.color="#fff";
+        document.getElementById("signup-toggle").style.backgroundColor="#fff";
+        document.getElementById("signup-toggle").style.color="#222";
+        document.getElementById("signup-form").style.display="none";
+        document.getElementById("login-form").style.display="block";
+      }
+    </script>
+
+</div>
+

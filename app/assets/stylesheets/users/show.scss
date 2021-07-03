@@ -1,0 +1,62 @@
+.user-show_tabs {
+  padding-bottom: 1em;
+  background-color: $base-color;
+  margin-top: 30px;
+
+  &_label {
+    width: calc(100%/4);
+    padding:15px 0;
+    border-bottom: 3px solid $accent-color ;
+    background-color: $base-color;
+    text-align: center;
+    color: $accent-color;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  input {
+    display: none;
+  }
+
+  .user-show_tab_content {
+    display: none;
+    padding: 1em 1em 0;
+    clear: both;
+    overflow: hidden;
+  }
+
+  .user-show_book_img {
+    width: 100px;
+  }
+}
+
+#tab1:checked ~ #tab1_content,
+#tab2:checked ~ #tab2_content,
+#tab3:checked ~ #tab3_content,
+#tab4:checked ~ #tab4_content {
+  display: block;
+}
+
+.user-show_tabs input:checked + .user-show_tabs_label {
+  background-color: $accent-color;
+  color: #fff;
+}
+
+.user-show_chat {
+  @include user-show_btn($accent-color)
+}
+
+.user-show_plans {
+  @include user-show_btn(orangered)
+}
+
+.user-show_boards {
+  @include user-show_btn($main-color)
+}

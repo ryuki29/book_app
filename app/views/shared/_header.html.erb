@@ -1,0 +1,149 @@
+<header class="header">
+  <div class="wrapper header__wrapper">
+    <div class="header__left">
+      <%= link_to root_path, class:"brand" do %>
+      <h3>READER</h3>
+      <% end %>
+      <div class="search">
+        <%= render 'shared/search' %>
+      </div>
+    </div>
+    <div class="header__right">
+      <nav class="pc">
+        <ul class="nav__wrapper">
+          <%# -----ホーム----- %>
+          <li class="nav__item">
+            <%= link_to root_path do %>
+              <i class="fas fa-home header-fa-size"></i>
+              <small>ホーム</small>
+            <% end %>
+          </li>
+          <%# -----スレッド----- %>
+          <li class="nav__item">
+            <%= link_to boards_path do %>
+              <i class="fas fa-comments header-fa-size"></i>
+              <small>スレッド</small>
+            <% end %>
+          </li>
+          <%# -----ユーザー一覧----- %>
+          <li class="nav__item">
+            <%= link_to users_path do %>
+              <i class="fas fa-users header-fa-size"></i>
+              <small>ユーザー一覧</small>
+            <% end %>
+          </li>
+          <% if user_signed_in? %>
+            <%# -----アクションプラン----- %>
+            <li class="nav__item">
+              <%= link_to reviews_action_plan_path(current_user) do %>
+                <i class="fas fa-running header-fa-size"></i>
+                <small>アクションプラン</small>
+              <% end %>
+            </li>
+            <%# -----通知----- %>
+            <li class="nav__item">
+              <%= link_to notifications_path do %>
+                <%= render "notifications/alert" %>
+                <i class="fas fa-bell header-fa-size"></i>
+                <small>通知</small>
+              <% end %>
+            </li>
+            <%# -----マイページ----- %>
+            <li class="nav__item">
+              <%= link_to user_path(current_user) do %>
+                <i class="fas fa-user-circle header-fa-size"></i>
+                <small>プロフィール</small>
+              <% end %>
+            </li>
+            <%# -----サインアウト----- %>
+            <li id="nav__sign_out" class="nav__item">
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <i class="fas fa-sign-out-alt header-fa-size"></i>
+                <small>ログアウト</small>
+              <% end %>
+            </li>
+          <% else %>
+            <li class="nav__item">
+              <%= link_to new_user_registration_path do %>
+                <i class="fas fa-user-plus header-fa-size"></i>
+                <small>新規登録/</br>ログイン</small>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+
+      <div id="hamburger">
+        <div class="icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <nav class="sm">
+        <ul class="sm_ul">
+          <%# -----ホーム----- %>
+          <li class="nav__item">
+            <%= link_to root_path do %>
+              ホーム
+            <% end %>
+          </li>
+          <%# -----スレッド----- %>
+          <li class="nav__item">
+            <%= link_to boards_path do %>
+              スレッド
+            <% end %>
+          </li>
+          <%# -----ユーザー一覧----- %>
+          <li class="nav__item">
+            <%= link_to users_path do %>
+              ユーザー一覧
+            <% end %>
+          </li>
+          <% if user_signed_in? %>
+            <%# -----アクションプラン----- %>
+            <li class="nav__item">
+              <%= link_to reviews_action_plan_path(current_user) do %>
+                アクションプラン
+              <% end %>
+            </li>
+            <%# -----通知----- %>
+            <li class="nav__item">
+              <%= link_to notifications_path do %>
+                <%= render "notifications/alert" %>
+                通知
+              <% end %>
+            </li>
+            <%# -----マイページ----- %>
+            <li class="nav__item">
+              <%= link_to user_path(current_user) do %>
+                プロフィール
+              <% end %>
+            </li>
+            <%# -----サインアウト----- %>
+            <li class="nav__item">
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                サインアウト
+              <% end %>
+            </li>
+          <% else %>
+            <li class="nav__item">
+              <%= link_to new_user_registration_path do %>
+                新規登録/ログイン
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+
+      <script>
+        $('#hamburger').on('click', function(){
+        $('.icon').toggleClass('close');
+        $('.sm').slideToggle();
+        });
+      </script>
+
+    </div>
+  </div>
+</header>

@@ -1,0 +1,30 @@
+.notification_list {
+  &-wrapper {
+    list-style: none;
+    max-width: 80%;
+    margin: 50px auto;
+  }
+
+  &-item {
+    background: #fff;
+    border-radius: 2px;
+    list-style: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    a, a:hover {
+      font-weight: bold;
+      color: black;
+    }
+  }
+}
+
+.notification-title {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.notification_del {
+  margin-left: 47%;
+}

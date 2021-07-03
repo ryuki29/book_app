@@ -1,0 +1,46 @@
+<div class="modal fade" id="board_commentModal" tabindex="-1" role="dialog" aria-labelledby="board_commentModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-header-title">コメントを作成する</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with url: board_board_comments_path(@board.id) do |f| %>
+
+          <div class="row my-3">
+            <%= f.label :text, "内容", class:"col-lg-3" %>
+            <%= f.text_area :text, id:"js-board-comment", class:"col form-control mx-2 js-board-comment", rows:"8", placeholder:"コメントを記入しましょう", required: true %>
+            <span id="js-board-comment_count" class="js-board-comment_count"></span>
+            <span>/200</span>
+          </div>
+
+          <div class="row my-3">
+            <%= f.label :image, "画像", class:"col-lg-3" %>
+          </div>
+          <hr>
+
+          <div>
+            <% if @board_comment.image.attached? %>
+              <%= image_tag @board.image, class:"col mx-2 edit-board_img" %>
+            <% else %>
+              <%= image_tag "no-image.png", class:"col mx-2 edit-board_img" %>
+            <% end %>
+            <%= f.file_field :image, class:"edit-board_img_input" %>
+          </div>
+
+          <div class="row">
+            <div class="col-9"></div>
+            <div class="col-3">
+              <div class="col-9 d-flex">
+                <%= f.submit "返信する", class:"board-submit" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

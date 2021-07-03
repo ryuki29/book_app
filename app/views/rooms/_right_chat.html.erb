@@ -1,0 +1,9 @@
+<div id="right-message_<%= m.id %>" class="text-right">
+  <p class="right-message"><%= m.message %></p>
+  <small class='block chat-foot'>
+    <%= m.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+    <%= link_to message_path(m), method: :delete, data: { confirm: "削除しますか？" }, remote: true, class:'text-xs' do %>
+      <i class="far fa-trash-alt"></i>
+    <% end %>
+  </small>
+</div>

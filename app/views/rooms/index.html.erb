@@ -1,0 +1,24 @@
+<div class="dm-list-users">
+  <div class="dm-list-title mb-4"><h4>DM中のユーザー</h4></div>
+  <ul class="dm-list-user">
+  <% @rooms.each do |r| %>
+    <%= link_to room_path(r) do %>
+      <li class="dm-list-user-info mb-4">
+        <% r.users.each do |u| %>
+
+          <% if u.id != current_user.id %>
+            <% if u.image.attached? %>
+              <%= image_tag u.image, class: "relationship_list-avatar-img" %>
+            <% else %>
+              <%= image_tag "default-user.png", class: "relationship_list-avatar-img" %>
+            <% end %>
+            <%= u.username %>
+          <% end %>
+
+        <% end %>
+      <%= most_new_message_preview(r) %>
+      </li>
+    <% end %>
+  <% end %>
+  </ul>
+</div>
