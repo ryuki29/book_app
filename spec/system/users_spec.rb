@@ -13,7 +13,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
       expect(page).to have_content('新規登録')
       # 新規登録ページへ移動する
       visit new_user_registration_path
-      #新規登録をクリックする
+      # 新規登録をクリックする
       find('button#signup-toggle').click
       # ユーザー情報を入力する
       fill_in 'user_email', with: @user.email
@@ -21,7 +21,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
       fill_in 'user_password', with: @user.password
       fill_in 'user_password_confirmation', with: @user.password_confirmation
       # サインアップボタンを押すとユーザーモデルのカウントが1上がることを確認する
-      expect{
+      expect  {
         find('input[name="commit"]').click
       }.to change { User.count }.by(1)
       # トップページへ遷移することを確認する
@@ -42,7 +42,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
       expect(page).to have_content('新規登録')
       # 新規登録ページへ移動する
       visit new_user_registration_path
-      #新規登録をクリックする
+      # 新規登録をクリックする
       find('button#signup-toggle').click
       # ユーザー情報を入力する
       fill_in 'user_email', with: ''
@@ -50,7 +50,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
       fill_in 'user_password', with: ''
       fill_in 'user_password_confirmation', with: ''
       # サインアップボタンを押してもユーザーモデルのカウントは上がらないことを確認する
-      expect{
+      expect  {
         find('input[name="commit"]').click
       }.to change { User.count }.by(0)
       # 新規登録ページへ戻されることを確認する

@@ -23,9 +23,7 @@ class BoardComment < ApplicationRecord
       board_comment_id: board_comment_id,
       action: 'board_comment'
     )
-    if notification.visitor_id == notification.visited_id
-      notification.checked = true
-    end
+    notification.checked = true if notification.visitor_id == notification.visited_id
     notification.save if notification.valid?
   end
 end

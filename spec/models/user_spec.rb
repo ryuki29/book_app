@@ -148,6 +148,5 @@ RSpec.describe User, type: :model do
       create(:message, user: user)
       expect { user.destroy }.to change(user.messages, :count).by(-1)
     end
-
   end
 end

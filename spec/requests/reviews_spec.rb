@@ -1,6 +1,5 @@
 require 'rails_helper'
 describe ReviewsController, type: :request do
-
   before do
     @review = FactoryBot.create(:review)
     @review.user = FactoryBot.create(:user)
@@ -34,5 +33,4 @@ describe ReviewsController, type: :request do
       expect(response.body).to include(@review.text)
     end
   end
-
 end

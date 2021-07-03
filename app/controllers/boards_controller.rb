@@ -19,7 +19,7 @@ class BoardsController < ApplicationController
   end
 
   def update
-    redirect_to request.referrer if @board.update(board_params)
+    redirect_to request.referer if @board.update(board_params)
   end
 
   def destroy

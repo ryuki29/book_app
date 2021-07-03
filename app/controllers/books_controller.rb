@@ -45,5 +45,4 @@ class BooksController < ApplicationController
   def user_book_params
     params.require(:user_book).permit(:status)
   end
-
 end

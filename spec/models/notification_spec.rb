@@ -13,13 +13,15 @@ RSpec.describe Notification, type: :model do
 
       it 'いいねが行われたときに保存される' do
         like = build(:like)
-        notification = build(:notification, visitor_id: user.id, visited_id: other_user.id, review_id: review.id, action: 'like')
+        notification = build(:notification, visitor_id: user.id, visited_id: other_user.id, review_id: review.id,
+                                            action: 'like')
         expect(notification).to be_valid
       end
 
       it 'コメントが行われたときに保存される' do
         comment = build(:comment)
-        notification = build(:notification, visitor_id: user.id, visited_id: other_user.id, review_id: review.id, action: 'comment')
+        notification = build(:notification, visitor_id: user.id, visited_id: other_user.id, review_id: review.id,
+                                            action: 'comment')
         expect(notification).to be_valid
       end
     end
