@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
       @message = Message.new(message_params)
       @message.save
     else
-      flash[:alert] = "メッセージ送信に失敗しました。"
+      flash[:alert] = 'メッセージ送信に失敗しました。'
     end
   end
 
@@ -16,6 +16,7 @@ class MessagesController < ApplicationController
   end
 
   private
+
   def message_params
     params.require(:message).permit(:user_id, :message, :room_id).merge(user_id: current_user.id)
   end

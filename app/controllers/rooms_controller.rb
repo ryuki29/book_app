@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @rooms = current_user.rooms.joins(:messages).includes(:messages).order("messages.created_at DESC")
+    @rooms = current_user.rooms.joins(:messages).includes(:messages).order('messages.created_at DESC')
   end
 
   def create
@@ -15,7 +15,7 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
-      @messages = @room.messages.includes(:user).order("created_at asc")
+      @messages = @room.messages.includes(:user).order('created_at asc')
       @message = Message.new
       @entries = @room.entries.includes(:user)
     else

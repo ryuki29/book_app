@@ -1,6 +1,5 @@
 require 'rails_helper'
 describe UsersController, type: :request do
-
   let!(:user) { create(:user) }
 
   describe '#index' do

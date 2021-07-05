@@ -3,13 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers:[:twitter]
+         :omniauthable, omniauth_providers: [:twitter]
 
   has_many :sns_credentials, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :user_books, dependent: :destroy
   has_many :books, through: :user_books,
-            dependent: :destroy
+                   dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :active_relationships,  class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
@@ -19,12 +19,12 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :rooms, through: :entries, source: :room
-  has_many :active_notifications,  class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
-  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+  has_many :active_notifications,  class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   has_one_attached :image
 
   validates :username, presence: true,
-                      length: { maximum: 20 }
+                       length: { maximum: 20 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
                     uniqueness: true,
@@ -43,14 +43,12 @@ class User < ApplicationRecord
     sns_credentials = SnsCredential.where(uid: auth.uid, provider: auth.provider).first
 
     if sns_credentials.present?
-      user = sns_credentials.user
+      sns_credentials.user
     elsif auth.provider == 'twitter'
-      user = User.create_user_with_twitter(auth)
+      User.create_user_with_twitter(auth)
     else
-      user = User.where(email: auth.info.email).first
+      User.where(email: auth.info.email).first
     end
-
-    user
   end
 
   def self.create_user_with_twitter(auth)
@@ -90,8 +88,8 @@ class User < ApplicationRecord
 
   # -----フォロー通知-----
   def create_notification_follow(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?",
-                                current_user.id, id, 'follow'])
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and action = ?',
+                               current_user.id, id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,
@@ -103,14 +101,14 @@ class User < ApplicationRecord
 
   def self.search(search)
     return User.all unless search
+
     User.where('username LIKE(?)', "%#{search}%")
   end
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.username = "ゲストユーザー"
+      user.username = 'ゲストユーザー'
     end
   end
-
 end
