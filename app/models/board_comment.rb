@@ -5,6 +5,8 @@ class BoardComment < ApplicationRecord
 
   validates :text, presence: true, length: { maximum: 200 }
 
+  scope :recent, -> { order(created_at: :desc) }
+
   def create_notification_comment(current_user, board_comment_id, board_id)
     temp_ids = BoardComment.select(:user_id).where(board_id: board_id).where.not(user_id: current_user.id).distinct
 
