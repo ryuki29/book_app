@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :review do
-    date        { Date.today }
+    date        { Date.current }
     tegline     { Faker::Lorem.sentence }
     text        { Faker::Lorem.sentence }
     rating      { 3 }

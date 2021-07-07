@@ -12,7 +12,7 @@ class Reviews::ActionPlansController < ApplicationController
     end
 
     @remind_plans = []
-    today = Date.today
+    today = Date.current
 
     @not_started_plans.each do |nsp|
       @remind_plans << nsp if nsp.deadline - today < 7 && nsp.deadline - today >= 0
