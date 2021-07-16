@@ -1,3 +1,7 @@
+
+set(:rails_env, 'production')
+set(:stage, 'production')
+
 server "35.75.106.94", user: "ryuki", roles: %w{app db web}
 
 set :ssh_options, {
