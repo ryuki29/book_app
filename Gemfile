@@ -29,11 +29,11 @@ gem 'image_processing', '~> 1.2'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
-  gem 'capistrano', '~> 3.10', require: false
-  gem 'capistrano3-puma'
-  gem 'capistrano-rails', '~> 1.6', require: false
-  gem 'capistrano-rbenv', '~> 2.2'
-  gem 'capistrano-rbenv-vars', '~> 0.1'
+  gem 'capistrano', '~> 3.10',           require: false
+  gem 'capistrano3-puma',                require: false
+  gem 'capistrano-rails', '~> 1.6',      require: false
+  gem 'capistrano-rbenv', '~> 2.2',      require: false
+  gem 'capistrano-rbenv-vars', '~> 0.1', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
