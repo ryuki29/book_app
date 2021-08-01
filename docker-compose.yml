@@ -8,7 +8,7 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
-  web:
+  app:
     build: .
     command: "irb"
     volumes:
@@ -21,6 +21,19 @@ services:
     tty: true
     stdin_open: true
 
+  web:
+    build:
+      context: containers/nginx
+    volumes:
+      - public-data:/book_app/public
+      - tmp-data:/book_app/tmp
+    ports:
+      - 80:80
+    depends_on:
+      - app
+
 volumes:
   mysql_data:
   gem_data:
+  public-data:
+  tmp-data:
