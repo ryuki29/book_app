@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   ruby: circleci/ruby@1.1.2
-  node: circleci/node@2
 
 jobs:
   build:
@@ -12,13 +11,11 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
+
   test:
     parallelism: 3
     docker:
-      - image: circleci/ruby:2.7
+      - image: circleci/ruby:2.7.3
       - image: circleci/mysql:5.6
         environment:
           - MYSQL_ROOT_PASSWORD: password
@@ -27,17 +24,11 @@ jobs:
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
-      PGHOST: 127.0.0.1
-      PGUSER: circleci-demo-ruby
-      PGPASSWORD: ""
       RAILS_ENV: test
     working_directory: ~/book_app
     steps:
-      - checkout
+      - checkout
       - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
-          cache-key: "yarn.lock"
       - run:
           name: Database setup
           command: bundle exec rails db:migrate
