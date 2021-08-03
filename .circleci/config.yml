@@ -34,7 +34,6 @@ jobs:
     working_directory: ~/book_app
     steps:
       - checkout
-          path: ~/book_app
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
