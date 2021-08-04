@@ -1,5 +1,9 @@
 version: 2.1
-
+commands:
+  install_bundler:
+    description: Bundler install
+    steps:
+      - run: gem install bundler -v 2.2.21
 orbs:
   ruby: circleci/ruby@1.1.2
 
@@ -12,11 +16,7 @@ jobs:
       - checkout
       - ruby/install-deps
 
-commands:
-  install_bundler:
-    description: Bundler install
-    steps:
-      - run: gem install bundler -v 2.2.21
+
 
   test:
     parallelism: 3
@@ -36,7 +36,8 @@ commands:
     steps:
       - checkout
       - ruby/install-deps
-      - install_bundler
+      - run:
+          command: gem install bundler -v 2.2.21
       - run: mv config/database.yml.ci config/database.yml
       - run:
           name: Database setup
