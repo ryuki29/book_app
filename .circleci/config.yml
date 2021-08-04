@@ -12,6 +12,12 @@ jobs:
       - checkout
       - ruby/install-deps
 
+commands:
+  install_bundler:
+    description: Bundler install
+    steps:
+      - run: gem install bundler -v 2.2.21
+
   test:
     parallelism: 3
     docker:
@@ -24,11 +30,14 @@ jobs:
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
+      BUNDLER_VERSION: 2.2.21
       RAILS_ENV: test
     working_directory: ~/book_app
     steps:
       - checkout
       - ruby/install-deps
+      - install_bundler
+      - run: mv config/database.yml.ci config/database.yml
       - run:
           name: Database setup
           command: bundle exec rails db:migrate
@@ -37,7 +46,17 @@ jobs:
           command: bundle exec rubocop
       - run:
           name: Rspec
-          command: bundle exec rspec
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
+
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
       - ruby/rspec-test
       - ruby/rubocop-check
 
