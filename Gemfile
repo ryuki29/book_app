@@ -60,12 +60,12 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'rspec_junit_formatter'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-twitter'
-
 gem 'chart-js-rails'
 gem 'chartkick'
 gem 'devise'
@@ -73,11 +73,9 @@ gem 'devise-i18n'
 gem 'dotenv-rails'
 gem 'enum_help'
 gem 'httparty'
-gem 'image_processing', '~> 1.2'
 gem 'json'
 gem 'kaminari'
 gem 'mini_magick'
-gem 'omniauth-twitter'
 gem 'pry-byebug'
 gem 'rails-i18n'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
