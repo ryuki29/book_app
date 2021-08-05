@@ -32,7 +32,6 @@ jobs:
       - checkout
       - ruby/install-deps
   test:
-    parallelism: 3
     executor:
       name: default_container
     steps:
