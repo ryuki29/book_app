@@ -1,36 +1,40 @@
 version: 2.1
-commands:
-  install_bundler:
-    description: Bundler install
-    steps:
-      - run: gem install bundler -v 2.2.21
-orbs:
-  ruby: circleci/ruby@1.1.2
 
-jobs:
-  build:
+executors:
+  default_container:
     docker:
       - image: circleci/ruby:2.7.3
-    working_directory: ~/book_app
-    steps:
-      - checkout
-      - ruby/install-deps
-
-  test:
-    parallelism: 3
-    docker:
-      - image: circleci/ruby:2.7.3
+        environment:
+          BUNDLE_JOBS: "3"
+          BUNDLE_RETRY: "3"
+          BUNDLER_VERSION: 2.2.21
+          RAILS_ENV: test
       - image: circleci/mysql:5.6
         environment:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: book_app_test
           MYSQL_USER: root
-    environment:
-      BUNDLE_JOBS: "3"
-      BUNDLE_RETRY: "3"
-      BUNDLER_VERSION: 2.2.21
-      RAILS_ENV: test
     working_directory: ~/book_app
+
+commands:
+  install_bundler:
+    description: Bundler install
+    steps:
+      - run: gem install bundler -v 2.2.21
+
+orbs:
+  ruby: circleci/ruby@1.1.2
+
+jobs:
+  build:
+    executor: default_container
+    steps:
+      - checkout
+      - ruby/install-deps
+  test:
+    parallelism: 3
+    executor:
+      name: default_container
     steps:
       - checkout
       - ruby/install-deps
