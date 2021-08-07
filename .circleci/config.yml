@@ -9,12 +9,12 @@ executors:
           BUNDLE_RETRY: "3"
           BUNDLER_VERSION: 2.2.21
           RAILS_ENV: test
-      - image: circleci/mysql:5.6
+      - image: circleci/mysql:5.6.51
         environment:
           MYSQL_ROOT_PASSWORD: password
-          MYSQL_ROOT_HOST: "%"
           MYSQL_DATABASE: book_app_test
-          MYSQL_USER: root
+          MYSQL_USER: user
+          MYSQL_PASSWORD: password
     working_directory: ~/book_app
 
 commands:
