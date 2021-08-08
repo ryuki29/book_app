@@ -11,8 +11,8 @@ executors:
           RAILS_ENV: test
       - image: circleci/mysql:5.6
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
-          MYSQL_ROOT_HOST: "%"
+          MYSQL_USER: root
+          MYSQL_ROOT_PASSWORD: password
     working_directory: ~/book_app
 
 commands:
@@ -26,34 +26,39 @@ orbs:
 
 jobs:
   build:
-    executor: default_container
+    executor:
+      name: default_container
     steps:
       - checkout
       - ruby/install-deps
-  test:
+
+  rspec:
     executor:
       name: default_container
     steps:
       - checkout
       - ruby/install-deps
       - run:
+          name: Bundler install
           command: gem install bundler -v 2.2.21
+      - run:
+          name: Watting stand up database
+          command: |
+            dockerize -wait \
+            tcp://127.0.0.1:3306 -timeout 120s
+      # Database setup
       - run: mv config/database.yml.ci config/database.yml
       - run:
           name: Database setup
           command: |
             bundle exec rails db:create
-            bundle exec rails db:migrate
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop
+            bundle exec rails db:schema:load
       - run:
           name: Rspec
           command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
-
             bundle exec rspec \
               --format progress \
               --format RspecJunitFormatter \
@@ -73,6 +78,6 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test:
+      - rspec:
           requires:
             - build
