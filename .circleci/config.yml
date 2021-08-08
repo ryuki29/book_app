@@ -54,6 +54,9 @@ jobs:
             bundle exec rails db:create
             bundle exec rails db:schema:load
       - run:
+          name: Yarn install
+          command: yarn install
+      - run:
           name: Rspec
           command: |
             mkdir /tmp/test-results
