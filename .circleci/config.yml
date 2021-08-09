@@ -71,7 +71,6 @@ jobs:
           path: /tmp/test-results
           destination: test-results
       - ruby/rspec-test
-      - ruby/rubocop-check
 
 workflows:
   version: 2
