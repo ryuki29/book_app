@@ -3,7 +3,7 @@ version: 2.1
 executors:
   default_container:
     docker:
-      - image: circleci/ruby:2.7.3
+      - image: circleci/ruby:2.7.3-node
         environment:
           BUNDLE_JOBS: "3"
           BUNDLE_RETRY: "3"
@@ -38,9 +38,6 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - run:
-          name: Bundler install
-          command: gem install bundler -v 2.2.21
       - run:
           name: Watting stand up database
           command: |
