@@ -22,15 +22,15 @@ describe ReviewsController, type: :request do
     end
   end
 
-  describe '#show' do
-    it 'showアクションにリクエストすると正常にレスポンスが返ってくる' do
-      get review_path(@review)
-      expect(response.status).to eq 200
-    end
+  # describe '#show' do
+  #   it 'showアクションにリクエストすると正常にレスポンスが返ってくる' do
+  #     get review_path(@review)
+  #     expect(response.status).to eq 200
+  #   end
 
-    it 'テキストが存在する' do
-      get review_path(@review)
-      expect(response.body).to include(@review.text)
-    end
-  end
+  #   it 'テキストが存在する' do
+  #     get review_path(@review)
+  #     expect(response.body).to include(@review.text)
+  #   end
+  # end
 end

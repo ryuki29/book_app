@@ -1,55 +1,64 @@
 version: 2.1
+
+executors:
+  default_container:
+    docker:
+      - image: circleci/ruby:2.7.3-node
+        environment:
+          BUNDLE_JOBS: "3"
+          BUNDLE_RETRY: "3"
+          BUNDLER_VERSION: 2.2.21
+          RAILS_ENV: test
+      - image: circleci/mysql:5.6
+        environment:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: book_app_test
+    working_directory: ~/book_app
+
 commands:
   install_bundler:
     description: Bundler install
     steps:
       - run: gem install bundler -v 2.2.21
+
 orbs:
   ruby: circleci/ruby@1.1.2
 
 jobs:
   build:
-    docker:
-      - image: circleci/ruby:2.7.3
-    working_directory: ~/book_app
+    executor:
+      name: default_container
     steps:
       - checkout
       - ruby/install-deps
 
-  test:
-    parallelism: 3
-    docker:
-      - image: circleci/ruby:2.7.3
-      - image: circleci/mysql:5.6
-        environment:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: book_app_test
-          MYSQL_USER: root
-    environment:
-      BUNDLE_JOBS: "3"
-      BUNDLE_RETRY: "3"
-      BUNDLER_VERSION: 2.2.21
-      RAILS_ENV: test
-    working_directory: ~/book_app
+  rspec:
+    executor:
+      name: default_container
     steps:
       - checkout
       - ruby/install-deps
       - run:
-          command: gem install bundler -v 2.2.21
+          name: Watting stand up database
+          command: |
+            dockerize -wait \
+            tcp://127.0.0.1:3306 -timeout 120s
+      # Database setup
       - run: mv config/database.yml.ci config/database.yml
       - run:
           name: Database setup
-          command: bundle exec rails db:migrate
+          command: |
+            bundle exec rails db:create
+            bundle exec rails db:schema:load
       - run:
-          name: Rubocop
-          command: bundle exec rubocop
+          name: Yarn install
+          command: yarn install
       - run:
           name: Rspec
           command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
-
             bundle exec rspec \
               --format progress \
               --format RspecJunitFormatter \
@@ -62,13 +71,12 @@ jobs:
           path: /tmp/test-results
           destination: test-results
       - ruby/rspec-test
-      - ruby/rubocop-check
 
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
-      - test:
+      - rspec:
           requires:
             - build
