@@ -32,7 +32,7 @@ jobs:
       - checkout
       - ruby/install-deps
 
-  rspec:
+  test:
     executor:
       name: default_container
     steps:
@@ -72,11 +72,25 @@ jobs:
           destination: test-results
       - ruby/rspec-test
 
+      - add_ssh_keys:
+          fingerprints:
+            - "80:c8:e7:e5:57:80:15:a1:a5:82:3c:59:f0:cd:16:cd"
+
+      - deploy:
+          name: Capistrano deploy
+          command: bundle exec cap production deploy
+
 workflows:
   version: 2
-  build_and_test:
+  build_test_and_deploy:
     jobs:
       - build
-      - rspec:
+      - test:
           requires:
             - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
