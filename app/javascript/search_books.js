@@ -1,4 +1,4 @@
-$(document).on("turbolinks:load", function(){
+$(document).on("turbolinks:load", function() {
   $(".read-book").on("click", function() {
     let title = $(this).attr("data-title");
     let authors = $(this).attr("data-authors");
