@@ -22,7 +22,6 @@ $(document).on("turbolinks:load", function(){
         type: "delete",
       })
         .done(function() {
-          console.log("4")
           removeBook(element);
         })
         .fail(function() {
