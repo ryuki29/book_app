@@ -21,6 +21,10 @@ class BooksController < ApplicationController
     @review_list = Kaminari.paginate_array(review_list).page(params[:page]).per(10)
   end
 
+  def destroy
+    redirect_to request.referrer if @book.destroy
+  end
+
   def search
     @books = []
     keyword = params[:keyword]
