@@ -8,13 +8,7 @@
 
         <div class="board-show_head">
           <div class="board-show_user_icon mb-3">
-            <%= link_to user_path(@board.user.id) do %>
-              <% if @board.user.image.attached? %>
-                <%= image_tag(@board.user.image) %>
-              <% else %>
-                <%= image_tag("default-user.png")%>
-              <% end %>
-            <% end %>
+            <%= render partial: "shared/user-image", locals: {attr: @board} %>
           </div>
           <%# -----スレッドタイトル----- %>
           <h4 id="js-board-title" class="board-show-title"><b><%= @board.title %></b></h4>
