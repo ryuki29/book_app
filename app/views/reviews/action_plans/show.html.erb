@@ -4,11 +4,11 @@
     <%= link_to user_path(@user) do %>
       <div class="plans-card plans-profile-card">
         <div class="card-profile_img">
-            <% if @user.image.attached? %>
-              <%= image_tag(@user.image) %>
-            <% else %>
-              <%= image_tag("default-user.png")%>
-            <% end %>
+          <% if @user.image.attached? %>
+            <%= image_tag(@user.image) %>
+          <% else %>
+            <%= image_tag("default-user.png")%>
+          <% end %>
         </div>
         <div class="card-profile_name"><%= @user.username %></div>
       </div>

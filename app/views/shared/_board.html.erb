@@ -7,13 +7,7 @@
           <div class="col review-index_head_user">
             <%# -----トプ画----- %>
             <div class="review-index_user_icon i">
-              <%= link_to user_path(board.user.id) do %>
-                <% if board.user.image.attached? %>
-                  <%= image_tag(board.user.image) %>
-                <% else %>
-                  <%= image_tag("default-user.png")%>
-                <% end %>
-              <% end %>
+              <%= render partial: "shared/user-image", locals: {attr: board} %>
             </div>
             <%# -----ユーザー名----- %>
             <div class="review-index_user_name">
