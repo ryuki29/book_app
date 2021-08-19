@@ -1,0 +1,7 @@
+<%= link_to user_path(attr.user.id) do %>
+  <% if attr.user.image.attached? %>
+    <%= image_tag(attr.user.image) %>
+  <% else %>
+    <%= image_tag("default-user.png") %>
+  <% end %>
+<% end %>

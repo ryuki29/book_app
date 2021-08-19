@@ -9,13 +9,7 @@
             <div class="ranking-board_content">
               <div class="ranking-board_user_info">
                 <div class="ranking-board_user_icon mb-3">
-                  <%= link_to user_path(board.user.id) do %>
-                    <% if board.user.image.attached? %>
-                      <%= image_tag(board.user.image) %>
-                    <% else %>
-                      <%= image_tag("default-user.png") %>
-                    <% end %>
-                  <% end %>
+                  <%= render partial: "shared/user-image", locals: {attr: board} %>
                 </div>
                 <div class="ranking-board_user_name"><%= board.user.username %></div>
               </div>

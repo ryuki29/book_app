@@ -8,13 +8,7 @@
 
         <div class="review-show_review">
           <div class="board-show_comment_user_icon mb-3">
-            <%= link_to user_path(comment.user.id) do %>
-              <% if comment.user.image.attached? %>
-                <%= image_tag(comment.user.image) %>
-              <% else %>
-                <%= image_tag("default-user.png")%>
-              <% end %>
-            <% end %>
+            <%= render partial: "shared/user-image", locals: {attr: comment} %>
             <p class="board-show-user_name text-center"><%= comment.user.username %></p>
           </div>
 
