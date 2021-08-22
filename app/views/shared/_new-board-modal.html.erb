@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="board-modal-body">
         <%= form_with model: @board do |f| %>
           <div class="row mt-3">
             <%= f.label :title, "タイトル", class:"col-lg-3" %>
@@ -48,7 +48,7 @@
           </div>
 
           <div class="row">
-            <div class="col-9"></div>
+            <div class="col-9 board-margin"></div>
             <div class="col-3">
               <div class="col-9 d-flex">
                 <%= f.submit "作成する", class:"board-submit btn-primary" %>

@@ -2,7 +2,7 @@
   <div class="wrapper header__wrapper">
     <div class="header__left">
       <%= link_to root_path, class:"brand" do %>
-      <h3>READER</h3>
+        <h1 class="header__title">READER</h1>
       <% end %>
       <div class="search">
         <%= render 'shared/search' %>
@@ -139,8 +139,8 @@
 
       <script>
         $('#hamburger').on('click', function(){
-        $('.icon').toggleClass('close');
-        $('.sm').slideToggle();
+          $('.icon').toggleClass('close');
+          $('.sm').slideToggle();
         });
       </script>
 
