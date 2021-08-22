@@ -16,6 +16,7 @@
     width: 30rem;
     padding: 3%;
   }
+
   &-p {
     margin: 1rem auto;
     width: 15rem;
@@ -134,7 +135,6 @@
   }
 }
 
-
 @media (max-width: 1199px) {
   .plans-show_center {
     width: 100%;
@@ -190,5 +190,17 @@
     .contents-card {
       display: none;
     }
+  }
+}
+@media (max-width: 560px) {
+  .plans-show-label {
+    width: 15rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .plans-profile-card, .progress-card,
+  .remind-card {
+    margin-left: auto;
   }
 }

@@ -13,11 +13,33 @@
   }
 }
 
+.board-margin {
+  max-width: 75%;
+}
+
+@media (max-width: 500px) {
+  .boards-form {
+    width: auto;
+    i {
+      margin-right: 0;
+    }
+  }
+
+  .board-margin {
+    max-width: 60%;
+  }
+}
+
 .boards-new_btn, .board-submit {
   @include board-new_btn()
 }
 
-.board-show_head{
+.board-submit {
+  position: absolute;
+  right: 0;
+}
+
+.board-show_head {
   display: flex;
   justify-content: space-around;
 }
@@ -184,4 +206,10 @@
 
 .board-show_tab_content {
   display: none;
+}
+
+.board-modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 1rem 1rem 3rem 1rem;
 }
