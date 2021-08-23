@@ -39,7 +39,7 @@
 
       <%# -----削除アイコン----- %>
       <% if user_signed_in? && current_user.id == @board.user_id %>
-        <div class="review-show_del review-index_del">
+        <div class="review-show_del">
           <%= link_to board_path(@board.id), method: :delete, class: "review-show_del_btn", data: { confirm: '本当に削除しますか' } do %>
             <i class="far fa-trash-alt fa-2x"></i>
           <% end %>

@@ -2,7 +2,6 @@
   width: 100%;
   width: 100%;
   height: auto;
-  // min-height: 100vh;
   padding: 50px 20px;
   padding-top: 100px;
   display: flex;
@@ -13,7 +12,6 @@
 
   @media screen and (max-width: 768px) {
     height: auto;
-    min-height: 100vh;
     padding-top: 100px;
   }
 }
@@ -68,7 +66,6 @@
   &_name {
     font-weight: 700;
     font-size: 24px;
-    // color: #6944ff;
     color: $accent-color;
     margin-bottom: 10px;
   }
@@ -121,7 +118,6 @@
     &_title {
       font-weight: 700;
       font-size: 27px;
-      //color: #6944ff;
       color: #324e63;
     }
 

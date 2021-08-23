@@ -72,6 +72,36 @@
         </div>
       </div>
 
+      <%# —————————————————————————————— %>
+      <div class="review-show_icons">
+        <%# -----コメントアイコン----- %>
+        <div class="review-show_comment_icon">
+          <a href="#comments_area"><i class="far fa-comment fa-2x"></i></a>
+        </div>
+
+        <%# -----いいねアイコン----- %>
+        <div class="review-show_fav" id="like_<%= @review.id %>">
+          <%= render partial: "likes/like-review", locals: { review: @review} %>
+        </div>
+
+        <%# -----編集アイコン----- %>
+        <% if user_signed_in? && current_user.id == @review.user_id %>
+          <div id="edit-review" class="review-show_edit" data-toggle="modal" data-target="#edit-review-modal">
+            <i class="far fa-edit fa-2x"></i>
+          </div>
+        <% end %>
+
+        <%# -----削除アイコン----- %>
+        <% if user_signed_in? && current_user.id == @review.user_id %>
+          <div class="review-show_del">
+            <%= link_to review_path(@review.id), method: :delete, class: "review-show_del_btn", data: { confirm: '本当に削除しますか' } do %>
+              <i class="far fa-trash-alt fa-2x"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <%# —————————————————————————————— %>
+
       <%# -----コメント----- %>
       <div class="review-show_comment_area">
         <li id="comments_area">
@@ -94,33 +124,6 @@
 
     </div>
 
-    <div class="col-md-2 review-show_icons">
-      <%# -----コメントアイコン----- %>
-      <div class="review-show_comment_icon">
-        <a href="#comments_area"><i class="far fa-comment fa-2x"></i></a>
-      </div>
-
-      <%# -----いいねアイコン----- %>
-      <div class="review-show_fav review-index_fav" id="like_<%= @review.id %>">
-        <%= render partial: "likes/like-review", locals: { review: @review} %>
-      </div>
-
-      <%# -----編集アイコン----- %>
-      <% if user_signed_in? && current_user.id == @review.user_id %>
-        <div id="edit-review" class="review-show_edit" data-toggle="modal" data-target="#edit-review-modal">
-          <i class="far fa-edit fa-2x"></i>
-        </div>
-      <% end %>
-
-      <%# -----削除アイコン----- %>
-      <% if user_signed_in? && current_user.id == @review.user_id %>
-        <div class="review-show_del review-index_del">
-          <%= link_to review_path(@review.id), method: :delete, class: "review-show_del_btn", data: { confirm: '本当に削除しますか' } do %>
-            <i class="far fa-trash-alt fa-2x"></i>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
   </div>
 </div>
 <%= render "shared/edit-review-modal" %>
