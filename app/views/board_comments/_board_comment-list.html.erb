@@ -15,7 +15,7 @@
           <%# -----コメント内容----- %>
           <div id="js-board_comment" class="review-show_txt text-center">
             <p id="js-board_comment-<%= comment.id %>" class="board_comment" data-id="<%= comment.id %>"><%= safe_join(comment.text.split("\n"), tag(:br)) %></p>
-            <%= image_tag comment.image.variant(resize: '500x500'), id:"js-board_comment-img_#{comment.id}", class:"js-board_comment-img", data:{id:"#{comment.id}", image:"#{url_for(comment.image)}"} if comment.image.attached? %>
+            <%= image_tag comment.image.variant(resize: '500x500'), id:"js-board_comment-img_#{comment.id}", class:"board_comment-img", data:{id:"#{comment.id}", image:"#{url_for(comment.image)}"} if comment.image.attached? %>
           </div>
         </div>
 

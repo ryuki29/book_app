@@ -12,9 +12,7 @@ $base-font-color: #726f77;
 }
 
 .review-search_form {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  margin-left: 33%;
+  margin: 2rem auto 1rem auto;
   box-sizing: border-box;
   position: relative;
   border: 1px solid #999;
@@ -145,7 +143,7 @@ $base-font-color: #726f77;
     color: #333;
   }
 
-  &_txt {
+  &_text {
     font-size: 16px;
     line-height: 1.5;
     opacity: 0.6;
@@ -157,9 +155,7 @@ $base-font-color: #726f77;
     overflow: hidden;
     height: 4.2em;
   }
-.a{
-  justify-content:space-between;
-}
+
   &_fav {
     right: 0;
     margin-top: 10%;
@@ -225,7 +221,7 @@ $base-font-color: #726f77;
 }
 
 // -----book-ranking-----
-.ranking-book{
+.ranking-book {
 
   &_top {
     margin-top: 2rem;
@@ -262,6 +258,18 @@ $base-font-color: #726f77;
   .rank2 { color: #C0C0C0; }
   .rank3 { color: #C47222; }
 
+}
+
+@media (max-width: 767px) {
+  .ranking-book {
+    &_top {
+      text-align: center;
+    }
+
+    &_info {
+      margin: 0 auto;
+    }
+  }
 }
 
 // -----paginate-----

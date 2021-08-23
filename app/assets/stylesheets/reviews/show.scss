@@ -52,8 +52,10 @@
       }
     }
   }
+
   &_icons {
-    margin-top: 50px;
+    display: flex;
+    justify-content: flex-end;
   }
 
   &_text, &_phrase, &_plan, &_comment {
@@ -68,10 +70,27 @@
     cursor: pointer;
   }
 
-  .review-show_comment_icon, .review-show_fav_icon, .review-show_edit, .review-show_del {
-    margin-top: 30px;
+  &_fav {
+    a, a:hover {
+      color: $accent-color;
+    }
+  }
+
+  &_del {
+    a, a:hover {
+      color: #ff6647;
+    }
+  }
+
+  &_fav, &_del, &_edit, &_comment_icon {
+    margin: 1rem;
   }
 }
+
+.comment_text {
+  width: 80%;
+}
+
 .comment-submit {
   background-color: white;
   border: 1px solid gray;
