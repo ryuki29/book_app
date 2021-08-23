@@ -40,3 +40,23 @@
 .a {
   justify-content: space-between;
 }
+
+@media (max-width: 420px) {
+  .book-show-authors {
+    text-align: center;
+  }
+  .book-show-status {
+    text-align: center;
+  }
+  .book-show-area {
+    flex-wrap: wrap;
+  }
+
+  .book-show-img {
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .book-show-title {
+    font-size: 1.75rem;
+  }
+}

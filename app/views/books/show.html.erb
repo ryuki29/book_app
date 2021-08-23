@@ -6,15 +6,17 @@
     <div class="book-show-content">
       <h1 class="book-show-title"><%= @book.title %></h1>
       <p class="book-show-authors">著者：<%= @book.authors %></p>
-      <div class="book-show-users-count"><i class="fas fa-book"></i> 本棚登録：<%= @bookCount %>人</div>
-      <div class="book-show-reviews-count"><i class="fas fa-pen-square"></i> レビュー：<%= @review_list.count %></div>
+      <div class="book-show-status">
+        <div class="book-show-users-count"><i class="fas fa-book"></i> 本棚登録：<%= @bookCount %>人</div>
+        <div class="book-show-reviews-count"><i class="fas fa-pen-square"></i> レビュー：<%= @review_list.count %></div>
 
-      <%# -----読みたい本に登録----- %>
-      <% if user_signed_in? %>
-        <div class="will-read-book-btn" id="will-read-book" data-status=2 data-title="<%= @book[:title] %>" data-authors="<%= @book[:authors] %>" data-image="<%= @book[:image_url] %>" data-uid="<%= @book[:uid] %>">
-          <span class="book-show-will-read-btn">読みたい本に登録する<span>
-        </div>
-      <% end %>
+        <%# -----読みたい本に登録----- %>
+        <% if user_signed_in? %>
+          <div class="will-read-book-btn" id="will-read-book" data-status=2 data-title="<%= @book[:title] %>" data-authors="<%= @book[:authors] %>" data-image="<%= @book[:image_url] %>" data-uid="<%= @book[:uid] %>">
+            <span class="book-show-will-read-btn">読みたい本に登録する<span>
+          </div>
+        <% end %>
+      </div>
 
     </div>
   </div>
