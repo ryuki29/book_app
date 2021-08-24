@@ -80,7 +80,7 @@ jobs:
       - ruby/install-deps
       - add_ssh_keys:
           fingerprints:
-            - "80:c8:e7:e5:57:80:15:a1:a5:82:3c:59:f0:cd:16:cd"
+            - "48:cd:b1:00:cf:96:96:9e:62:43:58:9a:54:7b:ee:be"
       - deploy:
           name: Capistrano deploy
           command: bundle exec cap production deploy
