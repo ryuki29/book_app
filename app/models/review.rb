@@ -9,7 +9,7 @@ class Review < ApplicationRecord
   accepts_nested_attributes_for :action_plan, allow_destroy: true
   accepts_nested_attributes_for :impressive_phrase,
                                 reject_if: proc { |attributes|
-                                             attributes['impressive_phrase'].blank?
+                                             attributes['phrase'].blank?
                                            }, allow_destroy: true
 
   enum category: {
