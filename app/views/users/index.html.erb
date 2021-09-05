@@ -9,6 +9,7 @@
   <% end %>
     <% if @users.present? %>
       <%= render @users %>
+      <%= paginate @users %>
     <% else %>
       <p class="text-center mt-5">該当のユーザーはいません</p>
     <% end %>
