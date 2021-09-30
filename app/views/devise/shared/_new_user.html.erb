@@ -11,8 +11,7 @@
         <%= f.password_field :password, placeholder: 'パスワード' %>
         <%= f.submit "ログイン", class: 'btn login' %>
         <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class:"btn login" %>
-        <p>パスワードを忘れた方は<a href="javascript:void(0)">こちら</a></p>
-        <hr/><p>SNSでのログインはこちら</p>
+        <hr/><p>Twitterでのログインはこちら</p>
 
         <%= render partial: "devise/shared/social_item" %>
 
@@ -26,8 +25,7 @@
         <%= f.password_field :password, placeholder: 'パスワード' %>
         <%= f.password_field :password_confirmation, placeholder: 'パスワード確認' %>
         <%= f.submit "登録する", class: 'btn signup' %>
-        <p><strong>登録する</strong></strong>をクリックすると、本アプリの<a href="javascript:void(0)">利用規約</a>に同意したことになります</p>
-        <hr/><p>SNSでの登録はこちら</p>
+        <hr/><p>Twitterでの登録はこちら</p>
 
         <%= render partial: "devise/shared/social_item" %>
 
