@@ -8,6 +8,10 @@ html {
   scroll-behavior: smooth;
 }
 
+a, a:hover {
+  text-decoration: none!important;
+}
+
 li {
   list-style: none;
 }
